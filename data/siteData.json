@@ -1,0 +1,1389 @@
+{
+  "templates": [
+    {
+      "id": "template-1",
+      "numericId": 1,
+      "title": "HAUS Group",
+      "type": "Multiple Pages Website",
+      "image": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600&q=80",
+      "previewimage": "https://i.pinimg.com/vwebp/1200x/3f/da/3b/3fda3b2ef33aad8b4bff418027d0aadf.webp",
+      "preview_description": "Warm geometric layout with hero, sale/rent categories, solutions cards, and journal.",
+      "prebuilt_pages": 7,
+      "sectionVariants": {
+        "Topbar": "Topbar-1",
+        "Header": "Header-1", 
+        "Banner": "Banner-1",
+        "About": "About-1",
+        "Product": "Product-1",
+        "WhyChooseUs": "WhyChooseUs-1",
+        "Gallery": "Gallery-1",
+        "FormDetail": "FormDetail-1",
+        "FAQ": "FAQ-1",
+        "Testimonial": "Testimonial-1",
+        "Footer": "Footer-1"
+      },
+      "variables": {
+        "--header-bg": "#ffffff",
+        "--header-text": "#141414",
+        "--hero-bg": "#141414",
+        "--hero-title": "#ffffff",
+        "--primary-link-bg": "#141414",
+        "--primary-link-color": "#ffffff",
+        "--haus-accent": "#c44536",
+        "--lightcream-bg": "#faf8f4"
+      }
+    }
+  ],
+  "common": {
+    "Topbar": {
+      "text": [
+        "Fast setup, editable sections, category-ready media"
+      ],
+      "phone": "+91 98765 43210",
+      "email": "hello@example.com",
+      "location": "India",
+      "socialLinks": [
+        {
+          "label": "facebook",
+          "href": "https://facebook.com"
+        },
+        {
+          "label": "instagram",
+          "href": "https://instagram.com"
+        },
+        {
+          "label": "linkedin",
+          "href": "https://linkedin.com"
+        }
+      ]
+    },
+    "Footer": {
+      "logoImage": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80",
+      "logoImageTitle": "ETA Card logo",
+      "desc": "Editable website content powered by one category and template JSON file.",
+      "footerColumns": [
+        {
+          "title": "Pages",
+          "links": [
+            {
+              "label": "Home",
+              "href": "/"
+            },
+            {
+              "label": "About",
+              "href": "/about"
+            },
+            {
+              "label": "Journal",
+              "href": "/blog"
+            },
+            {
+              "label": "Properties",
+              "href": "/properties"
+            },
+            {
+              "label": "Contact",
+              "href": "/contact"
+            }
+          ]
+        }
+      ],
+      "footerContact": {
+        "location": "123 Maiden Lane, San Francisco, CA",
+        "email": "mymail@mailservice.com",
+        "phone": "555-555-5555"
+      },
+      "footerLegalLinks": [
+        {
+          "label": "Privacy Policy",
+          "href": "/privacy"
+        },
+        {
+          "label": "Terms & Conditions",
+          "href": "/terms"
+        }
+      ],
+      "socialLinks": [
+        {
+          "label": "facebook",
+          "href": "https://facebook.com"
+        },
+        {
+          "label": "instagram",
+          "href": "https://instagram.com"
+        },
+        {
+          "label": "linkedin",
+          "href": "https://linkedin.com"
+        }
+      ],
+      "whatsappLink": "https://api.whatsapp.com/send?phone=962786336414",
+      "callLink": "tel:+919876543210",
+      "copyrightText": "© 2023 All Rights Reserved | Haus Group"
+    },
+    "AboutPage": {
+      "pretitle": "About us",
+      "title": "Homes found with clarity, care, and local insight.",
+      "desc": "HAUS Group helps families and investors shortlist the right properties using neighborhood knowledge, pricing context, and documentation checks — from first search to keys in hand.",
+      "desc2": "Whether you are buying, renting, or listing, our advisors keep visits practical, numbers honest, and next steps easy to follow.",
+      "subtitle": "Our approach",
+      "sideImage": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
+      "sideImageTitle": "HAUS Group advisors reviewing a residence",
+      "philosophyTitle": "Real options, clear numbers, reliable support.",
+      "philosophyDesc": "We start by understanding your budget, timeline, and lifestyle. Then we shortlist verified homes, guide site visits, and stay with you through paperwork and handover."
+    },
+    "CustomPage": {
+      "pretitle": "Journal",
+      "title": "Guides, tips, and market notes for your next move.",
+      "desc": "Practical articles on buying, renting, packing, and what buyers look for — written to help you decide with more clarity.",
+      "desc2": "Browse the latest notes from our advisors, then reach out when you are ready to shortlist homes.",
+      "sideImage": "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1200&q=80",
+      "sideImageTitle": "Journal feature image"
+    },
+    "ServicePage": {
+      "pretitle": "Services",
+      "title": "Helpful services built around your next step.",
+      "desc": "Use this page to explain the core services, support, and outcomes your team provides for every visitor.",
+      "desc2": "Each service card can be edited from the same JSON-backed editor, including text, images, and supporting details.",
+      "subtitle": "What we provide",
+      "productSectionTitle": "Core service options",
+      "sideImage": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1200&q=80",
+      "sideImageTitle": "Service page image",
+      "productSlides": [
+        {
+          "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
+          "alt": "Planning service",
+          "productTitle": "Planning",
+          "productSubtitle": "Service",
+          "productInfoTitle": "Planning",
+          "productInfoDesc": "Clarify goals, audience needs, and the right structure before visitors take action.",
+          "productFeatures": [
+            {
+              "label": "Strategy",
+              "price": "01"
+            },
+            {
+              "label": "Content",
+              "price": "02"
+            }
+          ],
+          "productTotalPrice": "Service",
+          "productShippingText": "Editable"
+        },
+        {
+          "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1200&q=80",
+          "alt": "Execution service",
+          "productTitle": "Execution",
+          "productSubtitle": "Service",
+          "productInfoTitle": "Execution",
+          "productInfoDesc": "Present offers, proof, and conversion paths through clean editable sections.",
+          "productFeatures": [
+            {
+              "label": "Design",
+              "price": "01"
+            },
+            {
+              "label": "Build",
+              "price": "02"
+            }
+          ],
+          "productTotalPrice": "Service",
+          "productShippingText": "Editable"
+        },
+        {
+          "image": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80",
+          "alt": "Support service",
+          "productTitle": "Support",
+          "productSubtitle": "Service",
+          "productInfoTitle": "Support",
+          "productInfoDesc": "Keep enquiries, updates, and follow-up simple for both visitors and your team.",
+          "productFeatures": [
+            {
+              "label": "Follow up",
+              "price": "01"
+            },
+            {
+              "label": "Updates",
+              "price": "02"
+            }
+          ],
+          "productTotalPrice": "Service",
+          "productShippingText": "Editable"
+        },
+        {
+          "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=80",
+          "alt": "Growth service",
+          "productTitle": "Growth",
+          "productSubtitle": "Service",
+          "productInfoTitle": "Growth",
+          "productInfoDesc": "Improve page content and calls to action as new visitor needs become clear.",
+          "productFeatures": [
+            {
+              "label": "Review",
+              "price": "01"
+            },
+            {
+              "label": "Improve",
+              "price": "02"
+            }
+          ],
+          "productTotalPrice": "Service",
+          "productShippingText": "Editable"
+        }
+      ],
+      "productItems": [
+        {
+          "title": "Planning",
+          "category": "Service",
+          "desc": "Clarify goals, audience needs, and the right structure before visitors take action.",
+          "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
+          "alt": "Planning service"
+        },
+        {
+          "title": "Execution",
+          "category": "Service",
+          "desc": "Present offers, proof, and conversion paths through clean editable sections.",
+          "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1200&q=80",
+          "alt": "Execution service"
+        },
+        {
+          "title": "Support",
+          "category": "Service",
+          "desc": "Keep enquiries, updates, and follow-up simple for both visitors and your team.",
+          "image": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80",
+          "alt": "Support service"
+        }
+      ]
+    },
+    "ContactPage": {
+      "pretitle": "Contact us",
+      "title": "Get in touch with our team",
+      "desc": "Whether you're buying, selling, or renting — share a few details and a Haus Group advisor will guide you through the next steps.",
+      "sideImage": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
+      "sideImageTitle": "HAUS Group office consultation",
+      "footerContact": {
+        "location": "123 Maiden Lane, San Francisco, CA",
+        "email": "mymail@mailservice.com",
+        "phone": "555-555-5555"
+      },
+      "formSubmitLabel": "Send Message",
+      "formFields": [
+        {
+          "label": "Name",
+          "type": "text",
+          "placeholder": "Your full name"
+        },
+        {
+          "label": "Email",
+          "type": "email",
+          "placeholder": "you@example.com"
+        },
+        {
+          "label": "Phone",
+          "type": "tel",
+          "placeholder": "Your phone number"
+        },
+        {
+          "label": "Message",
+          "type": "textarea",
+          "placeholder": "Tell us about the property, location, or budget you're looking for"
+        }
+      ]
+    },
+    "PrivacyPage": {
+      "pretitle": "Legal",
+      "title": "Privacy Policy",
+      "desc": "This policy explains how HAUS Group collects, uses, and protects personal information when you browse listings, book visits, or contact our advisors.",
+      "updatedAt": "July 22, 2026",
+      "sections": [
+        {
+          "title": "Information we collect",
+          "desc": "We may collect your name, email, phone number, preferred locations, budget, and messages you submit through enquiry or visit-request forms. We may also collect basic technical data such as browser type and pages viewed to improve the website."
+        },
+        {
+          "title": "How we use your information",
+          "desc": "We use your details to respond to property enquiries, schedule site visits, share relevant listings, coordinate documentation support, and send updates you request. We do not sell your personal data to third parties."
+        },
+        {
+          "title": "Property enquiries and site visits",
+          "desc": "When you request a visit or shortlist, your information may be shared with assigned HAUS Group advisors and, where needed, with property owners or partners solely to arrange viewings and follow-ups."
+        },
+        {
+          "title": "Cookies and analytics",
+          "desc": "We may use cookies or similar tools to understand how visitors use the site, remember preferences, and improve performance. You can control cookies through your browser settings."
+        },
+        {
+          "title": "Data retention and security",
+          "desc": "We keep enquiry information only as long as needed for follow-up, legal, or service purposes. We take reasonable administrative and technical measures to protect your data from unauthorized access."
+        },
+        {
+          "title": "Your choices",
+          "desc": "You may ask to review, update, or delete your contact details, or unsubscribe from marketing emails. Contact our team using the details in the footer or on the Contact page."
+        },
+        {
+          "title": "Contact for privacy questions",
+          "desc": "For privacy-related requests, email our office or call the number listed in the footer. We will respond as promptly as possible."
+        }
+      ]
+    },
+    "TermsPage": {
+      "pretitle": "Legal",
+      "title": "Terms & Conditions",
+      "desc": "These terms govern your use of the HAUS Group website and related property enquiry services. By using this site, you agree to the conditions below.",
+      "updatedAt": "July 22, 2026",
+      "sections": [
+        {
+          "title": "Using this website",
+          "desc": "Content on this site is provided for general real estate information and enquiry purposes. Listings, prices, availability, and property details may change without notice and should be confirmed with an advisor before any decision."
+        },
+        {
+          "title": "Property information",
+          "desc": "We work to present accurate listing details, but measurements, amenities, ownership documents, and pricing may vary. Always verify key facts during site visits and through formal documentation before purchase, rental, or investment."
+        },
+        {
+          "title": "Enquiries and appointments",
+          "desc": "Submitting a form does not create a brokerage contract. Appointments, shortlists, and follow-ups are coordinated based on availability. HAUS Group may decline or reschedule requests when needed."
+        },
+        {
+          "title": "No financial or legal advice",
+          "desc": "Nothing on this website is legal, tax, or mortgage advice. Buyers, renters, and sellers should seek independent professional advice for financing, contracts, and registration."
+        },
+        {
+          "title": "User responsibilities",
+          "desc": "You agree to provide accurate contact details in forms and not to misuse the site, attempt unauthorized access, or submit harmful or misleading content."
+        },
+        {
+          "title": "Intellectual property",
+          "desc": "Text, branding, layout, and media on this site belong to HAUS Group or its licensors. You may not copy or reuse them for commercial purposes without permission."
+        },
+        {
+          "title": "Limitation of liability",
+          "desc": "To the fullest extent permitted by law, HAUS Group is not liable for decisions made solely based on website content, third-party delays, or temporary service interruptions."
+        },
+        {
+          "title": "Changes to these terms",
+          "desc": "We may update these terms from time to time. Continued use of the website after changes means you accept the revised terms. The updated date above shows the latest revision."
+        }
+      ]
+    },
+    "Testimonial": {
+      "pretitle": "Client stories",
+      "title": "Trusted by buyers, renters, and homeowners.",
+      "desc": "Real feedback from people who found their next home with HAUS Group.",
+      "testimonialItems": [
+        {
+          "name": "Aarav Mehta",
+          "role": "Homebuyer, South Delhi",
+          "quote": "They shortlisted three strong options in a week and made every site visit feel clear and pressure-free.",
+          "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80",
+          "rating": "5.0"
+        },
+        {
+          "name": "Neha Kapoor",
+          "role": "First-time renter",
+          "quote": "Honest pricing, verified documents, and advisors who actually answered follow-up questions the same day.",
+          "image": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80",
+          "rating": "4.9"
+        },
+        {
+          "name": "Rahul Verma",
+          "role": "Property investor",
+          "quote": "Neighborhood comps and rental potential were laid out simply — that made the decision much easier.",
+          "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80",
+          "rating": "5.0"
+        },
+        {
+          "name": "Isha Malhotra",
+          "role": "Home seller",
+          "quote": "Listing support felt premium without being pushy. We closed with a serious buyer faster than expected.",
+          "image": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80",
+          "rating": "4.8"
+        },
+        {
+          "name": "Kabir Anand",
+          "role": "Relocating family",
+          "quote": "School catchments, commute times, and amenity checks were all part of the shortlist. Huge help.",
+          "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80",
+          "rating": "4.7"
+        },
+        {
+          "name": "Sara Khan",
+          "role": "Apartment buyer",
+          "quote": "From enquiry to registration, the process stayed organized and we always knew the next step.",
+          "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80",
+          "rating": "5.0"
+        }
+      ]
+    }
+  },
+  "categories": {
+    "Realestate": {
+      "templates": [
+        "template-1"
+      ],
+      "sections": {
+        "Header": {
+          "logo": "Haus Group",
+          "menu": [
+            {
+              "label": "Home",
+              "href": "/"
+            },
+            {
+              "label": "About",
+              "href": "/about"
+            },
+            {
+              "label": "Journal",
+              "href": "/blog"
+            },
+            {
+              "label": "Contact",
+              "href": "/contact"
+            },
+            {
+              "label": "Properties",
+              "href": "/properties"
+            }
+          ],
+          "buttons": [
+            {
+              "label": "Contact us",
+              "href": "/contact",
+              "variant": "primary"
+            }
+          ]
+        },
+        "Banner": {
+          "backgroundImage": "https://i.pinimg.com/1200x/7f/d1/90/7fd1900642833a5bb15af895bf751f98.jpg",
+          "backgroundImageTitle": "Cozy home interior with fireplace",
+          "backgroundVideo": "",
+          "bannerHeight": 78,
+          "pretitle": "",
+          "title": "Find your perfect home",
+          "desc": "Your perfect home is our priority, make it your priority as well.",
+          "buttons": [
+            {
+              "label": "Talk to agent",
+              "href": "/contact",
+              "variant": "primary"
+            },
+            {
+              "label": "See all properties",
+              "href": "/properties",
+              "variant": "secondary"
+            }
+          ],
+          "bannerSlides": [
+            {
+              "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
+              "video": "",
+              "alt": "Modern apartment living room",
+              "title": "Move into verified homes faster",
+              "desc": "Shortlist ready-to-visit properties with trusted local guidance.",
+              "button": {
+                "label": "View homes",
+                "href": "#",
+                "variant": "primary"
+              }
+            },
+            {
+              "image": "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=80",
+              "video": "",
+              "alt": "Luxury residential building",
+              "title": "Invest in high-growth locations",
+              "desc": "Compare neighborhoods, amenities, pricing, and rental potential.",
+              "button": {
+                "label": "Compare areas",
+                "href": "#",
+                "variant": "primary"
+              }
+            }
+          ]
+        },
+        "About": {
+          "pretitle": "Why buyers trust us",
+          "title": "Real estate guidance from search to keys.",
+          "subtitle": "Verified homes, smarter visits, clearer decisions",
+          "desc": "We help families and investors shortlist the right properties using neighborhood insight, pricing context, and documentation checks.",
+          "desc2": "Whether you're buying or renting, we have a wide selection of properties for you to choose from. Explore and find your dream home now.",
+          "backgroundImage": "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=80",
+          "backgroundImageTitle": "Premium property lounge",
+          "sideImage": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
+          "sideImageTitle": "Luxury residence interior",
+          "philosophyTitle": "Our Promise",
+          "philosophyDesc": "Real options, clear numbers, and reliable local support.",
+          "buttons": [
+            {
+              "label": "Meet our advisors",
+              "href": "/contact",
+              "variant": "primary"
+            }
+          ]
+        },
+        "Product": {
+          "productSectionTitle": "Featured Properties",
+          "productTitle": "Signature Residences",
+          "productSubtitle": "Ready for site visits this week",
+          "productInfoTitle": "Prime City Homes",
+          "productInfoDesc": "Handpicked residences with strong amenities, smart layouts, and verified ownership documents.",
+          "productFeatures": [
+            {
+              "label": "Verified documents",
+              "price": "Included"
+            },
+            {
+              "label": "Site visit",
+              "price": "Free"
+            },
+            {
+              "label": "Loan support",
+              "price": "Available"
+            }
+          ],
+          "productTotalPrice": "From Rs. 1.25 Cr",
+          "productShippingText": "Site visits available today",
+          "productSlides": [
+            {
+              "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
+              "alt": "Skyline apartment",
+              "productTitle": "Skyline Residences",
+              "productSubtitle": "3 BHK Apartment",
+              "productInfoTitle": "High-floor city home",
+              "productInfoDesc": "Open views, clubhouse access, and fast metro connectivity.",
+              "productFeatures": [
+                {
+                  "label": "Bedrooms",
+                  "price": "3"
+                },
+                {
+                  "label": "Area",
+                  "price": "1850 sq.ft"
+                },
+                {
+                  "label": "Parking",
+                  "price": "2"
+                }
+              ],
+              "productTotalPrice": "Rs. 1.25 Cr",
+              "productShippingText": "Ready for visit",
+              "category": "For Sale",
+              "button": {
+                "label": "Book a visit",
+                "href": "/contact",
+                "variant": "primary"
+              }
+            },
+            {
+              "image": "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=80",
+              "alt": "Garden villa with pool",
+              "productTitle": "Garden Villa Estate",
+              "productSubtitle": "4 BHK Villa",
+              "productInfoTitle": "Private garden & pool",
+              "productInfoDesc": "Spacious villa in a gated community with landscaped gardens and 24/7 security.",
+              "productFeatures": [
+                {
+                  "label": "Bedrooms",
+                  "price": "4"
+                },
+                {
+                  "label": "Area",
+                  "price": "3200 sq.ft"
+                },
+                {
+                  "label": "Parking",
+                  "price": "3"
+                }
+              ],
+              "productTotalPrice": "Rs. 2.85 Cr",
+              "productShippingText": "New listing",
+              "category": "For Sale",
+              "button": {
+                "label": "Book a visit",
+                "href": "/contact",
+                "variant": "primary"
+              }
+            },
+            {
+              "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1200&q=80",
+              "alt": "Riverside loft interior",
+              "productTitle": "Riverside Loft",
+              "productSubtitle": "2 BHK Loft",
+              "productInfoTitle": "Waterfront living",
+              "productInfoDesc": "Industrial-chic loft with floor-to-ceiling windows and river promenade access.",
+              "productFeatures": [
+                {
+                  "label": "Bedrooms",
+                  "price": "2"
+                },
+                {
+                  "label": "Area",
+                  "price": "1100 sq.ft"
+                },
+                {
+                  "label": "Furnished",
+                  "price": "Yes"
+                }
+              ],
+              "productTotalPrice": "Rs. 65,000 / mo",
+              "productShippingText": "Available now",
+              "category": "For Rent",
+              "button": {
+                "label": "Book a visit",
+                "href": "/contact",
+                "variant": "primary"
+              }
+            },
+            {
+              "image": "https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=1400&q=80",
+              "alt": "Maple townhouse exterior",
+              "productTitle": "Maple Townhouse",
+              "productSubtitle": "3 BHK Townhouse",
+              "productInfoTitle": "Family-friendly block",
+              "productInfoDesc": "Corner unit with private terrace, school district access, and community park.",
+              "productFeatures": [
+                {
+                  "label": "Bedrooms",
+                  "price": "3"
+                },
+                {
+                  "label": "Area",
+                  "price": "2100 sq.ft"
+                },
+                {
+                  "label": "Terrace",
+                  "price": "Yes"
+                }
+              ],
+              "productTotalPrice": "Rs. 1.68 Cr",
+              "productShippingText": "Open house Sat",
+              "category": "For Sale",
+              "button": {
+                "label": "Book a visit",
+                "href": "/contact",
+                "variant": "primary"
+              }
+            },
+            {
+              "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+              "alt": "Central park view apartment",
+              "productTitle": "Central Park View",
+              "productSubtitle": "1 BHK Apartment",
+              "productInfoTitle": "Park-facing rental",
+              "productInfoDesc": "Bright one-bedroom with park views, in-building gym, and concierge service.",
+              "productFeatures": [
+                {
+                  "label": "Bedrooms",
+                  "price": "1"
+                },
+                {
+                  "label": "Area",
+                  "price": "780 sq.ft"
+                },
+                {
+                  "label": "Furnished",
+                  "price": "Semi"
+                }
+              ],
+              "productTotalPrice": "Rs. 42,000 / mo",
+              "productShippingText": "Move-in ready",
+              "category": "For Rent",
+              "button": {
+                "label": "Book a visit",
+                "href": "/contact",
+                "variant": "primary"
+              }
+            },
+            {
+              "image": "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1200&q=80",
+              "alt": "Heritage lane duplex",
+              "productTitle": "Heritage Lane Duplex",
+              "productSubtitle": "3 BHK Duplex",
+              "productInfoTitle": "Restored character home",
+              "productInfoDesc": "Heritage duplex with modern interiors, double-height living, and walkable cafes.",
+              "productFeatures": [
+                {
+                  "label": "Bedrooms",
+                  "price": "3"
+                },
+                {
+                  "label": "Area",
+                  "price": "1950 sq.ft"
+                },
+                {
+                  "label": "Parking",
+                  "price": "1"
+                }
+              ],
+              "productTotalPrice": "Rs. 1.42 Cr",
+              "productShippingText": "Verified docs",
+              "category": "For Sale",
+              "button": {
+                "label": "Book a visit",
+                "href": "/contact",
+                "variant": "primary"
+              }
+            }
+          ],
+          "productItems": [
+            {
+              "title": "Homes for Sale",
+              "category": "For Sale",
+              "desc": "Browse verified homes ready for purchase.",
+              "image": "https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=1400&q=80",
+              "alt": "Modern living room with fireplace"
+            },
+            {
+              "title": "Homes for Rent",
+              "category": "For Rent",
+              "desc": "Find bright rentals with the right location and layout.",
+              "image": "https://i.pinimg.com/vwebp/1200x/b3/37/91/b3379182103cde3ea336cc83c38c4d96.webp",
+              "alt": "Modern luxury home at sunset with warm exterior lighting"
+            }
+          ],
+          "buttons": [
+            {
+              "label": "Take the virtual walkthrough",
+              "href": "#",
+              "variant": "primary"
+            }
+          ]
+        },
+        "WhyChooseUs": {
+          "pretitle": "Why choose us",
+          "title": "Our commitment to you",
+          "desc": "Help buyers compare real options, verified documents, and guided site visits.",
+          "whyChooseUsItems": [
+            {
+              "title": "Best properties in town",
+              "desc": "Haus group offers top properties handpicked by our agents. Explore the best we have to offer and choose the most suitable property according to your needs.",
+              "stat": "01"
+            },
+            {
+              "title": "Passion for the work",
+              "desc": "We are nothing if not passionate! Real estate is our pride and joy. Let us use that passion to find you the perfect home you'll feel passionate about.",
+              "stat": "02"
+            },
+            {
+              "title": "Top tier realtors",
+              "desc": "Our realtors were chosen according to their skills and experience. They are the best in the market, so you can rest assured you are in good hands.",
+              "stat": "03"
+            },
+            {
+              "title": "Personal dedication",
+              "desc": "Our realtors were chosen according to their skills and experience. They are the best in the market, so you can rest assured you are in good hands.",
+              "stat": "04"
+            }
+          ]
+        },
+        "Gallery": {
+          "pretitle": "Journal",
+          "title": "Latest insights from the market.",
+          "desc": "Tips, home guides, and practical notes to help you buy, rent, or move with confidence.",
+          "galleryItems": [
+            {
+              "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
+              "alt": "Moving into a new home with packed boxes and furniture.",
+              "title": "How to pack your stuff"
+            },
+            {
+              "image": "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1200&q=80",
+              "alt": "Modern living room features that buyers expect in today's market.",
+              "title": "Features that buyers have come to expect"
+            },
+            {
+              "image": "https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=1400&q=80",
+              "alt": "Bright living space with natural light and soft interiors.",
+              "title": "Living spaces that feel like home"
+            },
+            {
+              "image": "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=80",
+              "alt": "Premium exterior detail of a modern residence at dusk.",
+              "title": "Premium details that raise value"
+            },
+            {
+              "image": "https://i.pinimg.com/vwebp/1200x/b3/37/91/b3379182103cde3ea336cc83c38c4d96.webp",
+              "alt": "Modern luxury home at sunset with warm exterior lighting.",
+              "title": "What to check before a night viewing"
+            },
+            {
+              "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1200&q=80",
+              "alt": "Apartment interior with large windows and city views.",
+              "title": "Choosing the right floor and view"
+            }
+          ]
+        },
+        "FormDetail": {
+          "pretitle": "Book a visit",
+          "title": "Tell us what kind of home you need.",
+          "desc": "Share your budget, location, and timeline so an advisor can respond.",
+          "backgroundImage": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
+          "backgroundImageTitle": "Property enquiry visual",
+          "formSubmitLabel": "Request property help",
+          "formFields": [
+            {
+              "label": "Name",
+              "type": "text",
+              "placeholder": "Your name"
+            },
+            {
+              "label": "Phone",
+              "type": "tel",
+              "placeholder": "Your phone number"
+            },
+            {
+              "label": "Requirement",
+              "type": "textarea",
+              "placeholder": "Location, budget, property type"
+            }
+          ]
+        },
+        "FAQ": {
+          "pretitle": "Property FAQ",
+          "title": "Questions buyers often ask.",
+          "faqItems": [
+            {
+              "question": "What are the steps to buy an apartment?",
+              "answer": "Start with a budget and location shortlist, book site visits, verify documents, secure financing, and complete registration with our advisor guiding each step."
+            },
+            {
+              "question": "What documents do I need?",
+              "answer": "Typically ID proof, address proof, income documents for loans, and property papers such as title deed, tax receipts, and NOC where applicable."
+            },
+            {
+              "question": "When is the best time to buy a house?",
+              "answer": "The best time depends on your finances, market conditions, and personal goals. Our team can help you compare seasonal trends and neighbourhood pricing."
+            }
+          ]
+        }
+      }
+    },
+    "Business": {
+      "templates": [
+        "template-1"
+      ],
+      "sections": {
+        "Header": {
+          "logo": "LaunchCo",
+          "menu": [
+            {
+              "label": "Home",
+              "href": "#"
+            },
+            {
+              "label": "About",
+              "href": "#"
+            },
+            {
+              "label": "Service",
+              "href": "#service"
+            },
+            {
+              "label": "Gallery",
+              "href": "#gallery"
+            },
+            {
+              "label": "Contact",
+              "href": "#"
+            }
+          ],
+          "buttons": [
+            {
+              "label": "Start Project",
+              "href": "#",
+              "variant": "primary"
+            },
+            {
+              "label": "Call Us",
+              "href": "#",
+              "variant": "secondary"
+            }
+          ]
+        },
+        "Banner": {
+          "backgroundImage": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80",
+          "backgroundImageTitle": "Business workspace",
+          "backgroundVideo": "",
+          "bannerHeight": 70,
+          "pretitle": "Modern business websites",
+          "title": "Launch a sharper website for your company.",
+          "desc": "Present services, credibility, and calls to action through modular sections your team can edit.",
+          "buttons": [
+            {
+              "label": "Start project",
+              "href": "#",
+              "variant": "primary"
+            }
+          ],
+          "bannerSlides": [
+            {
+              "image": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80",
+              "video": "",
+              "alt": "Business website",
+              "title": "Clear service pages",
+              "desc": "Explain your services with strong sections and simple editing.",
+              "button": {
+                "label": "View services",
+                "href": "#",
+                "variant": "primary"
+              }
+            },
+            {
+              "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=80",
+              "video": "",
+              "alt": "Business operations",
+              "title": "Proof-led company pages",
+              "desc": "Show results, offers, and conversion paths in one place.",
+              "button": {
+                "label": "See work",
+                "href": "#",
+                "variant": "primary"
+              }
+            }
+          ]
+        },
+        "About": {
+          "pretitle": "About the company",
+          "title": "A business website built around trust.",
+          "subtitle": "Services, proof, and fast lead capture",
+          "desc": "Show what your business does, why customers choose you, and how visitors can get in touch.",
+          "desc2": "The content is business-specific while template designs can change component by component.",
+          "backgroundImage": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80",
+          "backgroundImageTitle": "Business office",
+          "sideImage": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80",
+          "sideImageTitle": "Business design",
+          "philosophyTitle": "How We Work",
+          "philosophyDesc": "Clear messaging, strong sections, and fast editing for teams.",
+          "buttons": [
+            {
+              "label": "Get consultation",
+              "href": "#",
+              "variant": "primary"
+            }
+          ]
+        },
+        "Product": {
+          "productSectionTitle": "Core Services",
+          "productTitle": "Business Growth Services",
+          "productSubtitle": "Ready to customize",
+          "productInfoTitle": "Everything your company needs online",
+          "productInfoDesc": "Use service cards to explain offers, packages, capabilities, or featured work.",
+          "productFeatures": [
+            {
+              "label": "Strategy",
+              "price": "Included"
+            },
+            {
+              "label": "Website",
+              "price": "Included"
+            },
+            {
+              "label": "SEO",
+              "price": "Optional"
+            }
+          ],
+          "productTotalPrice": "Custom",
+          "productShippingText": "Fast setup available",
+          "productSlides": [
+            {
+              "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=80",
+              "alt": "Consulting",
+              "productTitle": "Consulting",
+              "productSubtitle": "Growth Planning",
+              "productInfoTitle": "Clear strategy",
+              "productInfoDesc": "A focused service block for your leading offer.",
+              "productFeatures": [
+                {
+                  "label": "Audit",
+                  "price": "Included"
+                },
+                {
+                  "label": "Plan",
+                  "price": "Included"
+                }
+              ],
+              "productTotalPrice": "Custom",
+              "productShippingText": "Fast setup available",
+              "button": {
+                "label": "Talk to us",
+                "href": "#",
+                "variant": "primary"
+              }
+            }
+          ],
+          "productItems": [
+            {
+              "title": "Consulting",
+              "category": "Service",
+              "desc": "A focused service block for your leading business offer.",
+              "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=80",
+              "alt": "Business consulting"
+            },
+            {
+              "title": "Operations",
+              "category": "Service",
+              "desc": "Show the process and support your customers can expect.",
+              "image": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80",
+              "alt": "Business operations"
+            }
+          ],
+          "buttons": [
+            {
+              "label": "Talk to us",
+              "href": "#",
+              "variant": "primary"
+            }
+          ]
+        },
+        "WhyChooseUs": {
+          "pretitle": "Why choose LaunchCo",
+          "title": "Business pages built for trust and leads.",
+          "desc": "Explain your offer clearly and guide visitors toward action.",
+          "whyChooseUsItems": [
+            {
+              "title": "Sharp positioning",
+              "desc": "Clear service messaging for customers who need quick answers.",
+              "stat": "01"
+            },
+            {
+              "title": "Conversion flow",
+              "desc": "Sections are arranged around proof, offers, and enquiries.",
+              "stat": "02"
+            },
+            {
+              "title": "Fast editing",
+              "desc": "Teams can update service content without rebuilding the design.",
+              "stat": "03"
+            }
+          ]
+        },
+        "Gallery": {
+          "pretitle": "Work gallery",
+          "title": "Show your team, work, and process.",
+          "desc": "Business visuals stay inside the business category folder.",
+          "galleryItems": [
+            {
+              "image": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80",
+              "alt": "Business workspace",
+              "title": "Workspace"
+            },
+            {
+              "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=80",
+              "alt": "Consulting",
+              "title": "Consulting"
+            },
+            {
+              "image": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80",
+              "alt": "Operations",
+              "title": "Operations"
+            },
+            {
+              "image": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80",
+              "alt": "Team work",
+              "title": "Team"
+            }
+          ]
+        },
+        "FormDetail": {
+          "pretitle": "Start a project",
+          "title": "Tell us about your business goal.",
+          "desc": "Capture business enquiries with fields that match service-led websites.",
+          "backgroundImage": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80",
+          "backgroundImageTitle": "Business enquiry visual",
+          "formSubmitLabel": "Send project details",
+          "formFields": [
+            {
+              "label": "Name",
+              "type": "text",
+              "placeholder": "Your name"
+            },
+            {
+              "label": "Work email",
+              "type": "email",
+              "placeholder": "you@company.com"
+            },
+            {
+              "label": "Project details",
+              "type": "textarea",
+              "placeholder": "Services, goals, timeline"
+            }
+          ]
+        },
+        "FAQ": {
+          "pretitle": "Business FAQ",
+          "title": "Common questions before starting.",
+          "faqItems": [
+            {
+              "question": "Can this show services?",
+              "answer": "Yes, service cards and sections can be customized for your company."
+            },
+            {
+              "question": "Can we change content later?",
+              "answer": "Yes, the editor is built around reusable section data."
+            },
+            {
+              "question": "Is this useful for lead generation?",
+              "answer": "Yes, forms, CTAs, and proof sections are designed for enquiries."
+            }
+          ]
+        }
+      }
+    },
+    "School": {
+      "templates": [
+        "template-1"
+      ],
+      "sections": {
+        "Header": {
+          "logo": "BrightSchool",
+          "menu": [
+            {
+              "label": "Home",
+              "href": "#"
+            },
+            {
+              "label": "About",
+              "href": "#"
+            },
+            {
+              "label": "Service",
+              "href": "#service"
+            },
+            {
+              "label": "Gallery",
+              "href": "#gallery"
+            },
+            {
+              "label": "Contact",
+              "href": "#"
+            }
+          ],
+          "buttons": [
+            {
+              "label": "Apply Now",
+              "href": "#",
+              "variant": "primary"
+            },
+            {
+              "label": "Visit Campus",
+              "href": "#",
+              "variant": "secondary"
+            }
+          ]
+        },
+        "Banner": {
+          "backgroundImage": "https://i.pinimg.com/vwebp/1200x/3f/da/3b/3fda3b2ef33aad8b4bff418027d0aadf.webp",
+          "backgroundImageTitle": "https://i.pinimg.com/vwebp/1200x/3f/da/3b/3fda3b2ef33aad8b4bff418027d0aadf.webp",
+          "backgroundVideo": "",
+          "bannerHeight": 70,
+          "pretitle": "Future-ready learning",
+          "title": "A school where curiosity becomes confidence.",
+          "desc": "Share admissions, academics, activities, and parent trust through a flexible website your team can edit.",
+          "buttons": [
+            {
+              "label": "Explore admissions",
+              "href": "#",
+              "variant": "primary"
+            }
+          ],
+          "bannerSlides": [
+            {
+              "image": "https://images.unsplash.com/photo-1580582932707-52ebad4a5956?w=1200&q=80",
+              "video": "",
+              "alt": "Students learning together",
+              "title": "Learning that feels alive",
+              "desc": "Highlight classrooms, activities, and student stories with editable slides.",
+              "button": {
+                "label": "View programs",
+                "href": "#",
+                "variant": "primary"
+              }
+            },
+            {
+              "image": "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1200&q=80",
+              "video": "",
+              "alt": "Student activities",
+              "title": "Academics, arts, and sports",
+              "desc": "Present a complete school experience with reusable website sections.",
+              "button": {
+                "label": "Discover more",
+                "href": "#",
+                "variant": "primary"
+              }
+            },
+            {
+              "image": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&q=80",
+              "video": "",
+              "alt": "Student activities",
+              "title": "Academics, arts, and sports that extend our outh",
+              "desc": "Present a complete school experience with reusable website sections.",
+              "button": {
+                "label": "Discover more",
+                "href": "#",
+                "variant": "primary"
+              }
+            }
+          ]
+        },
+        "About": {
+          "pretitle": "About our school",
+          "title": "Strong academics with thoughtful student care.",
+          "subtitle": "A balanced environment for learning and growth",
+          "desc": "We help students build strong fundamentals, creative confidence, and real-world curiosity through guided learning.",
+          "desc2": "Parents get clear communication, structured programs, and a school community focused on every child.",
+          "backgroundImage": "https://images.unsplash.com/photo-1580582932707-52ebad4a5956?w=1200&q=80",
+          "backgroundImageTitle": "School classroom",
+          "sideImage": "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1200&q=80",
+          "sideImageTitle": "Students activity",
+          "philosophyTitle": "Our Approach",
+          "philosophyDesc": "Learning works best when students feel seen, supported, and challenged at the right pace.",
+          "buttons": [
+            {
+              "label": "Meet our teachers",
+              "href": "#",
+              "variant": "primary"
+            }
+          ]
+        },
+        "Product": {
+          "productSectionTitle": "School Programs",
+          "productTitle": "Academic Pathways",
+          "productSubtitle": "Admissions open",
+          "productInfoTitle": "Programs for every stage",
+          "productInfoDesc": "Present classes, activities, facilities, and admission highlights with reusable cards.",
+          "productFeatures": [
+            {
+              "label": "Primary",
+              "price": "I-V"
+            },
+            {
+              "label": "Middle",
+              "price": "VI-VIII"
+            },
+            {
+              "label": "Senior",
+              "price": "IX-XII"
+            }
+          ],
+          "productTotalPrice": "Admissions Open",
+          "productShippingText": "Campus tours available",
+          "productItems": [
+            {
+              "title": "Primary School",
+              "category": "Classes I-V",
+              "desc": "Foundational learning with language, numeracy, activities, and creative confidence.",
+              "image": "https://images.unsplash.com/photo-1580582932707-52ebad4a5956?w=1200&q=80",
+              "alt": "Primary school"
+            },
+            {
+              "title": "Senior School",
+              "category": "Classes IX-XII",
+              "desc": "Exam readiness, mentoring, and future planning for senior students.",
+              "image": "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1200&q=80",
+              "alt": "Senior school"
+            }
+          ],
+          "buttons": [
+            {
+              "label": "Book campus tour",
+              "href": "#",
+              "variant": "primary"
+            }
+          ]
+        },
+        "WhyChooseUs": {
+          "pretitle": "Why choose BrightSchool",
+          "title": "A school experience parents can trust.",
+          "desc": "Use this section to explain care, academics, activities, and communication.",
+          "whyChooseUsItems": [
+            {
+              "title": "Balanced learning",
+              "desc": "Academics, activities, and values are presented together.",
+              "stat": "01"
+            },
+            {
+              "title": "Parent clarity",
+              "desc": "Admissions, programs, and contact steps stay easy to find.",
+              "stat": "02"
+            },
+            {
+              "title": "Student growth",
+              "desc": "Show the environment, teachers, and programs that support students.",
+              "stat": "03"
+            }
+          ]
+        },
+        "Gallery": {
+          "pretitle": "Campus gallery",
+          "title": "Classrooms, campus, and student life.",
+          "desc": "School visuals always come from the school category folder.",
+          "galleryItems": [
+            {
+              "image": "https://images.unsplash.com/photo-1580582932707-52ebad4a5956?w=1200&q=80",
+              "alt": "Students learning",
+              "title": "Classroom"
+            },
+            {
+              "image": "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1200&q=80",
+              "alt": "School campus",
+              "title": "Campus"
+            },
+            {
+              "image": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&q=80",
+              "alt": "Student activities",
+              "title": "Activities"
+            },
+            {
+              "image": "https://images.unsplash.com/photo-1580582932707-52ebad4a5956?w=1200&q=80",
+              "alt": "Learning space",
+              "title": "Learning"
+            }
+          ]
+        },
+        "FormDetail": {
+          "pretitle": "Admissions enquiry",
+          "title": "Ask about admissions and campus visits.",
+          "desc": "Parents can enquire about classes, tours, and the admission process.",
+          "backgroundImage": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&q=80",
+          "backgroundImageTitle": "School admission visual",
+          "formSubmitLabel": "Send admission enquiry",
+          "formFields": [
+            {
+              "label": "Parent name",
+              "type": "text",
+              "placeholder": "Parent name"
+            },
+            {
+              "label": "Phone",
+              "type": "tel",
+              "placeholder": "Phone number"
+            },
+            {
+              "label": "Admission details",
+              "type": "textarea",
+              "placeholder": "Class, session, questions"
+            }
+          ]
+        },
+        "FAQ": {
+          "pretitle": "School FAQ",
+          "title": "Admissions questions answered.",
+          "faqItems": [
+            {
+              "question": "Are admissions open?",
+              "answer": "Yes, admission enquiries can be submitted through the form section."
+            },
+            {
+              "question": "Can parents visit campus?",
+              "answer": "Campus tours can be scheduled based on available slots."
+            },
+            {
+              "question": "Which classes are available?",
+              "answer": "Program cards can show primary, middle, and senior school details."
+            }
+          ]
+        }
+      }
+    }
+  }
+}
