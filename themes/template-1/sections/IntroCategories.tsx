@@ -5,36 +5,36 @@ import type { ResolvedSiteData } from "@/lib/types";
 import { FaKey, FaTag } from "react-icons/fa";
 
 const THEME = "template-1" as const;
-
-const CARD_META = [
-  { label: "For Sale", icon: FaTag, href: "/properties" },
-  { label: "For Rent", icon: FaKey, href: "/properties" },
-] as const;
+const ICONS = [FaTag, FaKey];
 
 export default function IntroCategories({ data }: { data: ResolvedSiteData }) {
   const { about, product } = data;
-  const intro =
-    about.desc2 ||
-    "Whether you're buying or renting, we have a wide selection of properties for you to choose from. Explore and find your dream home now.";
+  const intro = about.desc2;
   const cards = product.productItems.slice(0, 2);
+  const fallbackHref = product.buttons[0]?.href || "/properties";
+
+  if (!intro && cards.length === 0) return null;
 
   return (
-    <section className="bg-white px-4 py-14 md:px-8 md:py-20 lg:px-10 lg:py-24">
+    <section className="bg-white px-4 py-12 md:px-8 md:py-14 lg:px-10">
       <div className="mx-auto max-w-7xl">
-        <p className="max-w-[34rem] text-[1.625rem] font-medium leading-[1.38] tracking-[-0.015em] text-[#141414] md:max-w-[38rem] md:text-[2rem] md:leading-[1.36] lg:max-w-[42rem] lg:text-[2.125rem]">
-          {intro}
-        </p>
+        {intro && (
+          <p className="max-w-[34rem] text-[1.625rem] font-medium leading-[1.38] tracking-[-0.015em] text-[#141414] md:max-w-[38rem] md:text-[2rem] md:leading-[1.36] lg:max-w-[42rem] lg:text-[2.125rem]">
+            {intro}
+          </p>
+        )}
 
-        <div className="mt-10 grid gap-8 sm:gap-10 md:mt-12 md:grid-cols-2 md:gap-6 lg:mt-14 lg:gap-8">
+        <div className="mt-8 grid gap-6 sm:gap-8 md:mt-10 md:grid-cols-2 md:gap-6 lg:gap-8">
           {cards.map((item, i) => {
-            const meta = CARD_META[i];
-            const Icon = meta.icon;
+            const Icon = ICONS[i % ICONS.length];
+            const label = item.category || item.title;
+            const href = item.href || fallbackHref;
 
             return (
               <Link
                 key={item.title}
-                href={withTheme(meta.href, THEME)}
-                className="group relative mb-5 block md:mb-6"
+                href={withTheme(href === "#" ? "/properties" : href, THEME)}
+                className="group relative mb-4 block md:mb-5"
               >
                 <div className="relative aspect-[4/3] overflow-hidden rounded-[1.25rem] md:aspect-[16/10] md:rounded-[1.5rem]">
                   <MediaImage
@@ -49,7 +49,7 @@ export default function IntroCategories({ data }: { data: ResolvedSiteData }) {
 
                 <span className="absolute bottom-0 left-5 z-10 inline-flex translate-y-1/2 items-center gap-3 rounded-xl bg-[#141414] px-6 py-4 text-[15px] font-medium leading-none text-white shadow-[0_8px_24px_rgba(0,0,0,0.18)] md:left-7 md:px-7 md:py-[1.125rem] md:text-base lg:left-8">
                   <Icon className="text-sm md:text-[15px]" aria-hidden />
-                  {meta.label}
+                  {label}
                 </span>
               </Link>
             );

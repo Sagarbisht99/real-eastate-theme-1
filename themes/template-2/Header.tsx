@@ -11,6 +11,7 @@ import {
   FaKitchenSet,
   FaTreeCity,
 } from "react-icons/fa6";
+import { flattenMenuLinks } from "@/lib/nav";
 import { withTheme } from "@/lib/theme";
 import type { ResolvedSiteData } from "@/lib/types";
 
@@ -35,6 +36,8 @@ export default function Header({
   const logoText = (header.logo || "re/room").toLowerCase();
 
   /** Bottom bar — from Product JSON (productSlides / productItems) */
+  const navItems = useMemo(() => flattenMenuLinks(header.menu), [header.menu]);
+
   const categories = useMemo(() => {
     const slides = product.productSlides ?? [];
     if (slides.length > 0) {
@@ -65,8 +68,8 @@ export default function Header({
             <span>.</span>
           </Link>
 
-          <nav className="hidden items-center justify-center gap-9 text-[0.95rem] font-medium text-[#141414] lg:flex">
-            {header.menu.map((item, i) => {
+          <nav className="hidden items-center justify-center gap-4 text-[0.82rem] font-medium text-[#141414] xl:gap-5 xl:text-[0.88rem] lg:flex">
+            {navItems.map((item, i) => {
               const active = isActivePath(pathname, item.href);
               return (
                 <Link
@@ -124,7 +127,7 @@ export default function Header({
       {open && (
         <div className="border-b border-[#141414]/10 bg-white px-4 py-5 lg:hidden">
           <nav className="flex flex-col gap-3.5">
-            {header.menu.map((item, i) => {
+            {navItems.map((item, i) => {
               const active = isActivePath(pathname, item.href);
               return (
                 <Link

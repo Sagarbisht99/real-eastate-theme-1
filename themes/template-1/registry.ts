@@ -1,5 +1,5 @@
 import type { ComponentType } from "react";
-import type { ResolvedSiteData, ThemeId } from "@/lib/types";
+import type { LinkItem, ResolvedSiteData, ThemeId } from "@/lib/types";
 import { themeShellClass } from "@/lib/theme";
 import Home from "@/themes/template-1";
 import Header from "@/themes/template-1/Header";
@@ -13,6 +13,10 @@ import Services from "@/themes/template-1/pages/Services";
 import Privacy from "@/themes/template-1/pages/Privacy";
 import Terms from "@/themes/template-1/pages/Terms";
 import ErrorPage from "@/themes/template-1/pages/Error";
+import Gallery from "@/themes/template-1/pages/Gallery";
+import Awards from "@/themes/template-1/pages/Awards";
+import Career from "@/themes/template-1/pages/Career";
+import Csr from "@/themes/template-1/pages/Csr";
 
 type HeaderProps = { data: ResolvedSiteData; variant?: "overlay" | "solid" };
 type FooterProps = { data: ResolvedSiteData };
@@ -29,7 +33,12 @@ export type ThemePack = {
   Home: ComponentType<{ data: ResolvedSiteData }>;
   Header: ComponentType<HeaderProps>;
   Footer: ComponentType<FooterProps>;
-  PageBanner: ComponentType<{ theme: ThemeId; title: string; eyebrow?: string }>;
+  PageBanner: ComponentType<{
+    theme: ThemeId;
+    title: string;
+    eyebrow?: string;
+    breadcrumb?: LinkItem[];
+  }>;
   pages: {
     About: ComponentType<PageProps>;
     Contact: ComponentType<PageProps>;
@@ -39,6 +48,11 @@ export type ThemePack = {
     Privacy: ComponentType<PageProps>;
     Terms: ComponentType<PageProps>;
     Error: ComponentType<ErrorProps>;
+    Gallery?: ComponentType<PageProps>;
+    Team?: ComponentType<PageProps>;
+    Awards?: ComponentType<PageProps>;
+    Career?: ComponentType<PageProps>;
+    Csr?: ComponentType<PageProps>;
   };
 };
 
@@ -67,5 +81,9 @@ export const template1Pack: ThemePack = {
     Privacy,
     Terms,
     Error: ErrorPage,
+    Gallery,
+    Awards,
+    Career,
+    Csr,
   },
 };

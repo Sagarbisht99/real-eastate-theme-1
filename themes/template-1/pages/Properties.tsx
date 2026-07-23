@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import MediaImage from "@/components/MediaImage";
+import Breadcrumb from "@/components/Breadcrumb";
 import { withTheme } from "@/lib/theme";
 import type { FormField, ProductSlide, ResolvedSiteData, ThemeId } from "@/lib/types";
 import { FaArrowRight, FaMinus, FaPlus } from "react-icons/fa";
@@ -204,7 +205,10 @@ export default function PropertiesContent({
       <section className="border-b border-[#141414]/10 px-4 pb-14 pt-10 md:px-8 md:pb-20 md:pt-14 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#c44536] md:text-xs">
+            <div className="flex justify-center">
+              <Breadcrumb items={product.breadcrumb} theme={theme} />
+            </div>
+            <p className="mt-5 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#c44536] md:text-xs">
               {product.productSubtitle}
             </p>
             <h1 className="mt-4 text-[2.75rem] font-semibold leading-[1.05] tracking-[-0.02em] text-[#141414] md:text-[3.5rem] lg:text-[4rem]">
@@ -235,12 +239,12 @@ export default function PropertiesContent({
             </p>
             <span className="text-sm text-[#141414]/55">{product.productShippingText}</span>
             {product.buttons[0] && (
-              <Link
-                href={withTheme(product.buttons[0].href, theme)}
+              <a
+                href={product.buttons[0].href || "#book-a-visit"}
                 className="ml-auto inline-flex rounded-full bg-[#141414] px-6 py-3 text-sm font-medium text-white transition hover:bg-black"
               >
                 {product.buttons[0].label}
-              </Link>
+              </a>
             )}
           </div>
         </div>
@@ -295,7 +299,10 @@ export default function PropertiesContent({
       </section>
 
       {/* Listings */}
-      <section className="border-b border-[#141414]/10 px-4 py-14 md:px-8 md:py-20 lg:px-10">
+      <section
+        id="listings"
+        className="scroll-mt-24 border-b border-[#141414]/10 px-4 py-14 md:px-8 md:py-20 lg:px-10"
+      >
         <div className="mx-auto max-w-7xl">
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div>
@@ -367,37 +374,39 @@ export default function PropertiesContent({
       </section>
 
       {/* Book a visit */}
-      <SectionRow title={formDetail.title} eyebrow={formDetail.pretitle}>
-        {submitted ? (
-          <p className="text-sm text-[#141414]/70">
-            Thank you — we received your request. An advisor will reach out shortly.
-          </p>
-        ) : (
-          <div>
-            <p className="mb-6 text-sm leading-relaxed text-[#141414]/65 md:text-base">
-              {formDetail.desc}
+      <div id="book-a-visit" className="scroll-mt-24">
+        <SectionRow title={formDetail.title} eyebrow={formDetail.pretitle}>
+          {submitted ? (
+            <p className="text-sm text-[#141414]/70">
+              Thank you — we received your request. An advisor will reach out shortly.
             </p>
-            <form onSubmit={handleSubmit}>
-              {formDetail.formFields.map((field) => (
-                <UnderlineField
-                  key={field.label}
-                  field={field}
-                  value={values[field.label] ?? ""}
-                  onChange={(v) => setValues((prev) => ({ ...prev, [field.label]: v }))}
-                />
-              ))}
-              <div className="mt-8 flex justify-end">
-                <button
-                  type="submit"
-                  className="rounded-md bg-[#141414] px-8 py-3 text-sm font-medium text-white transition hover:bg-black"
-                >
-                  {formDetail.formSubmitLabel}
-                </button>
-              </div>
-            </form>
-          </div>
-        )}
-      </SectionRow>
+          ) : (
+            <div>
+              <p className="mb-6 text-sm leading-relaxed text-[#141414]/65 md:text-base">
+                {formDetail.desc}
+              </p>
+              <form onSubmit={handleSubmit}>
+                {formDetail.formFields.map((field) => (
+                  <UnderlineField
+                    key={field.label}
+                    field={field}
+                    value={values[field.label] ?? ""}
+                    onChange={(v) => setValues((prev) => ({ ...prev, [field.label]: v }))}
+                  />
+                ))}
+                <div className="mt-8 flex justify-end">
+                  <button
+                    type="submit"
+                    className="rounded-md bg-[#141414] px-8 py-3 text-sm font-medium text-white transition hover:bg-black"
+                  >
+                    {formDetail.formSubmitLabel}
+                  </button>
+                </div>
+              </form>
+            </div>
+          )}
+        </SectionRow>
+      </div>
 
       {/* FAQ */}
       <SectionRow title={faq.title} eyebrow={faq.pretitle} className="border-b-0 pb-16 md:pb-24">

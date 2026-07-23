@@ -18,7 +18,7 @@ export default function ContactSection({ data }: { data: ResolvedSiteData }) {
   const rest = fields.filter((f) => !used.has(f.label));
 
   return (
-    <section className="relative bg-white px-4 py-16 md:px-8 md:py-20 lg:px-10 lg:py-24">
+    <section className="relative bg-white px-4 py-10 md:px-8 md:py-12 lg:px-10 lg:py-14">
       {/* Orange hatch peeking behind the card */}
       <div
         className="pointer-events-none absolute inset-x-4 top-10 bottom-10 -z-0 opacity-80 md:inset-x-8 lg:inset-x-10"

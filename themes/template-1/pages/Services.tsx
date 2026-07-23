@@ -15,17 +15,7 @@ export default function ServicesContent({
 
   return (
     <div className={ui.page}>
-      <RevealUp className={ui.intro}>
-        <p className={`text-xs font-semibold uppercase tracking-widest ${ui.accent}`}>
-          {page.pretitle}
-        </p>
-        <h2 className={`mt-3 text-2xl font-bold md:text-3xl ${ui.title}`}>{page.title}</h2>
-        <p className={`mt-4 text-sm leading-relaxed md:text-base ${ui.muted}`}>{page.desc}</p>
-        {page.desc2 && (
-          <p className={`mt-3 text-sm leading-relaxed md:text-base ${ui.muted}`}>{page.desc2}</p>
-        )}
-      </RevealUp>
-
+      
       <div className={`grid items-start lg:grid-cols-[1fr_1.2fr] ${ui.grid}`}>
         {page.sideImage && (
           <RevealUp className="relative aspect-4/3 overflow-hidden rounded-xl lg:aspect-3/4">

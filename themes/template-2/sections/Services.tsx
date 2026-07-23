@@ -24,7 +24,7 @@ export default function Services({ data }: { data: ResolvedSiteData }) {
     rawTitle.toLowerCase() === "services" ? "Our services" : rawTitle;
 
   return (
-    <section className="bg-white px-4 py-16 md:px-8 md:py-20 lg:px-10 lg:py-24">
+    <section className="bg-white px-4 py-10 md:px-8 md:py-12 lg:px-10 lg:py-14">
       <div className="mx-auto max-w-7xl">
         <div className="text-center">
           <h2 className="text-[2rem] font-bold tracking-[-0.02em] text-[#141414] md:text-[2.35rem]">
@@ -33,7 +33,7 @@ export default function Services({ data }: { data: ResolvedSiteData }) {
           <span className="mx-auto mt-3 block h-[3px] w-10 bg-[#ff9a14]" />
         </div>
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-5 lg:gap-4">
+        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-5 lg:gap-4">
           {slides.map((slide, i) => {
             const Icon = icons[i % icons.length];
             return (

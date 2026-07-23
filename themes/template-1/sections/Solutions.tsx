@@ -5,44 +5,44 @@ import type { ResolvedSiteData } from "@/lib/types";
 import { FaArrowRight, FaHome, FaKey } from "react-icons/fa";
 
 const THEME = "template-1" as const;
+const ICONS = [FaHome, FaKey];
 
 export default function Solutions({ data }: { data: ResolvedSiteData }) {
   const { about, formDetail } = data;
+  const primaryCta = about.buttons[0];
 
   const cards = [
     {
-      icon: FaHome,
       step: "01",
-      eyebrow: "Valuation request",
-      title: about.philosophyTitle || "Know what your home is worth",
-      desc:
-        about.philosophyDesc ||
-        "Get a clear market view before you list, buy, or refinance your property.",
+      eyebrow: about.pretitle,
+      title: about.philosophyTitle,
+      desc: about.philosophyDesc,
       image: about.backgroundImage,
-      href: "/contact",
-      cta: about.buttons[0]?.label || "Contact us",
+      href: primaryCta?.href || "/contact",
+      cta: primaryCta?.label || formDetail.formSubmitLabel,
     },
     {
-      icon: FaKey,
       step: "02",
-      eyebrow: "Rent your property",
-      title: formDetail.title || "List with confidence",
-      desc:
-        formDetail.desc ||
-        "Share your rental goals and our team will help you find the right tenants faster.",
+      eyebrow: formDetail.pretitle,
+      title: formDetail.title,
+      desc: formDetail.desc,
       image: formDetail.backgroundImage,
-      href: "/contact",
-      cta: formDetail.formSubmitLabel || "Contact us",
+      href: primaryCta?.href || "/contact",
+      cta: formDetail.formSubmitLabel,
     },
-  ];
+  ].filter((card) => card.title && card.image);
+
+  if (cards.length === 0) return null;
 
   return (
-    <section className="bg-white px-4 py-16 md:px-8 md:py-24 lg:px-10">
+    <section className="bg-white px-4 py-12 md:px-8 md:py-14 lg:px-10">
       <div className="mx-auto max-w-7xl">
         <div className="max-w-2xl">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#c44536] md:text-xs">
-            We have solutions for you
-          </p>
+          {about.pretitle && (
+            <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#c44536] md:text-xs">
+              {about.pretitle}
+            </p>
+          )}
           {about.subtitle && (
             <h2 className="mt-4 text-[2rem] font-semibold leading-tight text-[#141414] md:text-[2.5rem]">
               {about.subtitle}
@@ -50,15 +50,15 @@ export default function Solutions({ data }: { data: ResolvedSiteData }) {
           )}
         </div>
 
-        <div className="mt-10 space-y-5 md:mt-14 md:space-y-6">
+        <div className="mt-8 space-y-5 md:mt-10 md:space-y-6">
           {cards.map((card, index) => {
-            const Icon = card.icon;
+            const Icon = ICONS[index % ICONS.length];
             const reverse = index % 2 === 1;
 
             return (
               <Link
-                key={card.eyebrow}
-                href={withTheme(card.href, THEME)}
+                key={`${card.eyebrow}-${card.title}`}
+                href={withTheme(card.href === "#" ? "/contact" : card.href, THEME)}
                 className={`group grid overflow-hidden rounded-[1.25rem] border border-[#141414]/8 bg-[#faf8f4] transition duration-500 hover:border-[#141414]/15 hover:shadow-[0_20px_50px_rgba(20,20,20,0.08)] md:rounded-[1.5rem] md:grid-cols-2 ${
                   reverse ? "md:[&>*:first-child]:order-2" : ""
                 }`}
@@ -82,22 +82,28 @@ export default function Solutions({ data }: { data: ResolvedSiteData }) {
                     <Icon className="text-base" aria-hidden />
                   </div>
 
-                  <p className="mt-6 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#c44536]">
-                    {card.eyebrow}
-                  </p>
+                  {card.eyebrow && (
+                    <p className="mt-6 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#c44536]">
+                      {card.eyebrow}
+                    </p>
+                  )}
                   <h3 className="mt-3 max-w-md text-2xl font-semibold leading-snug text-[#141414] md:text-[1.85rem] lg:text-[2rem]">
                     {card.title}
                   </h3>
-                  <p className="mt-4 max-w-md text-sm leading-relaxed text-[#141414]/65 md:text-[0.95rem]">
-                    {card.desc}
-                  </p>
+                  {card.desc && (
+                    <p className="mt-4 max-w-md text-sm leading-relaxed text-[#141414]/65 md:text-[0.95rem]">
+                      {card.desc}
+                    </p>
+                  )}
 
-                  <span className="mt-8 inline-flex w-fit items-center gap-3 text-sm font-medium text-[#141414]">
-                    <span className="rounded-full bg-[#141414] px-5 py-2.5 text-white transition group-hover:bg-[#c44536]">
-                      {card.cta}
+                  {card.cta && (
+                    <span className="mt-8 inline-flex w-fit items-center gap-3 text-sm font-medium text-[#141414]">
+                      <span className="rounded-full bg-[#141414] px-5 py-2.5 text-white transition group-hover:bg-[#c44536]">
+                        {card.cta}
+                      </span>
+                      <FaArrowRight className="text-xs transition duration-300 group-hover:translate-x-1" />
                     </span>
-                    <FaArrowRight className="text-xs transition duration-300 group-hover:translate-x-1" />
-                  </span>
+                  )}
                 </div>
               </Link>
             );

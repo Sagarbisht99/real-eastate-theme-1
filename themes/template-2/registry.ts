@@ -13,6 +13,11 @@ import Services from "@/themes/template-2/pages/Services";
 import Privacy from "@/themes/template-2/pages/Privacy";
 import Terms from "@/themes/template-2/pages/Terms";
 import ErrorPage from "@/themes/template-2/pages/Error";
+import Gallery from "@/themes/template-2/pages/Gallery";
+import Team from "@/themes/template-2/pages/Team";
+import Awards from "@/themes/template-2/pages/Awards";
+import Career from "@/themes/template-2/pages/Career";
+import Csr from "@/themes/template-2/pages/Csr";
 import type { ThemePack } from "@/themes/template-1/registry";
 
 type HeaderProps = { data: ResolvedSiteData; variant?: "overlay" | "solid" };
@@ -40,5 +45,10 @@ export const template2Pack: ThemePack = {
     Privacy: Privacy as ComponentType<PageProps>,
     Terms: Terms as ComponentType<PageProps>,
     Error: ErrorPage as ComponentType<ErrorProps>,
+    Gallery: Gallery as ComponentType<PageProps>,
+    Team: Team as ComponentType<PageProps>,
+    Awards: Awards as ComponentType<PageProps>,
+    Career: Career as ComponentType<PageProps>,
+    Csr: Csr as ComponentType<PageProps>,
   },
 };

@@ -14,7 +14,7 @@ export default function HowItWorks({ data }: { data: ResolvedSiteData }) {
   const image = about.backgroundImage || about.sideImage;
 
   return (
-    <section className="bg-[#1a1a1a] px-4 py-16 text-white md:px-8 md:py-20 lg:px-10 lg:py-24">
+    <section className="bg-[#1a1a1a] px-4 py-10 text-white md:px-8 md:py-12 lg:px-10 lg:py-14">
       <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-20">
         <div className="relative mx-auto w-full max-w-md lg:mx-0 lg:max-w-lg">
           {/* Striped frame behind image */}

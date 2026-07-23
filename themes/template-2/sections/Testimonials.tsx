@@ -16,7 +16,7 @@ export default function Testimonials({ data }: { data: ResolvedSiteData }) {
   const items = all.slice(page * PER_PAGE, page * PER_PAGE + PER_PAGE);
 
   return (
-    <section className="bg-[#f7f5f1] px-4 py-16 md:px-8 md:py-20 lg:px-10 lg:py-24">
+    <section className="bg-[#f7f5f1] px-4 py-10 md:px-8 md:py-12 lg:px-10 lg:py-14">
       <div className="mx-auto max-w-7xl">
         <div className="text-center">
           <h2 className="text-[2rem] font-bold tracking-[-0.02em] text-[#141414] md:text-[2.35rem]">
@@ -25,7 +25,7 @@ export default function Testimonials({ data }: { data: ResolvedSiteData }) {
           <span className="mx-auto mt-3 block h-[3px] w-10 bg-[#ff9a14]" />
         </div>
 
-        <div className="mt-12 grid gap-5 md:grid-cols-3 md:gap-6">
+        <div className="mt-8 grid gap-5 md:grid-cols-3 md:gap-6">
           {items.map((item) => (
             <article
               key={item.name}

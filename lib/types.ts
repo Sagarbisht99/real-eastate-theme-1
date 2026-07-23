@@ -1,6 +1,8 @@
 export type LinkItem = {
   label: string;
   href: string;
+  /** Nested links render as a dropdown in header nav */
+  children?: LinkItem[];
 };
 
 export type ButtonItem = {
@@ -40,6 +42,7 @@ export type ProductItem = {
   desc: string;
   image: string;
   alt: string;
+  href?: string;
 };
 
 export type BannerSlide = {
@@ -108,6 +111,16 @@ export type FooterData = {
   whatsappLink: string;
   callLink: string;
   copyrightText: string;
+  officeLabel?: string;
+  newsletterTitle?: string;
+  newsletterPlaceholder?: string;
+  newsletterButtonLabel?: string;
+  newsletterConsentPrefix?: string;
+  newsletterDesc?: string;
+  disclaimerTitle?: string;
+  disclaimerText?: string;
+  legalTitle?: string;
+  contactLabel?: string;
 };
 
 export type AboutPageData = {
@@ -120,6 +133,16 @@ export type AboutPageData = {
   sideImageTitle: string;
   philosophyTitle: string;
   philosophyDesc: string;
+  storyLabel?: string;
+  missionPretitle?: string;
+  missionTitle?: string;
+  missionDesc?: string;
+  missionPoints?: { title: string; desc: string }[];
+  ctaPretitle?: string;
+  ctaTitle?: string;
+  ctaDesc?: string;
+  ctaButton?: ButtonItem;
+  breadcrumb?: LinkItem[];
 };
 
 export type CustomPageData = {
@@ -129,6 +152,16 @@ export type CustomPageData = {
   desc2: string;
   sideImage: string;
   sideImageTitle: string;
+  searchPlaceholder?: string;
+  featuredLabel?: string;
+  listLabel?: string;
+  emptyMessage?: string;
+  readMoreLabel?: string;
+  ctaPretitle?: string;
+  ctaTitle?: string;
+  ctaDesc?: string;
+  ctaButton?: ButtonItem;
+  breadcrumb?: LinkItem[];
 };
 
 export type ServicePageData = {
@@ -142,6 +175,7 @@ export type ServicePageData = {
   sideImageTitle: string;
   productSlides: ProductSlide[];
   productItems: ProductItem[];
+  breadcrumb?: LinkItem[];
 };
 
 export type ContactPageData = {
@@ -153,6 +187,19 @@ export type ContactPageData = {
   footerContact: FooterContact;
   formSubmitLabel: string;
   formFields: FormField[];
+  reachPretitle?: string;
+  reachTitle?: string;
+  reachDesc?: string;
+  formPretitle?: string;
+  formTitle?: string;
+  formDesc?: string;
+  successTitle?: string;
+  successDesc?: string;
+  consentPrefix?: string;
+  officeLabel?: string;
+  phoneLabel?: string;
+  emailLabel?: string;
+  breadcrumb?: LinkItem[];
 };
 
 export type TestimonialItem = {
@@ -174,6 +221,12 @@ export type TeamItem = {
   name: string;
   role: string;
   image: string;
+  bio?: string;
+};
+
+export type TeamDepartment = {
+  name: string;
+  desc: string;
 };
 
 export type TeamData = {
@@ -181,6 +234,99 @@ export type TeamData = {
   title: string;
   desc: string;
   teamItems: TeamItem[];
+  departments?: TeamDepartment[];
+  breadcrumb?: LinkItem[];
+};
+
+export type GalleryPageItem = {
+  image: string;
+  alt: string;
+  title: string;
+  category: string;
+};
+
+export type GalleryPageData = {
+  pretitle: string;
+  title: string;
+  desc: string;
+  categories: string[];
+  galleryItems: GalleryPageItem[];
+  breadcrumb?: LinkItem[];
+};
+
+export type AwardItem = {
+  year: string;
+  title: string;
+  org: string;
+  desc: string;
+  image: string;
+};
+
+export type AwardsPageData = {
+  pretitle: string;
+  title: string;
+  desc: string;
+  awardItems: AwardItem[];
+  breadcrumb?: LinkItem[];
+};
+
+export type CareerBenefit = {
+  title: string;
+  desc: string;
+};
+
+export type CareerJob = {
+  title: string;
+  location: string;
+  type: string;
+  desc: string;
+  href: string;
+  buttonLabel?: string;
+};
+
+export type CareerPageData = {
+  pretitle: string;
+  title: string;
+  desc: string;
+  desc2: string;
+  sideImage: string;
+  sideImageTitle: string;
+  benefits: CareerBenefit[];
+  jobs: CareerJob[];
+  applyLabel?: string;
+  breadcrumb?: LinkItem[];
+};
+
+export type CsrStat = {
+  stat: string;
+  label: string;
+};
+
+export type CsrProgram = {
+  title: string;
+  desc: string;
+  image: string;
+  amount: string;
+};
+
+export type CsrDonateCta = {
+  title: string;
+  desc: string;
+  buttonLabel: string;
+  buttonHref: string;
+};
+
+export type CsrPageData = {
+  pretitle: string;
+  title: string;
+  desc: string;
+  desc2: string;
+  sideImage: string;
+  sideImageTitle: string;
+  impactStats: CsrStat[];
+  programs: CsrProgram[];
+  donateCta: CsrDonateCta;
+  breadcrumb?: LinkItem[];
 };
 
 export type HeaderSection = {
@@ -228,6 +374,7 @@ export type ProductSection = {
   productSlides?: ProductSlide[];
   productItems: ProductItem[];
   buttons: ButtonItem[];
+  breadcrumb?: LinkItem[];
 };
 
 export type WhyChooseUsSection = {
@@ -237,11 +384,20 @@ export type WhyChooseUsSection = {
   whyChooseUsItems: { title: string; desc: string; stat: string }[];
 };
 
+export type GalleryItem = {
+  image: string;
+  alt: string;
+  title: string;
+  date?: string;
+  href?: string;
+};
+
 export type GallerySection = {
   pretitle: string;
   title: string;
   desc: string;
-  galleryItems: { image: string; alt: string; title: string }[];
+  galleryItems: GalleryItem[];
+  buttons?: ButtonItem[];
 };
 
 export type FormDetailSection = {
@@ -289,6 +445,7 @@ export type LegalPageData = {
   desc: string;
   updatedAt: string;
   sections: LegalSection[];
+  breadcrumb?: LinkItem[];
 };
 
 export type CommonData = {
@@ -302,6 +459,10 @@ export type CommonData = {
   TermsPage: LegalPageData;
   Testimonial: TestimonialData;
   Team: TeamData;
+  GalleryPage: GalleryPageData;
+  AwardsPage: AwardsPageData;
+  CareerPage: CareerPageData;
+  CsrPage: CsrPageData;
 };
 
 export type SiteData = {
@@ -328,6 +489,10 @@ export type ResolvedSiteData = {
   footer: FooterData;
   testimonial: TestimonialData;
   team: TeamData;
+  galleryPage: GalleryPageData;
+  awardsPage: AwardsPageData;
+  careerPage: CareerPageData;
+  csrPage: CsrPageData;
   aboutPage: AboutPageData;
   customPage: CustomPageData;
   servicePage: ServicePageData;

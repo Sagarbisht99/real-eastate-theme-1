@@ -10,8 +10,8 @@ export default function Hero({ data }: { data: ResolvedSiteData }) {
   const [primary, secondary] = banner.buttons;
 
   return (
-    <section className="bg-white px-4 pb-2 pt-1 md:px-6 md:pb-4 lg:px-8">
-      <div className="relative mx-auto min-h-[min(78vh,760px)] max-w-[1400px] overflow-hidden rounded-[1.75rem] md:min-h-[min(82vh,820px)] md:rounded-[2.25rem] lg:rounded-[2.5rem]">
+    <section className="bg-white px-4 pb-0 pt-1 md:px-6 lg:px-8">
+      <div className="relative mx-auto flex h-[calc(100svh-8.5rem)] max-h-[640px] min-h-[24rem] max-w-[1400px] overflow-hidden rounded-[1.75rem] md:h-[calc(100svh-9.5rem)] md:min-h-[28rem] md:rounded-[2.25rem] lg:rounded-[2.5rem]">
         <MediaImage
           themeId={data.themeId}
           src={banner.backgroundImage || data.template.image}
@@ -23,7 +23,7 @@ export default function Hero({ data }: { data: ResolvedSiteData }) {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/45 via-black/15 to-transparent" />
 
-        <div className="relative flex min-h-[inherit] items-center px-6 py-16 sm:px-10 md:px-12 md:py-20 lg:px-16">
+        <div className="relative z-[1] flex w-full items-center px-6 py-10 sm:px-10 md:px-12 lg:px-16">
           <div className="max-w-xl">
             <h1 className="text-[2.35rem] font-semibold leading-[1.06] tracking-[-0.01em] text-white sm:text-5xl md:text-[3.35rem] lg:text-[3.75rem]">
               {banner.title}

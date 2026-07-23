@@ -41,7 +41,7 @@ export default function Projects({ data }: { data: ResolvedSiteData }) {
   const cta = data.product.buttons?.[0];
 
   return (
-    <section className="bg-white px-4 py-16 md:px-8 md:py-20 lg:px-10 lg:py-24">
+    <section className="bg-white px-4 py-10 md:px-8 md:py-12 lg:px-10 lg:py-14">
       <div className="mx-auto max-w-7xl">
         <div className="text-center">
           <h2 className="text-[2rem] font-bold tracking-[-0.02em] text-[#141414] md:text-[2.35rem]">
@@ -114,7 +114,7 @@ export default function Projects({ data }: { data: ResolvedSiteData }) {
         </div>
 
         {cta && (
-          <div className="mt-12 flex justify-center">
+          <div className="mt-8 flex justify-center">
             <Link
               href={withTheme(cta.href || "/properties", THEME)}
               className="inline-flex items-center gap-3 rounded-full bg-[#ff9a14] px-8 py-3.5 text-sm font-semibold text-white transition hover:bg-[#f08a00]"

@@ -20,7 +20,7 @@ export default function About({ data }: { data: ResolvedSiteData }) {
   const heading = aboutPage.pretitle || "About us";
 
   return (
-    <section className="relative overflow-hidden bg-[#faf9f7] px-4 py-16 md:px-8 md:py-20 lg:px-10 lg:py-24">
+    <section className="relative overflow-hidden bg-[#faf9f7] px-4 py-10 md:px-8 md:py-12 lg:px-10 lg:py-14">
       {/* Orange corner frame — top right */}
       <div
         className="pointer-events-none absolute right-0 top-0 hidden h-24 w-28 border-b-2 border-l-2 border-[#ff9a14] md:block lg:h-28 lg:w-32"
