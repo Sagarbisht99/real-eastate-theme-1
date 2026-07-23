@@ -7,6 +7,8 @@ import FeaturedProperties from "@/themes/template-1/sections/FeaturedProperties"
 import IntroCategories from "@/themes/template-1/sections/IntroCategories";
 import WhyChooseUs from "@/themes/template-1/sections/WhyChooseUs";
 import LatestProjects from "@/themes/template-1/sections/LatestProjects";
+import CitiesWeServe from "@/themes/template-1/sections/CitiesWeServe";
+import Investment from "@/themes/template-1/sections/Investment";
 import Services from "@/themes/template-1/sections/Services";
 import Team from "@/themes/template-1/sections/Team";
 import Awards from "@/themes/template-1/sections/Awards";
@@ -15,13 +17,6 @@ import Blog from "@/themes/template-1/sections/Blog";
 import FAQ from "@/themes/template-1/sections/FAQ";
 import CTA from "@/themes/template-1/sections/CTA";
 
-/**
- * Homepage sections (only where JSON already has data):
- * Hero → Featured Properties → Categories → Why Choose Us →
- * Latest Projects → Services → Agents → Awards → Testimonials →
- * News → FAQ → CTA
- * Skipped (not in JSON): Property Search, Cities We Serve, Investment Opportunities
- */
 export default function Template1({ data }: { data: ResolvedSiteData }) {
   return (
     <div
@@ -35,6 +30,8 @@ export default function Template1({ data }: { data: ResolvedSiteData }) {
         <IntroCategories data={data} />
         <WhyChooseUs data={data} />
         <LatestProjects data={data} />
+        <CitiesWeServe data={data} />
+        <Investment data={data} />
         <Services data={data} />
         <Team data={data} />
         <Awards data={data} />

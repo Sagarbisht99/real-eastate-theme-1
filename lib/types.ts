@@ -297,6 +297,63 @@ export type MissionPageData = {
   breadcrumb?: LinkItem[];
 };
 
+export type CityItem = {
+  name: string;
+  desc: string;
+  image: string;
+  alt: string;
+  /** Used by section filters (e.g. Delhi, Gurugram) */
+  region?: string;
+  listingsLabel?: string;
+  href?: string;
+};
+
+export type CitiesWeServeData = {
+  pretitle: string;
+  title: string;
+  desc: string;
+  /** Filter chips; first is usually "All" */
+  categories?: string[];
+  cities: CityItem[];
+  button?: ButtonItem;
+};
+
+export type InvestmentItem = {
+  title: string;
+  desc: string;
+  image: string;
+  alt: string;
+  yieldLabel?: string;
+  location?: string;
+  href?: string;
+};
+
+export type InvestmentOpportunitiesData = {
+  pretitle: string;
+  title: string;
+  desc: string;
+  items: InvestmentItem[];
+  button?: ButtonItem;
+};
+
+export type LatestProjectItem = {
+  title: string;
+  desc: string;
+  image: string;
+  alt: string;
+  location?: string;
+  status?: string;
+  href?: string;
+};
+
+export type LatestProjectsData = {
+  pretitle: string;
+  title: string;
+  desc: string;
+  projectItems: LatestProjectItem[];
+  button?: ButtonItem;
+};
+
 export type CareerBenefit = {
   title: string;
   desc: string;
@@ -452,6 +509,10 @@ export type CategorySections = {
   Gallery: GallerySection;
   FormDetail: FormDetailSection;
   FAQ: FAQSection;
+  /** Homepage sections (not dedicated pages) */
+  CitiesWeServe: CitiesWeServeData;
+  InvestmentOpportunities: InvestmentOpportunitiesData;
+  LatestProjects: LatestProjectsData;
 };
 
 export type CategoryId = "Realestate" | "Business" | "School";
@@ -522,6 +583,9 @@ export type ResolvedSiteData = {
   careerPage: CareerPageData;
   csrPage: CsrPageData;
   missionPage: MissionPageData;
+  citiesWeServe: CitiesWeServeData;
+  investmentOpportunities: InvestmentOpportunitiesData;
+  latestProjects: LatestProjectsData;
   aboutPage: AboutPageData;
   customPage: CustomPageData;
   servicePage: ServicePageData;

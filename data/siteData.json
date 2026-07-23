@@ -1018,7 +1018,6 @@
               "label": "Company",
               "href": "/about",
               "children": [
-               
                 {
                   "label": "Careers",
                   "href": "/careers"
@@ -1497,6 +1496,193 @@
               "answer": "The best time depends on your finances, market conditions, and personal goals. Our team can help you compare seasonal trends and neighbourhood pricing."
             }
           ]
+        },
+        "CitiesWeServe": {
+          "pretitle": "Cities we serve",
+          "title": "Neighborhoods we know in depth.",
+          "desc": "Local advisors across key markets — with pricing context, commute insight, and verified listings in each city.",
+          "cities": [
+            {
+              "name": "South Delhi",
+              "desc": "Family apartments, premium floors, and walkable neighborhoods.",
+              "image": "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=1200&q=80",
+              "alt": "South Delhi skyline and residences",
+              "listingsLabel": "48+ listings",
+              "href": "/properties",
+              "region": "Delhi"
+            },
+            {
+              "name": "Gurugram",
+              "desc": "High-rise living near offices, malls, and expressways.",
+              "image": "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=1200&q=80",
+              "alt": "Gurugram modern residential towers",
+              "listingsLabel": "62+ listings",
+              "href": "/properties",
+              "region": "Gurugram"
+            },
+            {
+              "name": "Noida",
+              "desc": "Value-led homes with strong rental demand and metro access.",
+              "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80",
+              "alt": "Noida city residential buildings",
+              "listingsLabel": "35+ listings",
+              "href": "/properties",
+              "region": "Noida"
+            },
+            {
+              "name": "Greater Noida",
+              "desc": "Larger layouts and gated communities for growing families.",
+              "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
+              "alt": "Greater Noida residential community",
+              "listingsLabel": "28+ listings",
+              "href": "/properties",
+              "region": "Noida"
+            },
+            {
+              "name": "Dwarka",
+              "desc": "Airport-side convenience with mid-rise and high-rise options.",
+              "image": "https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=1400&q=80",
+              "alt": "Dwarka residential streetscape",
+              "listingsLabel": "22+ listings",
+              "href": "/properties",
+              "region": "Delhi"
+            },
+            {
+              "name": "Faridabad",
+              "desc": "Spacious homes and townships with practical pricing.",
+              "image": "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=80",
+              "alt": "Faridabad residential exterior",
+              "listingsLabel": "19+ listings",
+              "href": "/properties",
+              "region": "Faridabad"
+            }
+          ],
+          "button": {
+            "label": "Browse properties",
+            "href": "/properties",
+            "variant": "primary"
+          },
+          "categories": [
+            "All",
+            "Delhi",
+            "Gurugram",
+            "Noida",
+            "Faridabad"
+          ]
+        },
+        "InvestmentOpportunities": {
+          "pretitle": "Investment opportunities",
+          "title": "Assets built for steady returns.",
+          "desc": "Shortlisted investment homes with clear yield context, rental demand, and neighborhood growth signals.",
+          "items": [
+            {
+              "title": "Metro Corridor Studios",
+              "desc": "Compact units near transit with strong tenant demand and low vacancy.",
+              "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1200&q=80",
+              "alt": "Studio apartment investment property",
+              "yieldLabel": "Est. 5.8% yield",
+              "location": "Noida",
+              "href": "/properties"
+            },
+            {
+              "title": "Office District Apartments",
+              "desc": "2 BHKs near corporate parks — ideal for professional tenants.",
+              "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
+              "alt": "Apartment near office district",
+              "yieldLabel": "Est. 6.2% yield",
+              "location": "Gurugram",
+              "href": "/properties"
+            },
+            {
+              "title": "Gated Community Villas",
+              "desc": "Premium villas with appreciation potential in expanding townships.",
+              "image": "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=80",
+              "alt": "Investment villa in gated community",
+              "yieldLabel": "Long-term growth",
+              "location": "Greater Noida",
+              "href": "/properties"
+            },
+            {
+              "title": "Rental-Ready Floors",
+              "desc": "Independent floors with parking and furnished options for quick lease.",
+              "image": "https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=1400&q=80",
+              "alt": "Rental ready residential floor",
+              "yieldLabel": "Est. 5.4% yield",
+              "location": "South Delhi",
+              "href": "/properties"
+            }
+          ],
+          "button": {
+            "label": "Talk to an advisor",
+            "href": "/contact",
+            "variant": "primary"
+          }
+        },
+        "LatestProjects": {
+          "pretitle": "Latest projects",
+          "title": "Homes and spaces we recently delivered.",
+          "desc": "A look at recent handovers — interiors, layouts, and finishes families move into.",
+          "projectItems": [
+            {
+              "title": "Skyline Residences handover",
+              "desc": "3 BHK high-floor homes with clubhouse access and metro connectivity.",
+              "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
+              "alt": "Skyline residences project exterior",
+              "location": "Gurugram",
+              "status": "Completed",
+              "href": "/gallery"
+            },
+            {
+              "title": "Garden Villa Estate",
+              "desc": "Private garden villas with pool amenities in a gated community.",
+              "image": "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=80",
+              "alt": "Garden villa estate project",
+              "location": "Greater Noida",
+              "status": "Handover",
+              "href": "/gallery"
+            },
+            {
+              "title": "Riverside Loft refresh",
+              "desc": "Industrial-chic loft upgrades with new kitchens and lighting.",
+              "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1200&q=80",
+              "alt": "Riverside loft interior project",
+              "location": "South Delhi",
+              "status": "Completed",
+              "href": "/gallery"
+            },
+            {
+              "title": "Maple Townhouse block",
+              "desc": "Family townhouses with terraces and community park access.",
+              "image": "https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=1400&q=80",
+              "alt": "Maple townhouse project exterior",
+              "location": "Dwarka",
+              "status": "New listing",
+              "href": "/gallery"
+            },
+            {
+              "title": "Heritage Lane duplex",
+              "desc": "Restored duplex with modern interiors and walkable cafes nearby.",
+              "image": "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1200&q=80",
+              "alt": "Heritage lane duplex project",
+              "location": "South Delhi",
+              "status": "Completed",
+              "href": "/gallery"
+            },
+            {
+              "title": "Central Park rentals",
+              "desc": "Park-facing apartments prepared for move-in ready tenants.",
+              "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80",
+              "alt": "Central park rental apartments",
+              "location": "Noida",
+              "status": "Leasing",
+              "href": "/gallery"
+            }
+          ],
+          "button": {
+            "label": "View gallery",
+            "href": "/gallery",
+            "variant": "primary"
+          }
         }
       }
     },
@@ -1768,6 +1954,24 @@
               "answer": "Yes, forms, CTAs, and proof sections are designed for enquiries."
             }
           ]
+        },
+        "CitiesWeServe": {
+          "pretitle": "",
+          "title": "",
+          "desc": "",
+          "cities": []
+        },
+        "InvestmentOpportunities": {
+          "pretitle": "",
+          "title": "",
+          "desc": "",
+          "items": []
+        },
+        "LatestProjects": {
+          "pretitle": "",
+          "title": "",
+          "desc": "",
+          "projectItems": []
         }
       }
     },
@@ -2024,6 +2228,24 @@
               "answer": "Program cards can show primary, middle, and senior school details."
             }
           ]
+        },
+        "CitiesWeServe": {
+          "pretitle": "",
+          "title": "",
+          "desc": "",
+          "cities": []
+        },
+        "InvestmentOpportunities": {
+          "pretitle": "",
+          "title": "",
+          "desc": "",
+          "items": []
+        },
+        "LatestProjects": {
+          "pretitle": "",
+          "title": "",
+          "desc": "",
+          "projectItems": []
         }
       }
     }

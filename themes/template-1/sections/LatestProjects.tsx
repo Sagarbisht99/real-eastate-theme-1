@@ -9,11 +9,12 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 const THEME = "template-1" as const;
 
-/** Gallery / latest projects — from GalleryPage JSON */
+/** Latest projects — from LatestProjects JSON */
 export default function LatestProjects({ data }: { data: ResolvedSiteData }) {
-  const page = data.galleryPage;
-  const items = page.galleryItems;
+  const section = data.latestProjects;
+  const items = section.projectItems;
   const trackRef = useRef<HTMLDivElement>(null);
+  const cta = section.button;
 
   function scrollBySlide(direction: -1 | 1) {
     const track = trackRef.current;
@@ -31,14 +32,14 @@ export default function LatestProjects({ data }: { data: ResolvedSiteData }) {
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
             <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#c44536]">
-              {page.pretitle}
+              {section.pretitle}
             </p>
             <h2 className="mt-3 text-[2rem] font-semibold leading-tight text-[#141414] md:text-[2.5rem]">
-              {page.title}
+              {section.title}
             </h2>
-            {page.desc && (
+            {section.desc && (
               <p className="mt-3 text-sm leading-relaxed text-[#141414]/65 md:text-base">
-                {page.desc}
+                {section.desc}
               </p>
             )}
           </div>
@@ -46,7 +47,7 @@ export default function LatestProjects({ data }: { data: ResolvedSiteData }) {
           <div className="flex items-center gap-3">
             <button
               type="button"
-              aria-label="Previous gallery items"
+              aria-label="Previous projects"
               onClick={() => scrollBySlide(-1)}
               className="flex h-11 w-11 items-center justify-center border border-[#141414]/15 text-[#141414] transition hover:border-[#141414] hover:bg-[#141414] hover:text-white"
             >
@@ -54,19 +55,21 @@ export default function LatestProjects({ data }: { data: ResolvedSiteData }) {
             </button>
             <button
               type="button"
-              aria-label="Next gallery items"
+              aria-label="Next projects"
               onClick={() => scrollBySlide(1)}
               className="flex h-11 w-11 items-center justify-center border border-[#141414]/15 text-[#141414] transition hover:border-[#141414] hover:bg-[#141414] hover:text-white"
             >
               <FaArrowRight className="text-xs" />
             </button>
-            <Link
-              href={withTheme("/gallery", THEME)}
-              className="ml-2 inline-flex items-center gap-2 text-sm font-medium text-[#141414] underline underline-offset-4 transition hover:opacity-70"
-            >
-              View gallery
-              <FaArrowRight className="text-[10px]" aria-hidden />
-            </Link>
+            {cta && (
+              <Link
+                href={withTheme(cta.href, THEME)}
+                className="ml-2 inline-flex items-center gap-2 text-sm font-medium text-[#141414] underline underline-offset-4 transition hover:opacity-70"
+              >
+                {cta.label}
+                <FaArrowRight className="text-[10px]" aria-hidden />
+              </Link>
+            )}
           </div>
         </div>
       </div>
@@ -79,7 +82,7 @@ export default function LatestProjects({ data }: { data: ResolvedSiteData }) {
           {items.map((item, i) => (
             <Link
               key={`${item.title}-${i}`}
-              href={withTheme("/gallery", THEME)}
+              href={withTheme(item.href || cta?.href || "/gallery", THEME)}
               data-slide
               className="group w-[85%] max-w-[400px] shrink-0 snap-start sm:w-[70%] md:w-[48%] lg:w-[38%]"
             >
@@ -92,13 +95,23 @@ export default function LatestProjects({ data }: { data: ResolvedSiteData }) {
                   className="object-cover transition duration-700 ease-out group-hover:scale-[1.03]"
                   sizes="(max-width: 768px) 85vw, 40vw"
                 />
+                {item.status && (
+                  <span className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#141414]">
+                    {item.status}
+                  </span>
+                )}
               </div>
-              <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#c44536]">
-                {item.category}
-              </p>
+              {item.location && (
+                <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#c44536]">
+                  {item.location}
+                </p>
+              )}
               <h3 className="mt-1 text-lg font-semibold text-[#141414] transition group-hover:text-[#c44536]">
                 {item.title}
               </h3>
+              <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-[#141414]/65">
+                {item.desc}
+              </p>
             </Link>
           ))}
         </div>
