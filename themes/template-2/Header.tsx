@@ -1,9 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FaBars, FaTimes, FaPhoneAlt } from "react-icons/fa";
+import { FaBars, FaChevronDown, FaTimes, FaPhoneAlt } from "react-icons/fa";
 import {
   FaBath,
   FaBuilding,
@@ -11,9 +11,8 @@ import {
   FaKitchenSet,
   FaTreeCity,
 } from "react-icons/fa6";
-import { flattenMenuLinks } from "@/lib/nav";
 import { withTheme } from "@/lib/theme";
-import type { ResolvedSiteData } from "@/lib/types";
+import type { LinkItem, ResolvedSiteData } from "@/lib/types";
 
 const THEME = "template-2" as const;
 const categoryIcons = [FaKitchenSet, FaBath, FaTreeCity, FaBuilding, FaHouse];
@@ -21,6 +20,78 @@ const categoryIcons = [FaKitchenSet, FaBath, FaTreeCity, FaBuilding, FaHouse];
 function isActivePath(pathname: string, href: string) {
   if (href === "/") return pathname === "/";
   return pathname === href || pathname.startsWith(`${href}/`);
+}
+
+function isGroupActive(pathname: string, item: LinkItem) {
+  if (isActivePath(pathname, item.href)) return true;
+  return (item.children ?? []).some((child) => isActivePath(pathname, child.href));
+}
+
+function NavDropdown({ item }: { item: LinkItem }) {
+  const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const children = item.children ?? [];
+  const active = isGroupActive(pathname, item);
+
+  useEffect(() => {
+    function onDocClick(e: MouseEvent) {
+      if (!ref.current?.contains(e.target as Node)) setOpen(false);
+    }
+    document.addEventListener("mousedown", onDocClick);
+    return () => document.removeEventListener("mousedown", onDocClick);
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className="relative"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+    >
+      <button
+        type="button"
+        aria-expanded={open}
+        aria-haspopup="true"
+        onClick={() => setOpen((v) => !v)}
+        className={`inline-flex items-center gap-1.5 px-3 py-1.5 transition ${
+          active
+            ? "bg-[var(--reroom-accent,#ff6b00)] text-white"
+            : "hover:bg-[#faf9f7] hover:text-[var(--reroom-accent,#ff6b00)]"
+        }`}
+      >
+        {item.label}
+        <FaChevronDown
+          className={`text-[0.55rem] transition ${open ? "rotate-180" : ""}`}
+          aria-hidden
+        />
+      </button>
+
+      {open && (
+        <div className="absolute left-1/2 top-full z-50 w-48 -translate-x-1/2 pt-2">
+          <div className="bg-white py-2 shadow-[0_16px_40px_rgba(20,20,20,0.1)]">
+            {children.map((child) => {
+              const childActive = isActivePath(pathname, child.href);
+              return (
+                <Link
+                  key={`${child.label}-${child.href}`}
+                  href={withTheme(child.href, THEME)}
+                  className={`block px-4 py-2.5 text-sm transition ${
+                    childActive
+                      ? "bg-[var(--reroom-accent,#ff6b00)] text-white"
+                      : "text-[#141414] hover:bg-[#faf9f7]"
+                  }`}
+                  onClick={() => setOpen(false)}
+                >
+                  {child.label}
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default function Header({
@@ -32,11 +103,21 @@ export default function Header({
   const { header, topbar, product } = data;
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [mobileGroup, setMobileGroup] = useState<string | null>(null);
   const phone = topbar.phone || data.footer.footerContact.phone;
-  const logoText = (header.logo || "re/room").toLowerCase();
-
-  /** Bottom bar — from Product JSON (productSlides / productItems) */
-  const navItems = useMemo(() => flattenMenuLinks(header.menu), [header.menu]);
+  const logoText = (data.template.title || "re/room").toLowerCase();
+  const menu = useMemo(
+    () =>
+      header.menu
+        .map((item) => ({
+          ...item,
+          children: item.children?.filter(
+            (child) => !child.href.toLowerCase().includes("/team")
+          ),
+        }))
+        .filter((item) => !item.href.toLowerCase().includes("/team")),
+    [header.menu]
+  );
 
   const categories = useMemo(() => {
     const slides = product.productSlides ?? [];
@@ -47,8 +128,7 @@ export default function Header({
         Icon: categoryIcons[i % categoryIcons.length],
       }));
     }
-    const items = product.productItems ?? [];
-    return items.slice(0, 5).map((item, i) => ({
+    return (product.productItems ?? []).slice(0, 5).map((item, i) => ({
       label: item.title,
       href: "/properties",
       Icon: categoryIcons[i % categoryIcons.length],
@@ -56,39 +136,41 @@ export default function Header({
   }, [product.productSlides, product.productItems]);
 
   return (
-    <header className="sticky top-0 z-50 bg-white">
-      {/* Top tier — logo / nav / phone */}
-      <div className="border-b border-[#141414]/10">
+    <header className="sticky top-0 z-50 bg-white text-[#141414]">
+      <div>
         <div className="mx-auto grid max-w-7xl grid-cols-[1fr_auto] items-center gap-4 px-4 py-5 md:px-8 lg:grid-cols-[1fr_auto_1fr] lg:px-10 lg:py-6">
           <Link
             href={withTheme("/", THEME)}
-            className="inline-flex w-fit items-center border-[1.5px] border-[#141414] px-3 py-1.5 text-[0.95rem] font-semibold lowercase leading-none tracking-tight text-[#141414] md:text-[1.05rem]"
+            className="inline-flex w-fit items-center border-[1.5px] border-[#141414] px-3 py-1.5 text-[0.95rem] font-semibold lowercase leading-none tracking-tight md:text-[1.05rem]"
           >
             {logoText}
             <span>.</span>
           </Link>
 
-          <nav className="hidden items-center justify-center gap-4 text-[0.82rem] font-medium text-[#141414] xl:gap-5 xl:text-[0.88rem] lg:flex">
-            {navItems.map((item, i) => {
-              const active = isActivePath(pathname, item.href);
-              return (
+          <nav className="hidden items-center justify-center gap-2 text-[0.88rem] font-medium lg:flex xl:gap-3">
+            {menu.map((item, i) =>
+              item.children && item.children.length > 0 ? (
+                <NavDropdown key={`${item.label}-${i}`} item={item} />
+              ) : (
                 <Link
                   key={`${item.label}-${i}`}
                   href={withTheme(item.href, THEME)}
-                  className={`transition ${
-                    active ? "text-[#ff9a14]" : "hover:text-[#ff9a14]"
+                  className={`px-3 py-1.5 transition ${
+                    isActivePath(pathname, item.href)
+                      ? "bg-[var(--reroom-accent,#ff6b00)] text-white"
+                      : "hover:bg-[#faf9f7] hover:text-[var(--reroom-accent,#ff6b00)]"
                   }`}
                 >
                   {item.label}
                 </Link>
-              );
-            })}
+              )
+            )}
           </nav>
 
           <div className="flex items-center justify-end gap-3">
             <a
               href={`tel:${phone.replace(/\s/g, "")}`}
-              className="hidden items-center gap-2.5 text-[0.95rem] font-medium text-[#ff9a14] transition hover:opacity-80 md:inline-flex"
+              className="hidden items-center gap-2.5 text-[0.95rem] font-medium text-[var(--reroom-accent,#ff6b00)] transition hover:opacity-80 md:inline-flex"
             >
               <FaPhoneAlt className="text-sm" />
               <span>{phone}</span>
@@ -96,7 +178,7 @@ export default function Header({
             <button
               type="button"
               aria-label="Toggle menu"
-              className="rounded-md p-2 text-[#141414] lg:hidden"
+              className="p-2 lg:hidden"
               onClick={() => setOpen((v) => !v)}
             >
               {open ? <FaTimes /> : <FaBars />}
@@ -105,18 +187,16 @@ export default function Header({
         </div>
       </div>
 
-      {/* Bottom tier — from productSlides in JSON */}
       {categories.length > 0 && (
         <div className="hidden bg-[#141414] lg:block">
-          <nav className="mx-auto flex max-w-7xl items-center justify-center gap-6 overflow-x-auto px-4 py-3.5 md:gap-8 md:px-8 lg:gap-10 lg:px-10">
+          <nav className="mx-auto flex max-w-7xl items-center justify-center gap-8 overflow-x-auto px-4 py-3.5 md:px-8 lg:gap-10 lg:px-10">
             {categories.map(({ label, href, Icon }) => (
               <Link
                 key={label}
                 href={withTheme(href, THEME)}
-                className="inline-flex shrink-0 items-center gap-2 text-[10px] font-medium uppercase tracking-[0.12em] text-white transition hover:text-[#ff9a14] md:text-[11px]"
-                title={label}
+                className="inline-flex shrink-0 items-center gap-2 text-[10px] font-medium uppercase tracking-[0.14em] text-white transition hover:text-[var(--reroom-accent,#ff6b00)] md:text-[11px]"
               >
-                <Icon className="text-[14px] text-white" aria-hidden />
+                <Icon className="text-[14px]" aria-hidden />
                 {label}
               </Link>
             ))}
@@ -126,25 +206,66 @@ export default function Header({
 
       {open && (
         <div className="border-b border-[#141414]/10 bg-white px-4 py-5 lg:hidden">
-          <nav className="flex flex-col gap-3.5">
-            {navItems.map((item, i) => {
-              const active = isActivePath(pathname, item.href);
+          <nav className="flex flex-col gap-1">
+            {menu.map((item, i) => {
+              const hasChildren = Boolean(item.children?.length);
+              const groupKey = `${item.label}-${i}`;
+              const expanded = mobileGroup === groupKey;
+
+              if (!hasChildren) {
+                return (
+                  <Link
+                    key={groupKey}
+                    href={withTheme(item.href, THEME)}
+                    className={`px-3 py-2.5 text-[0.95rem] font-medium ${
+                      isActivePath(pathname, item.href)
+                        ? "bg-[var(--reroom-accent,#ff6b00)] text-white"
+                        : ""
+                    }`}
+                    onClick={() => setOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              }
+
               return (
-                <Link
-                  key={`m-${item.label}-${i}`}
-                  href={withTheme(item.href, THEME)}
-                  className={`text-[0.95rem] font-medium ${
-                    active ? "text-[#ff9a14]" : "text-[#141414]"
-                  }`}
-                  onClick={() => setOpen(false)}
-                >
-                  {item.label}
-                </Link>
+                <div key={groupKey} className="border-b border-[#141414]/8 last:border-b-0">
+                  <button
+                    type="button"
+                    className="flex w-full items-center justify-between py-2.5 text-left text-[0.95rem] font-medium"
+                    onClick={() =>
+                      setMobileGroup(expanded ? null : groupKey)
+                    }
+                    aria-expanded={expanded}
+                  >
+                    {item.label}
+                    <FaChevronDown
+                      className={`text-[0.6rem] transition ${
+                        expanded ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+                  {expanded && (
+                    <div className="mb-3 flex flex-col gap-2 pl-3">
+                      {item.children!.map((child) => (
+                        <Link
+                          key={`${child.label}-${child.href}`}
+                          href={withTheme(child.href, THEME)}
+                          className="py-1 text-sm text-[#141414]/65"
+                          onClick={() => setOpen(false)}
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
               );
             })}
             <a
               href={`tel:${phone.replace(/\s/g, "")}`}
-              className="mt-2 inline-flex items-center gap-2 text-[0.95rem] font-medium text-[#ff9a14]"
+              className="mt-3 inline-flex items-center gap-2 text-[0.95rem] font-medium text-[var(--reroom-accent,#ff6b00)]"
             >
               <FaPhoneAlt className="text-sm" />
               {phone}
@@ -156,10 +277,13 @@ export default function Header({
                 <Link
                   key={`c-${label}`}
                   href={withTheme(href, THEME)}
-                  className="inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.1em] text-[#141414]"
+                  className="inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.1em]"
                   onClick={() => setOpen(false)}
                 >
-                  <Icon className="text-sm text-[#ff9a14]" aria-hidden />
+                  <Icon
+                    className="text-sm text-[var(--reroom-accent,#ff6b00)]"
+                    aria-hidden
+                  />
                   {label}
                 </Link>
               ))}

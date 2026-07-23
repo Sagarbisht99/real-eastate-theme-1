@@ -1,10 +1,12 @@
 "use client";
 
-import MediaImage from "@/components/MediaImage";
+import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
+import Breadcrumb from "@/components/Breadcrumb";
+import MediaImage from "@/components/MediaImage";
+import { RevealBlur, Stagger, StaggerItem } from "@/lib/motion";
+import { withTheme } from "@/lib/theme";
 import type { ResolvedSiteData, ThemeId } from "@/lib/types";
-
-const MINT = "#a8d5ba";
 
 export default function About({
   data,
@@ -15,261 +17,245 @@ export default function About({
 }) {
   const page = data.aboutPage;
   const about = data.about;
-  const phone =
-    data.footer.footerContact.phone || data.topbar.phone || "555-555-5555";
+  const stats = data.whyChooseUs.whyChooseUsItems.slice(0, 4);
+  const quotes = data.testimonial.testimonialItems.slice(0, 3);
+  const missionPoints = page.missionPoints ?? [];
 
   const heroImage =
-    about.backgroundImage ||
     page.sideImage ||
+    about.sideImage ||
+    about.backgroundImage ||
     data.product.productSlides?.[0]?.image ||
     "";
-  const statsImage =
-    about.sideImage ||
-    page.sideImage ||
+  const storyImage =
+    about.backgroundImage ||
     data.product.productSlides?.[1]?.image ||
     heroImage;
 
-  const stats = data.whyChooseUs.whyChooseUsItems.slice(0, 4).map((item) => ({
-    value: item.stat,
-    label: item.title,
-  }));
-
-  const quotes = data.testimonial.testimonialItems.slice(0, 3);
-  const team = data.team;
-  const people = team.teamItems;
-  const gallery = data.gallery.galleryItems;
+  const ctaHref = withTheme(page.ctaButton?.href || "/contact", theme);
 
   return (
-    <div className="bg-white">
-      {/* ——— Who we are ——— */}
-      <section className="bg-[#1a1a1a] px-4 pt-14 text-white md:px-8 md:pt-16 lg:px-10 lg:pt-20">
-        <div className="mx-auto max-w-3xl text-center">
-          <h1 className="text-[2.35rem] font-bold tracking-[-0.02em] md:text-[2.85rem]">
-            Who we are
-          </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-sm leading-[1.8] text-white/65 md:text-base">
-            {page.desc || about.desc}
-          </p>
-        </div>
-        <div className="relative mx-auto mt-12 aspect-[21/9] max-w-6xl overflow-hidden bg-[#2a2a2a] md:mt-14 md:aspect-[2.4/1]">
-          <MediaImage
-            src={heroImage}
-            alt={about.backgroundImageTitle || page.title}
-            fill
-            className="object-cover"
-            sizes="(max-width: 1200px) 100vw, 1152px"
-            themeId={theme}
-            priority
-          />
-        </div>
-      </section>
+    <div className="bg-white text-[#141414]">
+      {/* Hero */}
+      <section className="px-4 py-8 md:px-8 md:py-10 lg:px-10">
+        <div className="mx-auto grid max-w-7xl items-center gap-8 lg:grid-cols-2 lg:gap-12">
+          <RevealBlur>
+            <Breadcrumb items={page.breadcrumb} theme={theme} className="mb-4" />
+            <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--reroom-accent,#ff6b00)]">
+              {page.pretitle || "About us"}
+            </p>
+            <h1 className="mt-2 text-[2rem] font-bold leading-[1.1] tracking-[-0.03em] md:text-[2.5rem]">
+              {page.title}
+            </h1>
+            <span className="mt-3 block h-[3px] w-10 bg-[var(--reroom-accent,#ff6b00)]" />
+            <p className="mt-4 max-w-lg text-sm leading-relaxed text-[#141414]/55 md:text-base">
+              {page.desc}
+            </p>
+            {page.desc2 && (
+              <p className="mt-2 max-w-lg text-sm leading-relaxed text-[#141414]/55 md:text-base">
+                {page.desc2}
+              </p>
+            )}
+            <Link
+              href={ctaHref}
+              className="mt-6 inline-flex items-center gap-2 bg-[var(--reroom-accent,#ff6b00)] px-6 py-3.5 text-sm font-bold text-white transition hover:brightness-110"
+            >
+              {page.ctaButton?.label || "Contact us"}
+              <FaArrowRight className="text-xs" />
+            </Link>
+          </RevealBlur>
 
-      {/* ——— Our people ——— */}
-      <section className="bg-white px-4 py-14 md:px-8 md:py-16 lg:px-10 lg:py-20">
-        <div className="mx-auto max-w-6xl">
-          <h2 className="text-center text-[2rem] font-bold tracking-[-0.02em] text-[#141414] md:text-[2.35rem]">
-            {team.title}
-          </h2>
-          <div className="mt-10 grid grid-cols-2 gap-6 md:mt-12 md:grid-cols-4 md:gap-8">
-            {people.map((person) => (
-              <article key={person.name} className="text-center">
-                <div className="relative mx-auto aspect-square max-w-[220px] overflow-hidden bg-[#f3f1ed]">
-                  <MediaImage
-                    src={person.image}
-                    alt={person.name}
-                    fill
-                    className="object-cover object-top"
-                    sizes="(max-width: 768px) 45vw, 220px"
-                    themeId={theme}
-                  />
-                </div>
-                <p className="mt-4 text-sm font-medium text-[#141414] md:text-base">
-                  {person.name}
-                </p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ——— Stats + image ——— */}
-      <section className="bg-[#1a1a1a] px-4 py-14 text-white md:px-8 md:py-16 lg:px-10 lg:py-20">
-        <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2 lg:gap-16">
-          <div className="grid grid-cols-2 gap-x-8 gap-y-12 md:gap-x-12 md:gap-y-14">
-            {stats.map((item) => (
-              <div key={item.label} className="text-center">
-                <p className="text-[2.5rem] font-bold leading-none tracking-tight md:text-[3rem]">
-                  {item.value}
-                </p>
-                <span
-                  className="mx-auto mt-3 block h-[2px] w-10"
-                  style={{ backgroundColor: MINT }}
-                />
-                <p className="mt-3 text-sm text-white/80 md:text-[0.95rem]">
-                  {item.label}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <div className="relative mx-auto w-full max-w-md lg:mx-0 lg:max-w-none">
-            {/* Orange diagonal hash — top right */}
-            <div
-              className="pointer-events-none absolute -right-3 -top-3 z-0 h-24 w-28 md:-right-5 md:-top-5"
-              style={{
-                backgroundImage:
-                  "repeating-linear-gradient(-45deg, transparent, transparent 5px, #ff9a14 5px, #ff9a14 6px)",
-              }}
-              aria-hidden
-            />
-            <div className="relative z-10 aspect-[3/4] overflow-hidden bg-[#2a2a2a]">
+          <RevealBlur delay={0.08}>
+            <div className="relative aspect-[4/3] overflow-hidden bg-[#f3f1ed]">
               <MediaImage
-                src={statsImage}
-                alt={about.sideImageTitle || "Our work"}
+                src={heroImage}
+                alt={page.sideImageTitle || page.title}
                 fill
                 className="object-cover"
-                sizes="(max-width: 1024px) 80vw, 40vw"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                themeId={theme}
+                priority
+              />
+            </div>
+          </RevealBlur>
+        </div>
+      </section>
+
+      {/* Story / philosophy */}
+      <section className="border-t border-[#141414]/10 bg-[#faf9f7] px-4 py-12 md:px-8 md:py-16 lg:px-10">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-2 lg:gap-14">
+          <RevealBlur>
+            <div className="relative aspect-[16/11] overflow-hidden bg-[#eeeae4]">
+              <MediaImage
+                src={storyImage}
+                alt={about.backgroundImageTitle || page.storyLabel || "Our story"}
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 themeId={theme}
               />
             </div>
-          </div>
-        </div>
-      </section>
+          </RevealBlur>
 
-      {/* ——— Testimonials ——— */}
-      <section className="bg-white px-4 py-14 md:px-8 md:py-16 lg:px-10 lg:py-20">
-        <div className="mx-auto max-w-6xl">
-          <h2 className="text-center text-[2rem] font-bold tracking-[-0.02em] text-[#141414] md:text-[2.35rem]">
-            Testimonials
-          </h2>
-
-          <div className="mt-10 grid gap-8 md:grid-cols-3 md:gap-6 lg:gap-8">
-            {quotes.map((item, i) => {
-              const image =
-                gallery[i]?.image ||
-                data.product.productSlides?.[i]?.image ||
-                item.image;
-              return (
-                <article key={item.name} className="flex flex-col">
-                  <div className="relative aspect-square overflow-hidden bg-[#f3f1ed]">
-                    <MediaImage
-                      src={image}
-                      alt={gallery[i]?.alt || item.name}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                      themeId={theme}
-                    />
-                  </div>
-                  <p
-                    className="mt-5 text-4xl leading-none"
-                    style={{ color: MINT }}
-                    aria-hidden
-                  >
-                    &ldquo;
-                  </p>
-                  <p className="mt-3 text-sm leading-[1.75] text-[#141414]/70">
-                    {item.quote}
-                  </p>
-                  <p className="mt-5 text-sm font-medium text-[#141414] underline underline-offset-4">
-                    {item.name}
-                  </p>
-                </article>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ——— Contact form ——— */}
-      <section className="relative overflow-hidden bg-[#1a1a1a] px-4 py-12 text-white md:px-8 md:py-14 lg:px-10 lg:py-16">
-        <div
-          className="pointer-events-none absolute right-0 top-0 h-28 w-40 opacity-40"
-          style={{
-            backgroundImage:
-              "repeating-linear-gradient(-45deg, transparent, transparent 6px, rgba(255,255,255,0.2) 6px, rgba(255,255,255,0.2) 7px)",
-          }}
-          aria-hidden
-        />
-
-        <div className="relative mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2 lg:gap-0">
-          <div
-            className="pointer-events-none absolute left-1/2 top-[12%] hidden h-[76%] w-px -translate-x-1/2 bg-white/70 lg:block"
-            style={{ transform: "translateX(-50%) rotate(18deg)" }}
-            aria-hidden
-          />
-
-          <div className="lg:pr-16">
-            <h2 className="max-w-md text-[1.85rem] font-bold leading-[1.15] tracking-[-0.02em] md:text-[2.2rem]">
-              Let&apos;s talk about your project
-            </h2>
-            <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/75">
-              Fill out the form, or call us to set up a meeting at{" "}
-              <a
-                href={`tel:${phone.replace(/\s/g, "")}`}
-                className="underline decoration-white/50 underline-offset-4 transition hover:text-[#ff9a14] hover:decoration-[#ff9a14]"
-              >
-                {phone}
-              </a>
+          <RevealBlur delay={0.06}>
+            <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--reroom-accent,#ff6b00)]">
+              {page.storyLabel || page.subtitle || "Our approach"}
             </p>
-          </div>
-
-          <div className="lg:pl-16">
-            <form
-              className="space-y-5"
-              onSubmit={(e) => e.preventDefault()}
-            >
-              <UnderlineField id="about-name" label="Full name" />
-              <UnderlineField id="about-phone" label="Phone number" type="tel" />
-              <UnderlineField id="about-email" label="Email" type="email" />
-              <UnderlineField id="about-message" label="Message" textarea />
-
-              <div className="flex justify-end pt-1">
-                <button
-                  type="submit"
-                  aria-label="Send message"
-                  className="flex h-12 w-12 items-center justify-center rounded-full bg-[#ff9a14] text-[#141414] transition hover:bg-[#f08a00]"
-                >
-                  <FaArrowRight className="text-sm" />
-                </button>
-              </div>
-            </form>
-          </div>
+            <h2 className="mt-2 text-[1.75rem] font-bold tracking-[-0.03em] md:text-[2.15rem]">
+              {page.philosophyTitle}
+            </h2>
+            <p className="mt-4 text-sm leading-relaxed text-[#141414]/55 md:text-base">
+              {page.philosophyDesc}
+            </p>
+          </RevealBlur>
         </div>
       </section>
-    </div>
-  );
-}
 
-function UnderlineField({
-  id,
-  label,
-  type = "text",
-  textarea = false,
-}: {
-  id: string;
-  label: string;
-  type?: string;
-  textarea?: boolean;
-}) {
-  const line =
-    "w-full border-0 border-b border-white/35 bg-transparent px-0 pb-2 pt-1 text-sm text-white outline-none transition placeholder:text-white/25 focus:border-[#ff9a14]";
-
-  return (
-    <div>
-      <label htmlFor={id} className="text-sm text-white/85">
-        {label}
-      </label>
-      {textarea ? (
-        <textarea
-          id={id}
-          name={label}
-          rows={2}
-          className={`${line} mt-2 resize-y`}
-        />
-      ) : (
-        <input id={id} name={label} type={type} className={`${line} mt-2`} />
+      {/* Stats */}
+      {stats.length > 0 && (
+        <section className="bg-white px-4 py-12 md:px-8 md:py-16 lg:px-10">
+          <div className="mx-auto max-w-7xl">
+            <Stagger className="grid grid-cols-2 gap-8 border-y border-[#141414]/10 py-10 lg:grid-cols-4 lg:gap-10">
+              {stats.map((item) => (
+                <StaggerItem key={item.title} className="text-center lg:text-left">
+                  <p className="text-[2rem] font-bold tracking-tight text-[var(--reroom-accent,#ff6b00)] md:text-[2.35rem]">
+                    {item.stat}
+                  </p>
+                  <p className="mt-2 text-sm font-bold leading-snug">
+                    {item.title}
+                  </p>
+                  {item.desc && (
+                    <p className="mt-1.5 text-sm text-[#141414]/50 line-clamp-2">
+                      {item.desc}
+                    </p>
+                  )}
+                </StaggerItem>
+              ))}
+            </Stagger>
+          </div>
+        </section>
       )}
+
+      {/* Mission */}
+      {(page.missionTitle || missionPoints.length > 0) && (
+        <section className="bg-[#141414] px-4 py-12 text-white md:px-8 md:py-16 lg:px-10">
+          <div className="mx-auto max-w-7xl">
+            <RevealBlur className="max-w-2xl">
+              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--reroom-accent,#ff6b00)]">
+                {page.missionPretitle || "Our mission"}
+              </p>
+              <h2 className="mt-2 text-[1.75rem] font-bold tracking-[-0.03em] md:text-[2.15rem]">
+                {page.missionTitle}
+              </h2>
+              {page.missionDesc && (
+                <p className="mt-4 text-sm leading-relaxed text-white/55 md:text-base">
+                  {page.missionDesc}
+                </p>
+              )}
+            </RevealBlur>
+
+            {missionPoints.length > 0 && (
+              <Stagger className="mt-10 grid gap-6 sm:grid-cols-3">
+                {missionPoints.map((point, i) => (
+                  <StaggerItem
+                    key={point.title}
+                    className="border-t border-white/15 pt-5"
+                  >
+                    <p className="text-sm font-bold text-[var(--reroom-accent,#ff6b00)]">
+                      {String(i + 1).padStart(2, "0")}
+                    </p>
+                    <h3 className="mt-3 text-lg font-bold">{point.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-white/50">
+                      {point.desc}
+                    </p>
+                  </StaggerItem>
+                ))}
+              </Stagger>
+            )}
+
+            {page.missionButton && (
+              <Link
+                href={withTheme(page.missionButton.href || "/mission", theme)}
+                className="mt-10 inline-flex items-center gap-2 bg-[var(--reroom-accent,#ff6b00)] px-6 py-3.5 text-sm font-bold text-white transition hover:brightness-110"
+              >
+                {page.missionButton.label || "Learn more"}
+                <FaArrowRight className="text-xs" />
+              </Link>
+            )}
+          </div>
+        </section>
+      )}
+
+      {/* Testimonials */}
+      {quotes.length > 0 && (
+        <section className="bg-white px-4 py-12 md:px-8 md:py-16 lg:px-10">
+          <div className="mx-auto max-w-7xl">
+            <RevealBlur className="mb-10">
+              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--reroom-accent,#ff6b00)]">
+                {data.testimonial.pretitle || "Clients"}
+              </p>
+              <h2 className="mt-2 text-[1.75rem] font-bold tracking-[-0.03em] md:text-[2.15rem]">
+                {data.testimonial.title || "What people say"}
+              </h2>
+            </RevealBlur>
+
+            <div className="grid gap-6 md:grid-cols-3">
+              {quotes.map((item) => (
+                <article
+                  key={item.name}
+                  className="flex h-full flex-col border border-[#141414]/10 bg-[#faf9f7] p-6"
+                >
+                  <p className="text-sm leading-relaxed text-[#141414]/65">
+                    “{item.quote}”
+                  </p>
+                  <div className="mt-auto flex items-center gap-3 pt-6">
+                    <div className="relative h-11 w-11 overflow-hidden rounded-full bg-[#eeeae4]">
+                      <MediaImage
+                        src={item.image}
+                        alt={item.name}
+                        fill
+                        className="object-cover"
+                        sizes="44px"
+                        themeId={theme}
+                      />
+                    </div>
+                    <div>
+                      <p className="text-sm font-bold">{item.name}</p>
+                      <p className="text-xs text-[#141414]/45">{item.role}</p>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* CTA */}
+      <section className="px-4 pb-14 md:px-8 md:pb-16 lg:px-10">
+        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 border border-[#141414]/10 bg-[#faf9f7] px-6 py-8 md:flex-row md:items-center md:px-10 md:py-10">
+          <div className="max-w-xl">
+            <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--reroom-accent,#ff6b00)]">
+              {page.ctaPretitle || "Next step"}
+            </p>
+            <h2 className="mt-2 text-[1.5rem] font-bold tracking-[-0.02em] md:text-[1.85rem]">
+              {page.ctaTitle || "Ready to talk?"}
+            </h2>
+            {page.ctaDesc && (
+              <p className="mt-2 text-sm leading-relaxed text-[#141414]/55">
+                {page.ctaDesc}
+              </p>
+            )}
+          </div>
+          <Link
+            href={ctaHref}
+            className="inline-flex shrink-0 items-center gap-2 bg-[#141414] px-6 py-3.5 text-sm font-bold text-white transition hover:bg-[var(--reroom-accent,#ff6b00)]"
+          >
+            {page.ctaButton?.label || "Contact us"}
+            <FaArrowRight className="text-xs" />
+          </Link>
+        </div>
+      </section>
     </div>
   );
 }

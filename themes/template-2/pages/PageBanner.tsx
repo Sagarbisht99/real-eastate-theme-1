@@ -9,7 +9,7 @@ const titleClass: Record<ThemeId, string> = {
 
 const eyebrowClass: Record<ThemeId, string> = {
   "template-1": "text-xs font-semibold uppercase tracking-[0.22em] text-[#c44536]",
-  "template-2": "text-xs font-semibold uppercase tracking-[0.22em] text-[#ff9a14]",
+  "template-2": "text-xs font-semibold uppercase tracking-[0.22em] text-[#ff6b00]",
 };
 
 export default function PageBanner({

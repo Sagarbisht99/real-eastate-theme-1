@@ -60,9 +60,9 @@
         "--header-text": "#141414",
         "--hero-bg": "#ffffff",
         "--hero-title": "#141414",
-        "--primary-link-bg": "#ff9a14",
+        "--primary-link-bg": "#ff6b00",
         "--primary-link-color": "#ffffff",
-        "--reroom-accent": "#ff9a14",
+        "--reroom-accent": "#ff6b00",
         "--reroom-ink": "#141414"
       }
     }
@@ -1007,17 +1007,25 @@
               "href": "/"
             },
             {
-              "label": "Blog",
-              "href": "/blog"
-            },
-            {
               "label": "Properties",
               "href": "/properties"
+            },
+            {
+              "label": "Services",
+              "href": "/services"
             },
             {
               "label": "Company",
               "href": "/about",
               "children": [
+                {
+                  "label": "About",
+                  "href": "/about"
+                },
+                {
+                  "label": "Awards",
+                  "href": "/awards"
+                },
                 {
                   "label": "Careers",
                   "href": "/careers"
@@ -1029,26 +1037,22 @@
               ]
             },
             {
-              "label": "Explore",
-              "href": "/properties",
+              "label": "Insights",
+              "href": "/blog",
               "children": [
+                {
+                  "label": "Blog",
+                  "href": "/blog"
+                },
                 {
                   "label": "Gallery",
                   "href": "/gallery"
-                },
-                {
-                  "label": "Awards",
-                  "href": "/awards"
-                },
-                {
-                  "label": "Services",
-                  "href": "/services"
                 }
               ]
             },
             {
-              "label": "About",
-              "href": "/about"
+              "label": "Contact",
+              "href": "/contact"
             }
           ],
           "buttons": [
@@ -1351,7 +1355,7 @@
           "buttons": [
             {
               "label": "Send a message",
-              "href": "#book-a-visit",
+              "href": "/contact",
               "variant": "primary"
             }
           ],

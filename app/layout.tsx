@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins, Syne } from "next/font/google";
+import { Outfit, Syne } from "next/font/google";
 import { siteData } from "@/lib/data";
 import SmoothScroll from "@/components/SmoothScroll";
 import { Suspense } from "react";
@@ -13,8 +13,8 @@ const fontT1 = Syne({
   weight: ["400", "500", "600", "700", "800"],
 });
 
-/** template-2 — Poppins */
-const fontT2 = Poppins({
+/** template-2 — Outfit (architectural, geometric) */
+const fontT2 = Outfit({
   variable: "--font-t2",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
