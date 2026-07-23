@@ -230,6 +230,11 @@
           "desc": "Visits, paperwork, and follow-ups handled with care."
         }
       ],
+      "missionButton": {
+        "label": "Learn more",
+        "href": "/mission",
+        "variant": "secondary"
+      },
       "ctaPretitle": "Next step",
       "ctaTitle": "Ready to shortlist your next home?",
       "ctaDesc": "Tell us your budget, preferred areas, and timeline — our advisors will prepare a clear shortlist and help you book visits.",
@@ -917,6 +922,72 @@
         {
           "label": "Community",
           "href": "/community"
+        }
+      ]
+    },
+    "MissionPage": {
+      "pretitle": "Our mission",
+      "title": "Help every family move with confidence.",
+      "desc": "We exist to make buying, renting, and listing simpler — with verified options, honest numbers, and advisors who stay present from first call to keys in hand.",
+      "desc2": "Mission is not a slogan for us. It is how we shortlist homes, explain trade-offs, and stay available when paperwork and handover feel overwhelming.",
+      "sideImage": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
+      "sideImageTitle": "HAUS Group advisors reviewing a residence",
+      "pillarsPretitle": "How we work",
+      "pillarsTitle": "Three promises behind every shortlist.",
+      "pillars": [
+        {
+          "title": "Clarity first",
+          "desc": "Budgets, timelines, and trade-offs explained without pressure — so every decision feels informed."
+        },
+        {
+          "title": "Local judgment",
+          "desc": "Neighborhood insight that goes beyond listing photos: schools, commute, amenities, and long-term fit."
+        },
+        {
+          "title": "Guided next steps",
+          "desc": "Visits, paperwork, and follow-ups handled with care from first enquiry to keys in hand."
+        }
+      ],
+      "valuesPretitle": "What we stand for",
+      "valuesTitle": "Principles that shape every conversation.",
+      "values": [
+        {
+          "title": "Honest numbers",
+          "desc": "Pricing context and availability stay transparent — no inflated claims, no hidden surprises."
+        },
+        {
+          "title": "Verified options",
+          "desc": "We check documentation and listing status before we recommend a home for your shortlist."
+        },
+        {
+          "title": "Present advisors",
+          "desc": "You get a real person who answers questions, books visits, and stays through handover."
+        },
+        {
+          "title": "Family-first pace",
+          "desc": "We match your timeline — whether you need a quick rental or a careful purchase."
+        }
+      ],
+      "ctaPretitle": "Next step",
+      "ctaTitle": "Ready to shortlist with confidence?",
+      "ctaDesc": "Share your budget, preferred areas, and timeline — our advisors will prepare a clear shortlist.",
+      "ctaButton": {
+        "label": "Contact our team",
+        "href": "/contact",
+        "variant": "primary"
+      },
+      "breadcrumb": [
+        {
+          "label": "Home",
+          "href": "/"
+        },
+        {
+          "label": "About",
+          "href": "/about"
+        },
+        {
+          "label": "Mission",
+          "href": "/mission"
         }
       ]
     }

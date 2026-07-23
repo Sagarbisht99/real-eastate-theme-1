@@ -89,7 +89,7 @@ export default function Header({
         isSolid ? "bg-white" : "absolute inset-x-0 top-0 bg-transparent"
       }`}
     >
-      <div className="mx-auto grid max-w-[1400px] grid-cols-[auto_1fr_auto] items-center gap-4 px-4 py-5 md:px-6 md:py-6 lg:grid-cols-[1fr_auto_1fr]">
+      <div className="mx-auto grid max-w-[1400px] grid-cols-[auto_1fr_auto] items-center gap-4 px-4 py-5 md:px-8 md:py-6 lg:grid-cols-[1fr_auto_1fr] lg:px-10">
         <Link
           href={withTheme("/", THEME)}
           className={`text-base font-bold tracking-[0.14em] text-[#141414] md:text-[1.05rem] ${
@@ -145,7 +145,7 @@ export default function Header({
       </div>
 
       {open && (
-        <div className="border-t border-black/5 bg-white px-4 py-4 lg:hidden">
+        <div className="border-t border-black/5 bg-white px-4 py-4 md:px-8 lg:hidden lg:px-10">
           <nav className="flex flex-col gap-1 text-sm font-medium text-[#141414]">
             {header.menu.map((item, i) => {
               const hasChildren = Boolean(item.children?.length);

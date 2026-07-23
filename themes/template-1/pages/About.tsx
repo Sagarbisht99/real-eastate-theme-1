@@ -162,7 +162,7 @@ export default function AboutContent({
         </div>
       </section>
 
-      {/* Mission */}
+      {/* Mission teaser → /mission via Learn more button (not in header) */}
       {(page.missionTitle || page.missionDesc) && (
         <section className="border-b border-[#141414]/10 bg-[#141414] px-4 py-14 text-white md:px-8 md:py-20 lg:px-10">
           <div className="mx-auto max-w-7xl">
@@ -203,6 +203,16 @@ export default function AboutContent({
                       </div>
                     ))}
                   </div>
+                )}
+
+                {page.missionButton && (
+                  <Link
+                    href={withTheme(page.missionButton.href, theme)}
+                    className="mt-10 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white px-6 py-3 text-sm font-medium text-[#141414] transition hover:bg-[#faf8f4]"
+                  >
+                    {page.missionButton.label}
+                    <FaArrowRight className="text-[10px]" />
+                  </Link>
                 )}
               </div>
 

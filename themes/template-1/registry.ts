@@ -17,6 +17,7 @@ import Gallery from "@/themes/template-1/pages/Gallery";
 import Awards from "@/themes/template-1/pages/Awards";
 import Career from "@/themes/template-1/pages/Career";
 import Csr from "@/themes/template-1/pages/Csr";
+import Mission from "@/themes/template-1/pages/Mission";
 
 type HeaderProps = { data: ResolvedSiteData; variant?: "overlay" | "solid" };
 type FooterProps = { data: ResolvedSiteData };
@@ -53,6 +54,7 @@ export type ThemePack = {
     Awards?: ComponentType<PageProps>;
     Career?: ComponentType<PageProps>;
     Csr?: ComponentType<PageProps>;
+    Mission?: ComponentType<PageProps>;
   };
 };
 
@@ -85,5 +87,6 @@ export const template1Pack: ThemePack = {
     Awards,
     Career,
     Csr,
+    Mission,
   },
 };

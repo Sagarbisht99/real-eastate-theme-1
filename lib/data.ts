@@ -59,6 +59,7 @@ export function resolveSiteData(
     awardsPage: common.AwardsPage,
     careerPage: common.CareerPage,
     csrPage: common.CsrPage,
+    missionPage: common.MissionPage,
     aboutPage: common.AboutPage,
     customPage: common.CustomPage,
     servicePage: common.ServicePage,

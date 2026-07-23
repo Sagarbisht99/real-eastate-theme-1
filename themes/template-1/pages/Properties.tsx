@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Link from "next/link";
 import MediaImage from "@/components/MediaImage";
 import Breadcrumb from "@/components/Breadcrumb";
 import { withTheme } from "@/lib/theme";
@@ -22,8 +21,8 @@ function SectionRow({
   className?: string;
 }) {
   return (
-    <section className={`border-b border-[#141414]/10 py-14 md:py-20 ${className}`}>
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 md:px-8 lg:grid-cols-[minmax(0,280px)_1fr] lg:gap-16 lg:px-10">
+    <section className={`py-10 md:py-12 ${className}`}>
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 md:px-8 lg:grid-cols-[minmax(0,260px)_1fr] lg:gap-12 lg:px-10">
         <div>
           {eyebrow && (
             <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#c44536] md:text-xs">
@@ -101,6 +100,10 @@ function PropertyCard({
 }) {
   const badge = property.category ?? "Listing";
   const cta = property.button;
+  const ctaHref =
+    cta?.href === "/contact" || cta?.href === "#"
+      ? "#book-a-visit"
+      : cta?.href || "#book-a-visit";
 
   return (
     <article className="group flex flex-col overflow-hidden rounded-2xl border border-[#141414]/8 bg-white transition hover:border-[#141414]/15 hover:shadow-[0_20px_50px_rgba(20,20,20,0.08)]">
@@ -151,13 +154,13 @@ function PropertyCard({
             {property.productTotalPrice}
           </p>
           {cta && (
-            <Link
-              href={withTheme(cta.href, theme)}
+            <a
+              href={ctaHref.startsWith("#") ? ctaHref : withTheme(ctaHref, theme)}
               className="inline-flex items-center gap-2 text-sm font-medium text-[#141414] underline underline-offset-4 transition hover:opacity-70"
             >
               {cta.label}
               <FaArrowRight className="text-[10px]" />
-            </Link>
+            </a>
           )}
         </div>
       </div>
@@ -202,46 +205,25 @@ export default function PropertiesContent({
   return (
     <div className="bg-white">
       {/* Intro */}
-      <section className="border-b border-[#141414]/10 px-4 pb-14 pt-10 md:px-8 md:pb-20 md:pt-14 lg:px-10">
+      <section className="px-4 pb-4 pt-5 md:px-8 md:pb-5 md:pt-6 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto max-w-3xl text-center">
             <div className="flex justify-center">
               <Breadcrumb items={product.breadcrumb} theme={theme} />
             </div>
-            <p className="mt-5 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#c44536] md:text-xs">
+            <p className="mt-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#c44536] md:text-xs">
               {product.productSubtitle}
             </p>
-            <h1 className="mt-4 text-[2.75rem] font-semibold leading-[1.05] tracking-[-0.02em] text-[#141414] md:text-[3.5rem] lg:text-[4rem]">
+            <h1 className="mt-1.5 text-[2.35rem] font-semibold leading-[1.05] tracking-[-0.02em] text-[#141414] md:text-[3rem] lg:text-[3.35rem]">
               {product.productSectionTitle}
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-[#141414]/70 md:text-lg">
+            <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-[#141414]/65 md:text-base">
               {product.productInfoDesc}
             </p>
-          </div>
-
-          <div className="mt-10 grid gap-4 sm:grid-cols-3 md:mt-12">
-            {product.productFeatures.map((feature) => (
-              <div
-                key={feature.label}
-                className="rounded-2xl border border-[#141414]/8 bg-[#faf8f4] px-5 py-4 md:px-6 md:py-5"
-              >
-                <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-[#141414]/45">
-                  {feature.label}
-                </p>
-                <p className="mt-2 text-lg font-semibold text-[#141414]">{feature.price}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-8 flex flex-wrap items-center gap-4 md:mt-10">
-            <p className="text-2xl font-semibold text-[#141414] md:text-3xl">
-              {product.productTotalPrice}
-            </p>
-            <span className="text-sm text-[#141414]/55">{product.productShippingText}</span>
             {product.buttons[0] && (
               <a
-                href={product.buttons[0].href || "#book-a-visit"}
-                className="ml-auto inline-flex rounded-full bg-[#141414] px-6 py-3 text-sm font-medium text-white transition hover:bg-black"
+                href="#book-a-visit"
+                className="mt-4 inline-flex rounded-full bg-[#141414] px-6 py-2.5 text-sm font-medium text-white transition hover:bg-black"
               >
                 {product.buttons[0].label}
               </a>
@@ -250,66 +232,18 @@ export default function PropertiesContent({
         </div>
       </section>
 
-      {/* Browse by type */}
-      <section className="border-b border-[#141414]/10 px-4 py-14 md:px-8 md:py-20 lg:px-10">
-        <div className="mx-auto max-w-7xl">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#c44536]">
-            Browse
-          </p>
-          <h2 className="mt-3 text-3xl font-semibold text-[#141414] md:text-4xl">
-            {product.productTitle}
-          </h2>
-
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
-            {product.productItems.map((item) => (
-              <button
-                key={item.title}
-                type="button"
-                onClick={() => setActiveFilter(item.category as FilterId)}
-                className={`group relative overflow-hidden rounded-2xl text-left transition ${
-                  activeFilter === item.category ? "ring-2 ring-[#141414]" : ""
-                }`}
-              >
-                <div className="relative aspect-[16/9]">
-                  <MediaImage
-                    themeId={theme}
-                    src={item.image}
-                    alt={item.alt || item.title}
-                    fill
-                    className="object-cover transition duration-700 group-hover:scale-[1.03]"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                  <div className="absolute inset-0 bg-black/40 transition group-hover:bg-black/50" />
-                  <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
-                    <span className="text-xs font-semibold uppercase tracking-[0.18em] text-white/75">
-                      {item.category}
-                    </span>
-                    <h3 className="mt-2 text-2xl font-semibold text-white md:text-3xl">
-                      {item.title}
-                    </h3>
-                    <p className="mt-2 max-w-md text-sm leading-relaxed text-white/80">
-                      {item.desc}
-                    </p>
-                  </div>
-                </div>
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Listings */}
       <section
         id="listings"
-        className="scroll-mt-24 border-b border-[#141414]/10 px-4 py-14 md:px-8 md:py-20 lg:px-10"
+        className="scroll-mt-24 px-4 pb-10 pt-4 md:px-8 md:pb-12 md:pt-5 lg:px-10"
       >
         <div className="mx-auto max-w-7xl">
-          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#c44536]">
                 Listings
               </p>
-              <h2 className="mt-3 text-3xl font-semibold text-[#141414] md:text-4xl">
+              <h2 className="mt-2 text-2xl font-semibold text-[#141414] md:text-3xl">
                 {product.productInfoTitle}
               </h2>
             </div>
@@ -332,14 +266,14 @@ export default function PropertiesContent({
             </div>
           </div>
 
-          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {filteredListings.map((property) => (
               <PropertyCard key={property.productTitle} property={property} theme={theme} />
             ))}
           </div>
 
           {filteredListings.length === 0 && (
-            <p className="mt-10 text-sm text-[#141414]/60">
+            <p className="mt-8 text-sm text-[#141414]/60">
               No properties match this filter right now. Try another category or contact our team.
             </p>
           )}
@@ -347,26 +281,26 @@ export default function PropertiesContent({
       </section>
 
       {/* Why choose us */}
-      <section className="border-b border-[#141414]/10 bg-[#faf8f4] px-4 py-14 md:px-8 md:py-20 lg:px-10">
+      <section className="bg-[#faf8f4] px-4 py-10 md:px-8 md:py-12 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#c44536]">
             {whyChooseUs.pretitle}
           </p>
-          <h2 className="mt-3 max-w-2xl text-3xl font-semibold text-[#141414] md:text-4xl">
+          <h2 className="mt-2 max-w-2xl text-2xl font-semibold text-[#141414] md:text-3xl">
             {whyChooseUs.title}
           </h2>
-          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#141414]/65 md:text-base">
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#141414]/65">
             {whyChooseUs.desc}
           </p>
 
-          <div className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-[#141414]/8 bg-[#141414]/8 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 grid gap-px overflow-hidden border border-[#141414]/8 bg-[#141414]/8 sm:grid-cols-2 lg:grid-cols-4">
             {whyChooseUs.whyChooseUsItems.map((item) => (
-              <div key={item.stat} className="bg-[#faf8f4] p-6 md:p-8">
+              <div key={item.stat} className="bg-[#faf8f4] p-5 md:p-6">
                 <span className="text-xs font-semibold text-[#c44536]">{item.stat}</span>
-                <h3 className="mt-4 text-base font-semibold text-[#141414] md:text-lg">
+                <h3 className="mt-3 text-base font-semibold text-[#141414] md:text-lg">
                   {item.title}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-[#141414]/65">{item.desc}</p>
+                <p className="mt-2 text-sm leading-relaxed text-[#141414]/65">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -382,7 +316,7 @@ export default function PropertiesContent({
             </p>
           ) : (
             <div>
-              <p className="mb-6 text-sm leading-relaxed text-[#141414]/65 md:text-base">
+              <p className="mb-5 text-sm leading-relaxed text-[#141414]/65">
                 {formDetail.desc}
               </p>
               <form onSubmit={handleSubmit}>
@@ -394,7 +328,7 @@ export default function PropertiesContent({
                     onChange={(v) => setValues((prev) => ({ ...prev, [field.label]: v }))}
                   />
                 ))}
-                <div className="mt-8 flex justify-end">
+                <div className="mt-6 flex justify-end">
                   <button
                     type="submit"
                     className="rounded-md bg-[#141414] px-8 py-3 text-sm font-medium text-white transition hover:bg-black"
@@ -409,8 +343,8 @@ export default function PropertiesContent({
       </div>
 
       {/* FAQ */}
-      <SectionRow title={faq.title} eyebrow={faq.pretitle} className="border-b-0 pb-16 md:pb-24">
-        <div className="divide-y divide-[#141414]/15">
+      <SectionRow title={faq.title} eyebrow={faq.pretitle} className="pb-12 md:pb-14">
+        <div className="divide-y divide-[#141414]/10">
           {faq.faqItems.map((item, i) => {
             const isOpen = openFaq === i;
             return (
@@ -418,7 +352,7 @@ export default function PropertiesContent({
                 <button
                   type="button"
                   onClick={() => setOpenFaq(isOpen ? -1 : i)}
-                  className="flex w-full items-center justify-between gap-4 py-5 text-left"
+                  className="flex w-full items-center justify-between gap-4 py-4 text-left"
                 >
                   <span className="text-sm font-normal text-[#141414] md:text-base">
                     {item.question}
@@ -428,7 +362,7 @@ export default function PropertiesContent({
                   </span>
                 </button>
                 {isOpen && (
-                  <p className="pb-5 text-sm leading-relaxed text-[#141414]/65">{item.answer}</p>
+                  <p className="pb-4 text-sm leading-relaxed text-[#141414]/65">{item.answer}</p>
                 )}
               </div>
             );

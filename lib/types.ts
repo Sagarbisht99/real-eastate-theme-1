@@ -138,6 +138,8 @@ export type AboutPageData = {
   missionTitle?: string;
   missionDesc?: string;
   missionPoints?: { title: string; desc: string }[];
+  /** "Learn more" style button → dedicated /mission page (not in header) */
+  missionButton?: ButtonItem;
   ctaPretitle?: string;
   ctaTitle?: string;
   ctaDesc?: string;
@@ -267,6 +269,31 @@ export type AwardsPageData = {
   title: string;
   desc: string;
   awardItems: AwardItem[];
+  breadcrumb?: LinkItem[];
+};
+
+export type MissionPoint = {
+  title: string;
+  desc: string;
+};
+
+export type MissionPageData = {
+  pretitle: string;
+  title: string;
+  desc: string;
+  desc2?: string;
+  sideImage: string;
+  sideImageTitle: string;
+  pillarsPretitle?: string;
+  pillarsTitle?: string;
+  pillars: MissionPoint[];
+  valuesPretitle?: string;
+  valuesTitle?: string;
+  values: MissionPoint[];
+  ctaPretitle?: string;
+  ctaTitle?: string;
+  ctaDesc?: string;
+  ctaButton?: ButtonItem;
   breadcrumb?: LinkItem[];
 };
 
@@ -463,6 +490,7 @@ export type CommonData = {
   AwardsPage: AwardsPageData;
   CareerPage: CareerPageData;
   CsrPage: CsrPageData;
+  MissionPage: MissionPageData;
 };
 
 export type SiteData = {
@@ -493,6 +521,7 @@ export type ResolvedSiteData = {
   awardsPage: AwardsPageData;
   careerPage: CareerPageData;
   csrPage: CsrPageData;
+  missionPage: MissionPageData;
   aboutPage: AboutPageData;
   customPage: CustomPageData;
   servicePage: ServicePageData;
