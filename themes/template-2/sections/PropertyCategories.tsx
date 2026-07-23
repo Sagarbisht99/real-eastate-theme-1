@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useRef } from "react";
 import Link from "next/link";
-import { FaArrowRight } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import MediaImage from "@/components/MediaImage";
 import { RevealBlur } from "@/lib/motion";
 import { withTheme } from "@/lib/theme";
@@ -14,24 +14,20 @@ function CategoryCard({
   item,
   index,
   fallbackHref,
-  duplicate,
 }: {
   item: ProductItem;
   index: number;
   fallbackHref: string;
-  duplicate?: boolean;
 }) {
   const href = item.href || fallbackHref;
 
   return (
     <article
       data-slide
-      aria-hidden={duplicate || undefined}
-      className="w-[75vw] max-w-[280px] shrink-0 sm:w-[260px]"
+      className="w-[75vw] max-w-[280px] shrink-0 snap-start sm:w-[260px]"
     >
       <Link
         href={withTheme(href === "#" ? "/properties" : href, THEME)}
-        tabIndex={duplicate ? -1 : undefined}
         className="group relative block aspect-[3/4] overflow-hidden bg-[#2a2a2a]"
       >
         <MediaImage
@@ -45,7 +41,7 @@ function CategoryCard({
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 p-5 text-white">
           <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--reroom-accent,#ff6b00)]">
-            {String((index % 100) + 1).padStart(2, "0")}
+            {String(index + 1).padStart(2, "0")}
           </span>
           <h3 className="mt-2 text-xl font-bold tracking-[-0.02em]">
             {item.category || item.title}
@@ -63,48 +59,21 @@ function CategoryCard({
   );
 }
 
-/** Auto category slider — any item count */
+/** Manual snap slider — same approach as template-1 */
 export default function PropertyCategories({ data }: { data: ResolvedSiteData }) {
   const { about, product } = data;
   const intro = about.desc2;
   const cards = product.productItems;
   const fallbackHref = product.buttons[0]?.href || "/properties";
   const trackRef = useRef<HTMLDivElement>(null);
-  const [paused, setPaused] = useState(false);
-  const loop = useMemo(() => [...cards, ...cards], [cards]);
 
-  function getStep() {
-    const track = trackRef.current;
-    if (!track) return 280;
-    const slide = track.querySelector<HTMLElement>("[data-slide]");
-    return slide ? slide.offsetWidth + 20 : 280;
-  }
-
-  function wrapIfNeeded() {
-    const track = trackRef.current;
-    if (!track || cards.length === 0) return;
-    const half = track.scrollWidth / 2;
-    if (half <= 0) return;
-    if (track.scrollLeft >= half - 1) track.scrollLeft -= half;
-    else if (track.scrollLeft < 1) track.scrollLeft += half;
-  }
-
-  function advance() {
+  function scrollBySlide(direction: -1 | 1) {
     const track = trackRef.current;
     if (!track) return;
-    const step = getStep();
-    const half = track.scrollWidth / 2;
-    const next = track.scrollLeft + step;
-    if (next >= half) track.scrollLeft = track.scrollLeft - half + step;
-    else track.scrollBy({ left: step, behavior: "smooth" });
+    const slide = track.querySelector<HTMLElement>("[data-slide]");
+    const amount = slide ? slide.offsetWidth + 20 : track.clientWidth * 0.8;
+    track.scrollBy({ left: direction * amount, behavior: "smooth" });
   }
-
-  useEffect(() => {
-    if (cards.length < 2 || paused) return;
-    const id = window.setInterval(advance, 3400);
-    return () => window.clearInterval(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cards.length, paused]);
 
   if (!intro && cards.length === 0) return null;
 
@@ -122,36 +91,50 @@ export default function PropertyCategories({ data }: { data: ResolvedSiteData })
               </p>
             )}
           </div>
-          <Link
-            href={withTheme("/properties", THEME)}
-            className="inline-flex items-center gap-2 text-sm font-bold text-[var(--reroom-accent,#ff6b00)]"
-          >
-            View all homes
-            <FaArrowRight className="text-[10px]" />
-          </Link>
+          <div className="flex items-center gap-3">
+            {cards.length > 1 && (
+              <>
+                <button
+                  type="button"
+                  aria-label="Previous categories"
+                  onClick={() => scrollBySlide(-1)}
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/25 transition hover:border-[var(--reroom-accent,#ff6b00)] hover:text-[var(--reroom-accent,#ff6b00)]"
+                >
+                  <FaArrowLeft className="text-xs" />
+                </button>
+                <button
+                  type="button"
+                  aria-label="Next categories"
+                  onClick={() => scrollBySlide(1)}
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/25 transition hover:border-[var(--reroom-accent,#ff6b00)] hover:text-[var(--reroom-accent,#ff6b00)]"
+                >
+                  <FaArrowRight className="text-xs" />
+                </button>
+              </>
+            )}
+            <Link
+              href={withTheme("/properties", THEME)}
+              className="ml-1 inline-flex items-center gap-2 text-sm font-bold text-[var(--reroom-accent,#ff6b00)]"
+            >
+              View all homes
+              <FaArrowRight className="text-[10px]" />
+            </Link>
+          </div>
         </RevealBlur>
       </div>
 
       {cards.length > 0 && (
-        <div
-          className="relative mt-10"
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-        >
-          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-gradient-to-r from-[#141414] to-transparent md:w-14" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 bg-gradient-to-l from-[#141414] to-transparent md:w-14" />
+        <div className="mx-auto mt-10 max-w-7xl px-4 md:px-8 lg:px-10">
           <div
             ref={trackRef}
-            onScroll={wrapIfNeeded}
-            className="flex gap-5 overflow-x-auto scroll-smooth px-4 pb-2 [-ms-overflow-style:none] [scrollbar-width:none] md:px-8 lg:px-10 [&::-webkit-scrollbar]:hidden"
+            className="flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
-            {loop.map((item, i) => (
+            {cards.map((item, i) => (
               <CategoryCard
-                key={`${item.title}-${i}`}
+                key={item.title}
                 item={item}
-                index={i % cards.length}
+                index={i}
                 fallbackHref={fallbackHref}
-                duplicate={i >= cards.length}
               />
             ))}
           </div>

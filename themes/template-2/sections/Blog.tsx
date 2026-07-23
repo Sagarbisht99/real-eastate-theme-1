@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useRef } from "react";
 import Link from "next/link";
-import { FaArrowRight } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import MediaImage from "@/components/MediaImage";
 import { RevealBlur } from "@/lib/motion";
 import { withTheme } from "@/lib/theme";
@@ -13,21 +13,17 @@ const THEME = "template-2" as const;
 function BlogCard({
   post,
   readLabel,
-  duplicate,
 }: {
   post: GalleryItem;
   readLabel?: string;
-  duplicate?: boolean;
 }) {
   return (
     <article
       data-slide
-      aria-hidden={duplicate || undefined}
-      className="w-[78vw] max-w-[300px] shrink-0 sm:w-[280px]"
+      className="w-[78vw] max-w-[300px] shrink-0 snap-start sm:w-[280px]"
     >
       <Link
         href={withTheme(post.href || "/blog", THEME)}
-        tabIndex={duplicate ? -1 : undefined}
         className="group block"
       >
         <div className="relative aspect-[16/11] overflow-hidden bg-[#f3f1ed]">
@@ -66,50 +62,22 @@ function BlogCard({
   );
 }
 
-/** Auto blog slider — any post count */
+/** Manual snap slider — same approach as template-1 */
 export default function Blog({ data }: { data: ResolvedSiteData }) {
   const { gallery, customPage } = data;
   const posts = gallery.galleryItems;
   const viewAll = gallery.buttons?.[0];
   const readMore = gallery.buttons?.[1] || customPage.readMoreLabel;
   const readLabel = typeof readMore === "string" ? readMore : readMore?.label;
-
   const trackRef = useRef<HTMLDivElement>(null);
-  const [paused, setPaused] = useState(false);
-  const loop = useMemo(() => [...posts, ...posts], [posts]);
 
-  function getStep() {
-    const track = trackRef.current;
-    if (!track) return 300;
-    const slide = track.querySelector<HTMLElement>("[data-slide]");
-    return slide ? slide.offsetWidth + 20 : 300;
-  }
-
-  function wrapIfNeeded() {
-    const track = trackRef.current;
-    if (!track || posts.length === 0) return;
-    const half = track.scrollWidth / 2;
-    if (half <= 0) return;
-    if (track.scrollLeft >= half - 1) track.scrollLeft -= half;
-    else if (track.scrollLeft < 1) track.scrollLeft += half;
-  }
-
-  function advance() {
+  function scrollBySlide(direction: -1 | 1) {
     const track = trackRef.current;
     if (!track) return;
-    const step = getStep();
-    const half = track.scrollWidth / 2;
-    const next = track.scrollLeft + step;
-    if (next >= half) track.scrollLeft = track.scrollLeft - half + step;
-    else track.scrollBy({ left: step, behavior: "smooth" });
+    const slide = track.querySelector<HTMLElement>("[data-slide]");
+    const amount = slide ? slide.offsetWidth + 20 : track.clientWidth * 0.8;
+    track.scrollBy({ left: direction * amount, behavior: "smooth" });
   }
-
-  useEffect(() => {
-    if (posts.length < 2 || paused) return;
-    const id = window.setInterval(advance, 3300);
-    return () => window.clearInterval(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [posts.length, paused]);
 
   if (posts.length === 0) return null;
 
@@ -127,37 +95,43 @@ export default function Blog({ data }: { data: ResolvedSiteData }) {
               {gallery.title}
             </h2>
           </div>
-          {viewAll && (
-            <Link
-              href={withTheme(viewAll.href, THEME)}
-              className="inline-flex shrink-0 items-center gap-2 text-sm font-bold text-[var(--reroom-accent,#ff6b00)]"
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              aria-label="Previous posts"
+              onClick={() => scrollBySlide(-1)}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-[#141414]/15 transition hover:border-[var(--reroom-accent,#ff6b00)] hover:text-[var(--reroom-accent,#ff6b00)]"
             >
-              {viewAll.label}
-              <FaArrowRight className="text-[10px]" />
-            </Link>
-          )}
+              <FaArrowLeft className="text-xs" />
+            </button>
+            <button
+              type="button"
+              aria-label="Next posts"
+              onClick={() => scrollBySlide(1)}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-[#141414]/15 transition hover:border-[var(--reroom-accent,#ff6b00)] hover:text-[var(--reroom-accent,#ff6b00)]"
+            >
+              <FaArrowRight className="text-xs" />
+            </button>
+            {viewAll && (
+              <Link
+                href={withTheme(viewAll.href, THEME)}
+                className="ml-1 inline-flex shrink-0 items-center gap-2 text-sm font-bold text-[var(--reroom-accent,#ff6b00)]"
+              >
+                {viewAll.label}
+                <FaArrowRight className="text-[10px]" />
+              </Link>
+            )}
+          </div>
         </RevealBlur>
       </div>
 
-      <div
-        className="relative mt-10"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-      >
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-gradient-to-r from-white to-transparent md:w-14" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 bg-gradient-to-l from-white to-transparent md:w-14" />
+      <div className="mx-auto mt-10 max-w-7xl px-4 md:px-8 lg:px-10">
         <div
           ref={trackRef}
-          onScroll={wrapIfNeeded}
-          className="flex gap-5 overflow-x-auto scroll-smooth px-4 pb-2 [-ms-overflow-style:none] [scrollbar-width:none] md:px-8 lg:px-10 [&::-webkit-scrollbar]:hidden"
+          className="flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
-          {loop.map((post, i) => (
-            <BlogCard
-              key={`${post.title}-${i}`}
-              post={post}
-              readLabel={readLabel}
-              duplicate={i >= posts.length}
-            />
+          {posts.map((post) => (
+            <BlogCard key={post.title} post={post} readLabel={readLabel} />
           ))}
         </div>
       </div>

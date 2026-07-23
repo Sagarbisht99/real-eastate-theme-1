@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useRef } from "react";
 import Link from "next/link";
 import {
+  FaArrowLeft,
   FaArrowRight,
   FaBath,
   FaBed,
@@ -26,13 +27,7 @@ function featureIcon(label: string) {
   return FaExpand;
 }
 
-function PropertyCard({
-  item,
-  duplicate,
-}: {
-  item: ProductSlide;
-  duplicate?: boolean;
-}) {
+function PropertyCard({ item }: { item: ProductSlide }) {
   const href =
     item.button?.href === "#"
       ? "/properties"
@@ -42,14 +37,9 @@ function PropertyCard({
   return (
     <article
       data-slide
-      aria-hidden={duplicate || undefined}
-      className="group w-[78vw] max-w-[300px] shrink-0 sm:w-[280px]"
+      className="group w-[78vw] max-w-[300px] shrink-0 snap-start sm:w-[280px]"
     >
-      <Link
-        href={withTheme(href, THEME)}
-        tabIndex={duplicate ? -1 : undefined}
-        className="block"
-      >
+      <Link href={withTheme(href, THEME)} className="block">
         <div className="relative aspect-[4/5] overflow-hidden bg-[#f3f1ed]">
           <MediaImage
             themeId={THEME}
@@ -103,45 +93,18 @@ function PropertyCard({
   );
 }
 
-/** Auto card slider — works for any listing count */
+/** Manual snap slider — same approach as template-1 */
 export default function FeaturedProperties({ data }: { data: ResolvedSiteData }) {
   const listings = data.product.productSlides ?? [];
   const trackRef = useRef<HTMLDivElement>(null);
-  const [paused, setPaused] = useState(false);
-  const loop = useMemo(() => [...listings, ...listings], [listings]);
 
-  function getStep() {
-    const track = trackRef.current;
-    if (!track) return 300;
-    const slide = track.querySelector<HTMLElement>("[data-slide]");
-    return slide ? slide.offsetWidth + 20 : 300;
-  }
-
-  function wrapIfNeeded() {
-    const track = trackRef.current;
-    if (!track || listings.length === 0) return;
-    const half = track.scrollWidth / 2;
-    if (half <= 0) return;
-    if (track.scrollLeft >= half - 1) track.scrollLeft -= half;
-    else if (track.scrollLeft < 1) track.scrollLeft += half;
-  }
-
-  function advance() {
+  function scrollBySlide(direction: -1 | 1) {
     const track = trackRef.current;
     if (!track) return;
-    const step = getStep();
-    const half = track.scrollWidth / 2;
-    const next = track.scrollLeft + step;
-    if (next >= half) track.scrollLeft = track.scrollLeft - half + step;
-    else track.scrollBy({ left: step, behavior: "smooth" });
+    const slide = track.querySelector<HTMLElement>("[data-slide]");
+    const amount = slide ? slide.offsetWidth + 20 : track.clientWidth * 0.8;
+    track.scrollBy({ left: direction * amount, behavior: "smooth" });
   }
-
-  useEffect(() => {
-    if (listings.length < 2 || paused) return;
-    const id = window.setInterval(advance, 3200);
-    return () => window.clearInterval(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [listings.length, paused]);
 
   if (listings.length === 0) return null;
 
@@ -157,34 +120,41 @@ export default function FeaturedProperties({ data }: { data: ResolvedSiteData })
               {data.product.productSectionTitle || "Featured Properties"}
             </h2>
           </div>
-          <Link
-            href={withTheme("/properties", THEME)}
-            className="inline-flex items-center gap-2 text-sm font-bold text-[var(--reroom-accent,#ff6b00)]"
-          >
-            View all
-            <FaArrowRight className="text-[10px]" />
-          </Link>
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              aria-label="Previous properties"
+              onClick={() => scrollBySlide(-1)}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-[#141414]/15 transition hover:border-[var(--reroom-accent,#ff6b00)] hover:text-[var(--reroom-accent,#ff6b00)]"
+            >
+              <FaArrowLeft className="text-xs" />
+            </button>
+            <button
+              type="button"
+              aria-label="Next properties"
+              onClick={() => scrollBySlide(1)}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-[#141414]/15 transition hover:border-[var(--reroom-accent,#ff6b00)] hover:text-[var(--reroom-accent,#ff6b00)]"
+            >
+              <FaArrowRight className="text-xs" />
+            </button>
+            <Link
+              href={withTheme("/properties", THEME)}
+              className="ml-1 inline-flex items-center gap-2 text-sm font-bold text-[var(--reroom-accent,#ff6b00)]"
+            >
+              View all
+              <FaArrowRight className="text-[10px]" />
+            </Link>
+          </div>
         </RevealBlur>
       </div>
 
-      <div
-        className="relative mt-10"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-      >
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-gradient-to-r from-white to-transparent md:w-14" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 bg-gradient-to-l from-white to-transparent md:w-14" />
+      <div className="mx-auto mt-10 max-w-7xl px-4 md:px-8 lg:px-10">
         <div
           ref={trackRef}
-          onScroll={wrapIfNeeded}
-          className="flex gap-5 overflow-x-auto scroll-smooth px-4 pb-2 [-ms-overflow-style:none] [scrollbar-width:none] md:px-8 lg:px-10 [&::-webkit-scrollbar]:hidden"
+          className="flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
-          {loop.map((item, i) => (
-            <PropertyCard
-              key={`${item.productTitle}-${i}`}
-              item={item}
-              duplicate={i >= listings.length}
-            />
+          {listings.map((item) => (
+            <PropertyCard key={item.productTitle} item={item} />
           ))}
         </div>
       </div>

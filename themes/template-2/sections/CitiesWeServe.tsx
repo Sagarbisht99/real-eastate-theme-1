@@ -13,21 +13,17 @@ const THEME = "template-2" as const;
 function CityCard({
   city,
   ctaHref,
-  duplicate,
 }: {
   city: CityItem;
   ctaHref: string;
-  duplicate?: boolean;
 }) {
   return (
     <article
       data-slide
-      aria-hidden={duplicate || undefined}
-      className="w-[78vw] max-w-[300px] shrink-0 sm:w-[280px]"
+      className="w-[78vw] max-w-[300px] shrink-0 snap-start sm:w-[280px]"
     >
       <Link
         href={withTheme(city.href || ctaHref, THEME)}
-        tabIndex={duplicate ? -1 : undefined}
         className="group relative block aspect-[4/5] overflow-hidden bg-[#eeeae4]"
       >
         <MediaImage
@@ -63,14 +59,13 @@ function CityCard({
   );
 }
 
-/** City card slider with filters + next/prev + autoplay */
+/** Manual snap slider with filters + next/prev — same approach as template-1 */
 export default function CitiesWeServe({ data }: { data: ResolvedSiteData }) {
   const section = data.citiesWeServe;
   const cities = section.cities;
   const cta = section.button;
   const ctaHref = cta?.href || "/properties";
   const trackRef = useRef<HTMLDivElement>(null);
-  const [paused, setPaused] = useState(false);
 
   const filters = useMemo(() => {
     if (section.categories?.length) return section.categories;
@@ -87,61 +82,18 @@ export default function CitiesWeServe({ data }: { data: ResolvedSiteData }) {
     return cities.filter((c) => c.region === activeFilter);
   }, [cities, activeFilter]);
 
-  const canLoop = filtered.length > 1;
-  const loop = useMemo(
-    () => (canLoop ? [...filtered, ...filtered] : filtered),
-    [filtered, canLoop]
-  );
-
   useEffect(() => {
     const track = trackRef.current;
     if (track) track.scrollLeft = 0;
   }, [activeFilter]);
 
-  function getStep() {
+  function scrollBySlide(direction: -1 | 1) {
     const track = trackRef.current;
-    if (!track) return 300;
+    if (!track) return;
     const slide = track.querySelector<HTMLElement>("[data-slide]");
-    return slide ? slide.offsetWidth + 20 : 300;
+    const amount = slide ? slide.offsetWidth + 20 : track.clientWidth * 0.8;
+    track.scrollBy({ left: direction * amount, behavior: "smooth" });
   }
-
-  function wrapIfNeeded() {
-    const track = trackRef.current;
-    if (!track || !canLoop) return;
-    const half = track.scrollWidth / 2;
-    if (half <= 0) return;
-    if (track.scrollLeft >= half - 1) track.scrollLeft -= half;
-    else if (track.scrollLeft < 1) track.scrollLeft += half;
-  }
-
-  function advance(direction: -1 | 1 = 1) {
-    const track = trackRef.current;
-    if (!track || filtered.length === 0) return;
-    const step = getStep() * direction;
-
-    if (!canLoop) {
-      track.scrollBy({ left: step, behavior: "smooth" });
-      return;
-    }
-
-    const half = track.scrollWidth / 2;
-    const next = track.scrollLeft + step;
-
-    if (direction > 0 && next >= half) {
-      track.scrollLeft = track.scrollLeft - half + step;
-    } else if (direction < 0 && next < 0) {
-      track.scrollLeft = track.scrollLeft + half + step;
-    } else {
-      track.scrollBy({ left: step, behavior: "smooth" });
-    }
-  }
-
-  useEffect(() => {
-    if (!canLoop || paused) return;
-    const id = window.setInterval(() => advance(1), 3300);
-    return () => window.clearInterval(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filtered.length, paused, activeFilter, canLoop]);
 
   if (cities.length === 0) return null;
 
@@ -190,7 +142,7 @@ export default function CitiesWeServe({ data }: { data: ResolvedSiteData }) {
               <button
                 type="button"
                 aria-label="Previous cities"
-                onClick={() => advance(-1)}
+                onClick={() => scrollBySlide(-1)}
                 disabled={filtered.length < 2}
                 className="flex h-10 w-10 items-center justify-center rounded-full border border-[#141414]/15 bg-white transition hover:border-[var(--reroom-accent,#ff6b00)] hover:text-[var(--reroom-accent,#ff6b00)] disabled:cursor-not-allowed disabled:opacity-40"
               >
@@ -199,7 +151,7 @@ export default function CitiesWeServe({ data }: { data: ResolvedSiteData }) {
               <button
                 type="button"
                 aria-label="Next cities"
-                onClick={() => advance(1)}
+                onClick={() => scrollBySlide(1)}
                 disabled={filtered.length < 2}
                 className="flex h-10 w-10 items-center justify-center rounded-full border border-[#141414]/15 bg-white transition hover:border-[var(--reroom-accent,#ff6b00)] hover:text-[var(--reroom-accent,#ff6b00)] disabled:cursor-not-allowed disabled:opacity-40"
               >
@@ -220,25 +172,13 @@ export default function CitiesWeServe({ data }: { data: ResolvedSiteData }) {
         </RevealBlur>
       </div>
 
-      <div
-        className="relative mt-10"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-      >
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-gradient-to-r from-[#faf9f7] to-transparent md:w-14" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 bg-gradient-to-l from-[#faf9f7] to-transparent md:w-14" />
+      <div className="mx-auto mt-10 max-w-7xl px-4 md:px-8 lg:px-10">
         <div
           ref={trackRef}
-          onScroll={wrapIfNeeded}
-          className="flex gap-5 overflow-x-auto scroll-smooth px-4 pb-2 [-ms-overflow-style:none] [scrollbar-width:none] md:px-8 lg:px-10 [&::-webkit-scrollbar]:hidden"
+          className="flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
-          {loop.map((city, i) => (
-            <CityCard
-              key={`${city.name}-${activeFilter}-${i}`}
-              city={city}
-              ctaHref={ctaHref}
-              duplicate={canLoop && i >= filtered.length}
-            />
+          {filtered.map((city) => (
+            <CityCard key={city.name} city={city} ctaHref={ctaHref} />
           ))}
         </div>
       </div>

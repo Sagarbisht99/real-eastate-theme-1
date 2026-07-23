@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useRef } from "react";
 import Link from "next/link";
-import { FaArrowRight } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import MediaImage from "@/components/MediaImage";
 import { RevealBlur } from "@/lib/motion";
 import { withTheme } from "@/lib/theme";
@@ -10,18 +10,11 @@ import type { ResolvedSiteData, TeamItem } from "@/lib/types";
 
 const THEME = "template-2" as const;
 
-function TeamCard({
-  person,
-  duplicate,
-}: {
-  person: TeamItem;
-  duplicate?: boolean;
-}) {
+function TeamCard({ person }: { person: TeamItem }) {
   return (
     <article
       data-slide
-      aria-hidden={duplicate || undefined}
-      className="group w-[72vw] max-w-[260px] shrink-0 sm:w-[240px]"
+      className="group w-[72vw] max-w-[260px] shrink-0 snap-start sm:w-[240px]"
     >
       <div className="relative aspect-[3/4] overflow-hidden bg-[#e8e6e1]">
         <MediaImage
@@ -48,53 +41,19 @@ function TeamCard({
   );
 }
 
-/** Auto slider only — no next/prev controls */
+/** Manual snap slider — same approach as template-1 */
 export default function Team({ data }: { data: ResolvedSiteData }) {
   const { team } = data;
   const people = team.teamItems;
   const trackRef = useRef<HTMLDivElement>(null);
-  const [paused, setPaused] = useState(false);
-  const loop = useMemo(() => [...people, ...people], [people]);
 
-  function getStep() {
-    const track = trackRef.current;
-    if (!track) return 260;
-    const slide = track.querySelector<HTMLElement>("[data-slide]");
-    return slide ? slide.offsetWidth + 20 : 260;
-  }
-
-  function wrapIfNeeded() {
-    const track = trackRef.current;
-    if (!track || people.length === 0) return;
-    const half = track.scrollWidth / 2;
-    if (half <= 0) return;
-    if (track.scrollLeft >= half - 1) {
-      track.scrollLeft -= half;
-    } else if (track.scrollLeft < 1) {
-      track.scrollLeft += half;
-    }
-  }
-
-  function advance() {
+  function scrollBySlide(direction: -1 | 1) {
     const track = trackRef.current;
     if (!track) return;
-    const step = getStep();
-    const half = track.scrollWidth / 2;
-    const next = track.scrollLeft + step;
-
-    if (next >= half) {
-      track.scrollLeft = track.scrollLeft - half + step;
-    } else {
-      track.scrollBy({ left: step, behavior: "smooth" });
-    }
+    const slide = track.querySelector<HTMLElement>("[data-slide]");
+    const amount = slide ? slide.offsetWidth + 20 : track.clientWidth * 0.7;
+    track.scrollBy({ left: direction * amount, behavior: "smooth" });
   }
-
-  useEffect(() => {
-    if (people.length < 2 || paused) return;
-    const id = window.setInterval(advance, 3200);
-    return () => window.clearInterval(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- advance reads latest DOM via refs
-  }, [people.length, paused]);
 
   if (people.length === 0) return null;
 
@@ -118,35 +77,41 @@ export default function Team({ data }: { data: ResolvedSiteData }) {
               </p>
             )}
           </div>
-          <Link
-            href={withTheme("/team", THEME)}
-            className="inline-flex shrink-0 items-center gap-2 text-sm font-bold text-[var(--reroom-accent,#ff6b00)]"
-          >
-            Meet the team
-            <FaArrowRight className="text-xs" />
-          </Link>
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              aria-label="Previous team members"
+              onClick={() => scrollBySlide(-1)}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-[#141414]/15 transition hover:border-[var(--reroom-accent,#ff6b00)] hover:text-[var(--reroom-accent,#ff6b00)]"
+            >
+              <FaArrowLeft className="text-xs" />
+            </button>
+            <button
+              type="button"
+              aria-label="Next team members"
+              onClick={() => scrollBySlide(1)}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-[#141414]/15 transition hover:border-[var(--reroom-accent,#ff6b00)] hover:text-[var(--reroom-accent,#ff6b00)]"
+            >
+              <FaArrowRight className="text-xs" />
+            </button>
+            <Link
+              href={withTheme("/team", THEME)}
+              className="ml-1 inline-flex shrink-0 items-center gap-2 text-sm font-bold text-[var(--reroom-accent,#ff6b00)]"
+            >
+              Meet the team
+              <FaArrowRight className="text-xs" />
+            </Link>
+          </div>
         </RevealBlur>
       </div>
 
-      <div
-        className="relative mt-10"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-      >
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-gradient-to-r from-[#faf9f7] to-transparent md:w-14" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 bg-gradient-to-l from-[#faf9f7] to-transparent md:w-14" />
-
+      <div className="mx-auto mt-10 max-w-7xl px-4 md:px-8 lg:px-10">
         <div
           ref={trackRef}
-          onScroll={wrapIfNeeded}
-          className="flex gap-5 overflow-x-auto scroll-smooth px-4 pb-2 [-ms-overflow-style:none] [scrollbar-width:none] md:px-8 lg:px-10 [&::-webkit-scrollbar]:hidden"
+          className="flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
-          {loop.map((person, i) => (
-            <TeamCard
-              key={`${person.name}-${i}`}
-              person={person}
-              duplicate={i >= people.length}
-            />
+          {people.map((person) => (
+            <TeamCard key={person.name} person={person} />
           ))}
         </div>
       </div>
