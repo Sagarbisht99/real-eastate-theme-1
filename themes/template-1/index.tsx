@@ -1,12 +1,12 @@
-import type { CSSProperties } from "react";
-import type { ResolvedSiteData } from "@/lib/types";
-import Header from "@/themes/template-1/Header";
-import Footer from "@/themes/template-1/Footer";
-import Hero from "@/themes/template-1/sections/Hero";
-import IntroCategories from "@/themes/template-1/sections/IntroCategories";
-import WhyChooseUs from "@/themes/template-1/sections/WhyChooseUs";
+import Blog from "@/themes/template-1/sections/Blog";
 import Solutions from "@/themes/template-1/sections/Solutions";
-import Journal from "@/themes/template-1/sections/Journal";
+import WhyChooseUs from "@/themes/template-1/sections/WhyChooseUs";
+import IntroCategories from "@/themes/template-1/sections/IntroCategories";
+import Hero from "@/themes/template-1/sections/Hero";
+import Footer from "@/themes/template-1/Footer";
+import Header from "@/themes/template-1/Header";
+import type { ResolvedSiteData } from "@/lib/types";
+import type { CSSProperties } from "react";
 
 export default function Template1({ data }: { data: ResolvedSiteData }) {
   return (
@@ -20,7 +20,7 @@ export default function Template1({ data }: { data: ResolvedSiteData }) {
         <IntroCategories data={data} />
         <WhyChooseUs data={data} />
         <Solutions data={data} />
-        <Journal data={data} />
+        <Blog data={data} />
       </main>
       <Footer data={data} />
     </div>

@@ -64,11 +64,11 @@ export default function BlogContent({
           </div>
 
           <div className="mx-auto mt-10 max-w-md">
-            <label htmlFor="journal-search" className="sr-only">
+            <label htmlFor="blog-search" className="sr-only">
               Search articles
             </label>
             <input
-              id="journal-search"
+              id="blog-search"
               type="search"
               value={query}
               onChange={(e) => setQuery(e.target.value)}

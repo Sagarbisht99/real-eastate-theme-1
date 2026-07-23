@@ -7,7 +7,7 @@
       "type": "Multiple Pages Website",
       "image": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600&q=80",
       "previewimage": "https://i.pinimg.com/vwebp/1200x/3f/da/3b/3fda3b2ef33aad8b4bff418027d0aadf.webp",
-      "preview_description": "Warm geometric layout with hero, sale/rent categories, solutions cards, and journal.",
+      "preview_description": "Warm geometric layout with hero, sale/rent categories, solutions cards, and blog.",
       "prebuilt_pages": 7,
       "sectionVariants": {
         "Topbar": "Topbar-1",
@@ -31,6 +31,39 @@
         "--primary-link-color": "#ffffff",
         "--haus-accent": "#c44536",
         "--lightcream-bg": "#faf8f4"
+      }
+    },
+    {
+      "id": "template-2",
+      "numericId": 2,
+      "title": "re/room",
+      "type": "Multiple Pages Website",
+      "image": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1600&q=80",
+      "previewimage": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1200&q=80",
+      "preview_description": "Orange-accent renovation layout with services, how-it-works, projects, and contact.",
+      "prebuilt_pages": 7,
+      "sectionVariants": {
+        "Topbar": "Topbar-1",
+        "Header": "Header-2",
+        "Banner": "Banner-2",
+        "About": "About-2",
+        "Product": "Product-2",
+        "WhyChooseUs": "WhyChooseUs-2",
+        "Gallery": "Gallery-2",
+        "FormDetail": "FormDetail-2",
+        "FAQ": "FAQ-2",
+        "Testimonial": "Testimonial-2",
+        "Footer": "Footer-2"
+      },
+      "variables": {
+        "--header-bg": "#ffffff",
+        "--header-text": "#141414",
+        "--hero-bg": "#ffffff",
+        "--hero-title": "#141414",
+        "--primary-link-bg": "#ff9a14",
+        "--primary-link-color": "#ffffff",
+        "--reroom-accent": "#ff9a14",
+        "--reroom-ink": "#141414"
       }
     }
   ],
@@ -74,7 +107,7 @@
               "href": "/about"
             },
             {
-              "label": "Journal",
+              "label": "Blog",
               "href": "/blog"
             },
             {
@@ -133,12 +166,12 @@
       "philosophyDesc": "We start by understanding your budget, timeline, and lifestyle. Then we shortlist verified homes, guide site visits, and stay with you through paperwork and handover."
     },
     "CustomPage": {
-      "pretitle": "Journal",
+      "pretitle": "Blog",
       "title": "Guides, tips, and market notes for your next move.",
       "desc": "Practical articles on buying, renting, packing, and what buyers look for — written to help you decide with more clarity.",
       "desc2": "Browse the latest notes from our advisors, then reach out when you are ready to shortlist homes.",
       "sideImage": "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1200&q=80",
-      "sideImageTitle": "Journal feature image"
+      "sideImageTitle": "Blog feature image"
     },
     "ServicePage": {
       "pretitle": "Services",
@@ -414,12 +447,40 @@
           "rating": "5.0"
         }
       ]
+    },
+    "Team": {
+      "pretitle": "Team",
+      "title": "Our people",
+      "desc": "The advisors and specialists behind every project.",
+      "teamItems": [
+        {
+          "name": "Jerry Trainer",
+          "role": "Project Lead",
+          "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80"
+        },
+        {
+          "name": "Meghan Sanders",
+          "role": "Design Director",
+          "image": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=80"
+        },
+        {
+          "name": "William Baker",
+          "role": "Site Manager",
+          "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&q=80"
+        },
+        {
+          "name": "Leo Johnson",
+          "role": "Client Advisor",
+          "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&q=80"
+        }
+      ]
     }
   },
   "categories": {
     "Realestate": {
       "templates": [
-        "template-1"
+        "template-1",
+        "template-2"
       ],
       "sections": {
         "Header": {
@@ -434,7 +495,7 @@
               "href": "/about"
             },
             {
-              "label": "Journal",
+              "label": "Blog",
               "href": "/blog"
             },
             {
@@ -777,7 +838,7 @@
           ]
         },
         "Gallery": {
-          "pretitle": "Journal",
+          "pretitle": "Blog",
           "title": "Latest insights from the market.",
           "desc": "Tips, home guides, and practical notes to help you buy, rent, or move with confidence.",
           "galleryItems": [

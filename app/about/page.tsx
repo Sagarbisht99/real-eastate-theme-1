@@ -1,8 +1,6 @@
 import { resolveSiteData, resolveCategory } from "@/lib/data";
-import { resolveTheme, themeShellClass } from "@/lib/theme";
-import Header from "@/themes/template-1/Header";
-import Footer from "@/themes/template-1/Footer";
-import AboutContent from "@/components/pages/AboutContent";
+import { resolveTheme } from "@/lib/theme";
+import { getThemePack } from "@/themes";
 
 type Props = {
   searchParams: Promise<{ theme?: string; category?: string }>;
@@ -13,12 +11,15 @@ export default async function AboutPage({ searchParams }: Props) {
   const theme = resolveTheme(params.theme);
   const category = resolveCategory(params.category);
   const data = resolveSiteData(theme, category);
+  const pack = getThemePack(theme);
+  const { Header, Footer, pages } = pack;
+  const About = pages.About;
 
   return (
-    <div id="top" className={themeShellClass[theme]}>
+    <div id="top" className={pack.shellClass}>
       <Header data={data} variant="solid" />
       <main>
-        <AboutContent data={data} theme={theme} />
+        <About data={data} theme={theme} />
       </main>
       <Footer data={data} />
     </div>

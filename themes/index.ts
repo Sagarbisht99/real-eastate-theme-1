@@ -1,7 +1,17 @@
-import Template1 from "@/themes/template-1";
-import type { ThemeId, ResolvedSiteData } from "@/lib/types";
-import type { ComponentType } from "react";
+import type { ThemeId } from "@/lib/types";
+import { template1Pack, type ThemePack } from "@/themes/template-1/registry";
+import { template2Pack } from "@/themes/template-2/registry";
 
-export const themeMap: Record<ThemeId, ComponentType<{ data: ResolvedSiteData }>> = {
-  "template-1": Template1,
+/**
+ * Theme registry — each template owns its Home, Header, Footer, and pages.
+ */
+export const themePacks: Record<ThemeId, ThemePack> = {
+  "template-1": template1Pack,
+  "template-2": template2Pack,
 };
+
+export function getThemePack(theme: ThemeId): ThemePack {
+  return themePacks[theme] ?? themePacks["template-1"];
+}
+
+export { themeMap } from "@/themes/themeMap";

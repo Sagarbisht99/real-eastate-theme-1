@@ -170,6 +170,19 @@ export type TestimonialData = {
   testimonialItems: TestimonialItem[];
 };
 
+export type TeamItem = {
+  name: string;
+  role: string;
+  image: string;
+};
+
+export type TeamData = {
+  pretitle: string;
+  title: string;
+  desc: string;
+  teamItems: TeamItem[];
+};
+
 export type HeaderSection = {
   logo: string;
   menu: LinkItem[];
@@ -288,6 +301,7 @@ export type CommonData = {
   PrivacyPage: LegalPageData;
   TermsPage: LegalPageData;
   Testimonial: TestimonialData;
+  Team: TeamData;
 };
 
 export type SiteData = {
@@ -313,6 +327,7 @@ export type ResolvedSiteData = {
   faq: FAQSection;
   footer: FooterData;
   testimonial: TestimonialData;
+  team: TeamData;
   aboutPage: AboutPageData;
   customPage: CustomPageData;
   servicePage: ServicePageData;
@@ -321,20 +336,25 @@ export type ResolvedSiteData = {
   termsPage: LegalPageData;
 };
 
-export type ThemeId = "template-1";
+export type ThemeId = "template-1" | "template-2";
 
 export const THEMES: { id: ThemeId; name: string; description: string }[] = [
   {
     id: "template-1",
     name: "HAUS Group",
-    description: "Syne · warm geometric real estate with journal",
+    description: "Syne · warm geometric real estate with blog",
+  },
+  {
+    id: "template-2",
+    name: "re/room",
+    description: "Orange accent · Poppins · renovation layout",
   },
 ];
 
 export const CATEGORIES: CategoryId[] = ["Realestate", "Business", "School"];
 
 /** Change this to switch the default homepage theme */
-export const ACTIVE_THEME: ThemeId = "template-1";
+export const ACTIVE_THEME: ThemeId = "template-2";
 
 /** Change this to switch the default content category */
 export const ACTIVE_CATEGORY: CategoryId = "Realestate";

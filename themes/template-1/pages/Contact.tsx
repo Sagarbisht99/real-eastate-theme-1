@@ -128,7 +128,7 @@ export default function ContactContent({
       <section className="border-b border-[#141414]/10 px-4 py-14 md:px-8 md:py-20 lg:px-10">
         <div className="mx-auto grid max-w-7xl items-start gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12">
           {/* Contact details — sticky while the longer form scrolls */}
-          <aside className="z-10 w-full lg:sticky lg:top-24">
+          <aside className="z-10 w-full self-start lg:sticky lg:top-28">
             <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#c44536]">
               Reach us
             </p>
@@ -335,7 +335,7 @@ export default function ContactContent({
         </div>
       </section>
 
-      {/* Journal */}
+      {/* Blog */}
       <section className="px-4 py-14 md:px-8 md:py-20 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
@@ -344,7 +344,7 @@ export default function ContactContent({
                 {gallery.pretitle}
               </p>
               <h2 className="mt-3 text-3xl font-semibold text-[#141414] md:text-4xl">
-                From the journal
+                From the blog
               </h2>
             </div>
             <Link

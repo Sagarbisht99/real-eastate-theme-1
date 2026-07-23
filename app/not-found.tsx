@@ -1,8 +1,5 @@
 import { resolveSiteData } from "@/lib/data";
-import { themeShellClass } from "@/lib/theme";
-import ErrorContent from "@/components/pages/ErrorContent";
-import Header1 from "@/themes/template-1/Header";
-import Footer1 from "@/themes/template-1/Footer";
+import { getThemePack } from "@/themes";
 
 const NOT_FOUND_INFO = {
   code: "404",
@@ -14,12 +11,15 @@ const NOT_FOUND_INFO = {
 export default function NotFound() {
   const data = resolveSiteData();
   const theme = data.themeId;
+  const pack = getThemePack(theme);
+  const { Header, Footer, pages } = pack;
+  const ErrorPage = pages.Error;
 
   return (
-    <div id="top" className={themeShellClass[theme]}>
-      <Header1 data={data} />
-      <ErrorContent theme={theme} info={NOT_FOUND_INFO} />
-      <Footer1 data={data} />
+    <div id="top" className={pack.shellClass}>
+      <Header data={data} />
+      <ErrorPage theme={theme} info={NOT_FOUND_INFO} />
+      <Footer data={data} />
     </div>
   );
 }

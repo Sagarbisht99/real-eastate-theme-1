@@ -1,10 +1,7 @@
 "use client";
 
 import { resolveSiteData } from "@/lib/data";
-import { themeShellClass } from "@/lib/theme";
-import ErrorContent from "@/components/pages/ErrorContent";
-import Header1 from "@/themes/template-1/Header";
-import Footer1 from "@/themes/template-1/Footer";
+import { getThemePack } from "@/themes";
 
 const SERVER_ERROR_INFO = {
   code: "500",
@@ -21,12 +18,15 @@ export default function Error({
 }) {
   const data = resolveSiteData();
   const theme = data.themeId;
+  const pack = getThemePack(theme);
+  const { Header, Footer, pages } = pack;
+  const ErrorPage = pages.Error;
 
   return (
-    <div id="top" className={themeShellClass[theme]}>
-      <Header1 data={data} />
-      <ErrorContent theme={theme} info={SERVER_ERROR_INFO} onRetry={reset} />
-      <Footer1 data={data} />
+    <div id="top" className={pack.shellClass}>
+      <Header data={data} />
+      <ErrorPage theme={theme} info={SERVER_ERROR_INFO} onRetry={reset} />
+      <Footer data={data} />
     </div>
   );
 }

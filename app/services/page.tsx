@@ -1,7 +1,6 @@
 import { resolveSiteData, resolveCategory } from "@/lib/data";
 import { resolveTheme } from "@/lib/theme";
-import PageShell from "@/components/PageShell";
-import ServicesContent from "@/components/pages/ServicesContent";
+import { getThemePack } from "@/themes";
 
 type Props = {
   searchParams: Promise<{ theme?: string; category?: string }>;
@@ -12,15 +11,22 @@ export default async function ServicesPage({ searchParams }: Props) {
   const theme = resolveTheme(params.theme);
   const category = resolveCategory(params.category);
   const data = resolveSiteData(theme, category);
+  const pack = getThemePack(theme);
+  const { Header, Footer, PageBanner, pages } = pack;
+  const Services = pages.Services;
 
   return (
-    <PageShell
-      theme={theme}
-      data={data}
-      title={data.servicePage.title}
-      eyebrow={data.servicePage.pretitle}
-    >
-      <ServicesContent data={data} theme={theme} />
-    </PageShell>
+    <div id="top" className={pack.shellClass}>
+      <Header data={data} variant="solid" />
+      <PageBanner
+        theme={theme}
+        title={data.servicePage.title}
+        eyebrow={data.servicePage.pretitle}
+      />
+      <main>
+        <Services data={data} theme={theme} />
+      </main>
+      <Footer data={data} />
+    </div>
   );
 }

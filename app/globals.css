@@ -49,6 +49,43 @@ body {
   font-family: inherit;
 }
 
+.theme-t2 {
+  --font-sans: var(--font-t2), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-t2), ui-sans-serif, system-ui, sans-serif;
+  --reroom-accent: #ff9a14;
+  --reroom-ink: #141414;
+  font-family: var(--font-t2), system-ui, sans-serif !important;
+}
+
+.theme-t2 * {
+  font-family: inherit;
+}
+
+.theme-t2 .font-sans,
+.theme-t2 .font-serif {
+  font-family: inherit;
+}
+
+.theme-t2-hatch {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 6px,
+    rgba(255, 255, 255, 0.06) 6px,
+    rgba(255, 255, 255, 0.06) 7px
+  );
+}
+
+.theme-t2-hatch-dark {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 6px,
+    rgba(20, 20, 20, 0.06) 6px,
+    rgba(20, 20, 20, 0.06) 7px
+  );
+}
+
 html {
   /* Lenis owns smooth scrolling — keep native jump for reduced-motion fallback */
   scroll-behavior: auto;

@@ -54,6 +54,7 @@ export function resolveSiteData(
     faq: sections.FAQ,
     footer: common.Footer,
     testimonial: common.Testimonial,
+    team: common.Team,
     aboutPage: common.AboutPage,
     customPage: common.CustomPage,
     servicePage: common.ServicePage,
