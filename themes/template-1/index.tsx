@@ -1,15 +1,27 @@
-import Blog from "@/themes/template-1/sections/Blog";
-import Solutions from "@/themes/template-1/sections/Solutions";
-import WhyChooseUs from "@/themes/template-1/sections/WhyChooseUs";
-import IntroCategories from "@/themes/template-1/sections/IntroCategories";
-import Hero from "@/themes/template-1/sections/Hero";
-import Team from "@/themes/template-1/sections/Team";
-import Testimonials from "@/themes/template-1/sections/Testimonials";
-import Footer from "@/themes/template-1/Footer";
-import Header from "@/themes/template-1/Header";
-import type { ResolvedSiteData } from "@/lib/types";
 import type { CSSProperties } from "react";
+import type { ResolvedSiteData } from "@/lib/types";
+import Header from "@/themes/template-1/Header";
+import Footer from "@/themes/template-1/Footer";
+import Hero from "@/themes/template-1/sections/Hero";
+import FeaturedProperties from "@/themes/template-1/sections/FeaturedProperties";
+import IntroCategories from "@/themes/template-1/sections/IntroCategories";
+import WhyChooseUs from "@/themes/template-1/sections/WhyChooseUs";
+import LatestProjects from "@/themes/template-1/sections/LatestProjects";
+import Services from "@/themes/template-1/sections/Services";
+import Team from "@/themes/template-1/sections/Team";
+import Awards from "@/themes/template-1/sections/Awards";
+import Testimonials from "@/themes/template-1/sections/Testimonials";
+import Blog from "@/themes/template-1/sections/Blog";
+import FAQ from "@/themes/template-1/sections/FAQ";
+import CTA from "@/themes/template-1/sections/CTA";
 
+/**
+ * Homepage sections (only where JSON already has data):
+ * Hero → Featured Properties → Categories → Why Choose Us →
+ * Latest Projects → Services → Agents → Awards → Testimonials →
+ * News → FAQ → CTA
+ * Skipped (not in JSON): Property Search, Cities We Serve, Investment Opportunities
+ */
 export default function Template1({ data }: { data: ResolvedSiteData }) {
   return (
     <div
@@ -19,12 +31,17 @@ export default function Template1({ data }: { data: ResolvedSiteData }) {
       <Header data={data} variant="solid" />
       <main>
         <Hero data={data} />
+        <FeaturedProperties data={data} />
         <IntroCategories data={data} />
         <WhyChooseUs data={data} />
+        <LatestProjects data={data} />
+        <Services data={data} />
         <Team data={data} />
-        <Solutions data={data} />
+        <Awards data={data} />
         <Testimonials data={data} />
         <Blog data={data} />
+        <FAQ data={data} />
+        <CTA data={data} />
       </main>
       <Footer data={data} />
     </div>
