@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Breadcrumb from "@/components/Breadcrumb";
 import { withTheme } from "@/lib/theme";
 import type { LegalPageData, ResolvedSiteData, ThemeId } from "@/lib/types";
 import { FaArrowRight } from "react-icons/fa";
@@ -18,7 +19,12 @@ export default function LegalPageContent({
     <div className="bg-white">
       <section className="border-b border-[#141414]/10 px-4 pb-12 pt-10 md:px-8 md:pb-16 md:pt-14 lg:px-10">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#ff9a14] md:text-xs">
+          <Breadcrumb
+            items={page.breadcrumb}
+            theme={theme}
+            className="mb-4 flex justify-center"
+          />
+          <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#ff6b00] md:text-xs">
             {page.pretitle}
           </p>
           <h1 className="mt-4 text-[2.5rem] font-semibold leading-[1.08] tracking-[-0.02em] text-[#141414] md:text-[3.35rem]">
@@ -52,7 +58,7 @@ export default function LegalPageContent({
           ))}
 
           <div className="rounded-[1.25rem] bg-[#f7f5f1] p-6 md:p-8">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#ff9a14]">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#ff6b00]">
               Questions?
             </p>
             <h3 className="mt-3 text-2xl font-semibold text-[#141414]">
@@ -64,7 +70,7 @@ export default function LegalPageContent({
             </p>
             <Link
               href={withTheme("/contact", theme)}
-              className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#ff9a14] px-6 py-3 text-sm font-medium text-white transition hover:bg-[#f08a00]"
+              className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#ff6b00] px-6 py-3 text-sm font-medium text-white transition hover:bg-[#e65f00]"
             >
               Contact us
               <FaArrowRight className="text-xs" />

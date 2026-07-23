@@ -52,9 +52,64 @@ body {
 .theme-t2 {
   --font-sans: var(--font-t2), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-t2), ui-sans-serif, system-ui, sans-serif;
-  --reroom-accent: #ff9a14;
+  --reroom-accent: #ff6b00;
   --reroom-ink: #141414;
   font-family: var(--font-t2), system-ui, sans-serif !important;
+}
+
+@keyframes t2-ken {
+  from {
+    transform: scale(1.05);
+  }
+  to {
+    transform: scale(1.12);
+  }
+}
+
+.t2-ken {
+  animation: t2-ken 22s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes t2-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.t2-marquee {
+  animation: t2-marquee 32s linear infinite;
+}
+
+@keyframes t2-services-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.t2-services-marquee {
+  animation: t2-services-marquee 35s linear infinite;
+  will-change: transform;
+}
+
+.t2-services-marquee-paused {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .t2-marquee {
+    animation: none !important;
+  }
+
+  .t2-services-marquee {
+    animation: none !important;
+  }
 }
 
 .theme-t2 * {
@@ -217,6 +272,11 @@ html.lenis body {
   .inicio-caret,
   .inicio-caret-blink {
     animation: none !important;
+  }
+
+  .theme-t2 .t2-ken {
+    animation: none !important;
+    transform: none !important;
   }
 }
 
