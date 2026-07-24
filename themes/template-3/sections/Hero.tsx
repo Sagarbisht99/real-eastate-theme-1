@@ -1,22 +1,20 @@
 "use client";
 
 import type { FormEvent } from "react";
-import { useMemo, useState } from "react";
-import Link from "next/link";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
-  FaArrowRight,
-  FaArrowUp,
   FaChevronDown,
+  FaChevronLeft,
+  FaChevronRight,
   FaLocationDot,
   FaMagnifyingGlass,
 } from "react-icons/fa6";
 import MediaImage from "@/components/MediaImage";
-import { RevealBlur } from "@/lib/motion";
-import { withTheme } from "@/lib/theme";
-import type { ResolvedSiteData } from "@/lib/types";
+import type { BannerSlide, ResolvedSiteData } from "@/lib/types";
 
 const THEME = "template-3" as const;
+const SLIDE_MS = 5500;
 
 const TABS = [
   { label: "All", value: "All" },
@@ -27,33 +25,57 @@ const TABS = [
 
 export default function Hero({ data }: { data: ResolvedSiteData }) {
   const router = useRouter();
-  const { banner, about, whyChooseUs, product, citiesWeServe } = data;
+  const { banner, about, product, citiesWeServe } = data;
 
   const [activeTab, setActiveTab] = useState<(typeof TABS)[number]["label"]>("For Buy");
   const [location, setLocation] = useState("");
   const [propertyType, setPropertyType] = useState("");
   const [category, setCategory] = useState("");
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
 
-  const heroImage =
-    data.template.image ||
-    banner.bannerSlides?.[0]?.image ||
-    banner.backgroundImage ||
-    about.sideImage;
+  const slides = useMemo((): BannerSlide[] => {
+    const fromJson = (banner.bannerSlides ?? []).filter((s) => Boolean(s.image));
+    if (fromJson.length > 0) return fromJson;
+
+    const fallbackImage =
+      banner.backgroundImage || data.template.image || about.sideImage || "";
+    if (!fallbackImage) return [];
+
+    return [
+      {
+        image: fallbackImage,
+        alt: banner.backgroundImageTitle || banner.title || "Hero",
+        title: banner.title || about.title,
+        desc:
+          banner.desc ||
+          about.desc ||
+          "Browse verified homes with clear pricing and guided site visits.",
+      },
+    ];
+  }, [about.desc, about.sideImage, about.title, banner, data.template.image]);
+
+  const slideCount = slides.length;
+  const active = slides[index] ?? slides[0];
+
+  useEffect(() => {
+    if (slideCount < 2 || paused) return;
+    const id = window.setInterval(() => {
+      setIndex((prev) => (prev + 1) % slideCount);
+    }, SLIDE_MS);
+    return () => window.clearInterval(id);
+  }, [paused, slideCount]);
+
+  useEffect(() => {
+    if (index >= slideCount) setIndex(0);
+  }, [index, slideCount]);
 
   const badge = (
     about.pretitle ||
-    whyChooseUs.pretitle ||
+    banner.pretitle ||
     data.topbar.text?.[0] ||
     "Find a modern home"
   ).toUpperCase();
-
-  const title =
-    banner.bannerSlides?.[0]?.title ||
-    banner.title ||
-    about.title;
-
-  const whyLabel =
-    whyChooseUs.pretitle?.replace(/\b\w/g, (c) => c.toUpperCase()) || "Why Choose Us";
 
   const cityOptions = useMemo(() => {
     const names = citiesWeServe.cities.map((c) => c.name);
@@ -89,64 +111,129 @@ export default function Hero({ data }: { data: ResolvedSiteData }) {
     router.push(`/properties?${params.toString()}`);
   }
 
+  function goTo(next: number) {
+    if (slideCount < 1) return;
+    setIndex((next + slideCount) % slideCount);
+  }
+
   return (
     <section className="relative isolate pb-8 md:pb-10 lg:pb-12">
-      <div className="relative min-h-[520px] overflow-hidden md:min-h-[600px] lg:min-h-[680px]">
+      <div
+        className="relative min-h-[520px] overflow-hidden md:min-h-[600px] lg:min-h-[680px]"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+      >
         <div className="absolute inset-0">
-          <MediaImage
-            src={heroImage}
-            alt={banner.backgroundImageTitle || banner.title}
-            fill
-            priority
-            className="object-cover object-[center_35%] t3-ken"
-            sizes="100vw"
-            themeId={THEME}
-          />
+          {slides.map((slide, i) => {
+            const isActive = i === index;
+            return (
+              <div
+                key={`${slide.image}-${i}`}
+                className={`absolute inset-0 transition-opacity duration-700 ease-out ${
+                  isActive ? "opacity-100" : "opacity-0"
+                }`}
+                aria-hidden={!isActive}
+              >
+                <MediaImage
+                  src={slide.image}
+                  alt={slide.alt || slide.title}
+                  fill
+                  priority={i === 0}
+                  className={`object-cover object-[center_35%] ${isActive ? "t3-ken" : ""}`}
+                  sizes="100vw"
+                  themeId={THEME}
+                />
+              </div>
+            );
+          })}
           <div className="absolute inset-0 bg-gradient-to-r from-[#1a2332]/92 via-[#1a2332]/50 to-transparent md:via-[#1a2332]/35" />
           <div className="absolute inset-y-0 left-0 w-[58%] bg-gradient-to-r from-[#15202b]/65 to-transparent max-md:w-full max-md:from-[#15202b]/70" />
         </div>
 
         <div className="relative z-10 mx-auto flex min-h-[520px] max-w-7xl flex-col justify-center px-4 pb-40 pt-14 md:min-h-[600px] md:px-8 md:pb-44 md:pt-16 lg:min-h-[680px] lg:px-10 lg:pb-48">
-          <RevealBlur className="max-w-[34rem]">
+          <div className="max-w-[34rem]">
             <p className="inline-block bg-[var(--snifty-red,#e11d2e)] px-3 py-[7px] text-[10px] font-bold uppercase tracking-[0.12em] text-white md:text-[11px]">
               {badge}
             </p>
 
-            <h1 className="t3-serif mt-5 max-w-[14ch] text-[2.55rem] font-bold leading-[1.12] tracking-[-0.01em] text-white md:mt-6 md:text-[3.25rem] lg:text-[3.75rem]">
-              {title}
-            </h1>
-
-            <Link
-              href={withTheme("/about", THEME)}
-              className="mt-6 inline-flex items-center gap-2 text-[15px] font-medium text-white transition hover:opacity-80"
+            <div
+              key={index}
+              className="animate-[t3-hero-copy_500ms_ease-out]"
             >
-              {whyLabel}
-              <FaArrowRight className="text-[11px]" aria-hidden />
-            </Link>
-          </RevealBlur>
+              <h1 className="t3-serif mt-5 max-w-[14ch] text-[2.55rem] font-bold leading-[1.12] tracking-[-0.01em] text-white md:mt-6 md:text-[3.25rem] lg:text-[3.75rem]">
+                {active?.title || banner.title}
+              </h1>
+
+              <p className="mt-5 max-w-md text-[15px] leading-relaxed text-white/80 md:text-base">
+                {active?.desc || banner.desc}
+              </p>
+            </div>
+          </div>
         </div>
+
+        {slideCount > 1 && (
+          <>
+            <button
+              type="button"
+              aria-label="Previous slide"
+              onClick={() => goTo(index - 1)}
+              className="absolute left-3 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-black/25 text-white backdrop-blur-sm transition hover:bg-black/40 md:left-5 lg:left-8"
+            >
+              <FaChevronLeft className="text-xs" />
+            </button>
+            <button
+              type="button"
+              aria-label="Next slide"
+              onClick={() => goTo(index + 1)}
+              className="absolute right-3 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-black/25 text-white backdrop-blur-sm transition hover:bg-black/40 md:right-5 lg:right-8"
+            >
+              <FaChevronRight className="text-xs" />
+            </button>
+
+            <div
+              className="absolute bottom-28 left-1/2 z-20 flex -translate-x-1/2 items-center gap-2 md:bottom-32 lg:bottom-36"
+              role="tablist"
+              aria-label="Hero slides"
+            >
+              {slides.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  role="tab"
+                  aria-label={`Go to slide ${i + 1}`}
+                  aria-selected={i === index}
+                  onClick={() => goTo(i)}
+                  className={`h-2 rounded-full transition-all ${
+                    i === index
+                      ? "w-7 bg-[var(--snifty-red,#e11d2e)]"
+                      : "w-2 bg-white/55 hover:bg-white/80"
+                  }`}
+                />
+              ))}
+            </div>
+          </>
+        )}
       </div>
 
-      {/* Search panel overlapping bottom */}
       <div className="relative z-20 -mt-[7.5rem] px-4 md:-mt-32 md:px-8 lg:-mt-36 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <div className="overflow-hidden rounded-t-[14px] rounded-b-[10px] bg-white shadow-[0_18px_50px_rgba(15,23,42,0.16)]">
             <div className="flex gap-0 overflow-x-auto border-b border-[#eef0f3] px-2 sm:px-4">
               {TABS.map((tab) => {
-                const active = tab.label === activeTab;
+                const isActive = tab.label === activeTab;
                 return (
                   <button
                     key={tab.label}
                     type="button"
                     onClick={() => setActiveTab(tab.label)}
                     className={`relative shrink-0 px-4 py-3.5 text-[13px] font-bold tracking-wide transition sm:px-5 md:px-6 md:py-4 md:text-sm ${
-                      active ? "text-[#1f2937]" : "text-[#6b7280] hover:text-[#1f2937]"
+                      isActive ? "text-[#1f2937]" : "text-[#6b7280] hover:text-[#1f2937]"
                     }`}
                   >
                     {tab.label}
                     <span
                       className={`absolute inset-x-4 bottom-0 h-[2.5px] bg-[var(--snifty-red,#e11d2e)] transition md:inset-x-5 ${
-                        active ? "opacity-100" : "opacity-0"
+                        isActive ? "opacity-100" : "opacity-0"
                       }`}
                       aria-hidden
                     />
@@ -228,15 +315,6 @@ export default function Hero({ data }: { data: ResolvedSiteData }) {
           </div>
         </div>
       </div>
-
-      <button
-        type="button"
-        aria-label="Back to top"
-        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        className="fixed bottom-6 right-5 z-40 flex h-11 w-11 items-center justify-center rounded-full bg-[var(--snifty-red,#e11d2e)] text-white shadow-[0_10px_24px_rgba(225,29,46,0.35)] transition hover:brightness-110 md:bottom-8 md:right-8"
-      >
-        <FaArrowUp className="text-sm" />
-      </button>
     </section>
   );
 }

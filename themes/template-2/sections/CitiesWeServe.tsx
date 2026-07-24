@@ -98,7 +98,7 @@ export default function CitiesWeServe({ data }: { data: ResolvedSiteData }) {
   if (cities.length === 0) return null;
 
   return (
-    <section className="bg-[#faf9f7] py-12 text-[#141414] md:py-16">
+    <section className="bg-[#faf9f7] py-14 text-[#141414] md:py-16 lg:py-20">
       <div className="mx-auto max-w-7xl px-4 md:px-8 lg:px-10">
         <RevealBlur className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-xl">

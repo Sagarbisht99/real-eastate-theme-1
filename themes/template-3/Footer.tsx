@@ -10,7 +10,6 @@ import {
   FaLinkedinIn,
   FaLocationDot,
   FaPhone,
-  FaTrophy,
   FaXTwitter,
 } from "react-icons/fa6";
 import MediaImage from "@/components/MediaImage";
@@ -46,7 +45,7 @@ function uniqueLinks(lists: LinkItem[][]) {
 }
 
 export default function Footer({ data }: { data: ResolvedSiteData }) {
-  const { footer, topbar, header, gallery, product, awardsPage } = data;
+  const { footer, topbar, header, gallery, product } = data;
   const contact = footer.footerContact;
   const socialLinks = footer.socialLinks?.length
     ? footer.socialLinks
@@ -90,8 +89,6 @@ export default function Footer({ data }: { data: ResolvedSiteData }) {
     footer.footerLegalLinks,
   ]);
 
-  const awards = awardsPage.awardItems.slice(0, 4);
-
   const latest =
     gallery.galleryItems.slice(0, 3).length > 0
       ? gallery.galleryItems.slice(0, 3)
@@ -108,58 +105,6 @@ export default function Footer({ data }: { data: ResolvedSiteData }) {
 
   return (
     <footer className="bg-[var(--snifty-navy,#0b1f33)] text-white">
-      {/* Awards strip */}
-      {awards.length > 0 && (
-        <div className="border-b border-white/10">
-          <div className="mx-auto max-w-7xl px-4 py-8 md:px-8 lg:px-10">
-            <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
-              <div className="flex items-center gap-2">
-                <FaTrophy className="text-[var(--snifty-red,#e11d2e)]" />
-                <h3 className="t3-serif text-lg font-bold md:text-xl">
-                  {awardsPage.title}
-                </h3>
-              </div>
-              <Link
-                href={withTheme("/awards", THEME)}
-                className="text-sm font-semibold text-[var(--snifty-red,#e11d2e)] transition hover:text-white"
-              >
-                View all awards →
-              </Link>
-            </div>
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              {awards.map((award) => (
-                <div
-                  key={`${award.year}-${award.title}`}
-                  className="flex gap-3 rounded-xl border border-white/10 bg-white/[0.04] p-3.5 transition hover:border-[var(--snifty-red,#e11d2e)]/40 hover:bg-white/[0.07]"
-                >
-                  <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-lg">
-                    <MediaImage
-                      src={award.image}
-                      alt={award.title}
-                      fill
-                      className="object-cover"
-                      sizes="56px"
-                      themeId={THEME}
-                    />
-                  </div>
-                  <div className="min-w-0">
-                    <p className="text-[11px] font-bold uppercase tracking-wide text-[var(--snifty-red,#e11d2e)]">
-                      {award.year}
-                    </p>
-                    <p className="mt-0.5 line-clamp-1 text-sm font-semibold text-white">
-                      {award.title}
-                    </p>
-                    <p className="mt-0.5 line-clamp-1 text-xs text-white/50">
-                      {award.org}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
-
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-2 md:px-8 lg:grid-cols-12 lg:gap-8 lg:px-10 lg:py-16">
         <div className="lg:col-span-3">
           <Link href={withTheme("/", THEME)} className="inline-flex items-center gap-2.5">
@@ -251,29 +196,7 @@ export default function Footer({ data }: { data: ResolvedSiteData }) {
             </li>
           </ul>
 
-          <h3 className="mt-8 text-base font-semibold">Latest</h3>
-          <ul className="mt-4 space-y-3">
-            {latest.slice(0, 2).map((item) => (
-              <li key={`${item.title}-${item.image}`} className="flex gap-3">
-                <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-md">
-                  <MediaImage
-                    src={item.image}
-                    alt={item.alt || item.title}
-                    fill
-                    className="object-cover"
-                    sizes="48px"
-                    themeId={THEME}
-                  />
-                </div>
-                <Link
-                  href={withTheme(("href" in item && item.href) || "/blog", THEME)}
-                  className="line-clamp-2 text-sm font-medium text-white/85 transition hover:text-white"
-                >
-                  {item.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
+         
         </div>
 
         <div className="lg:col-span-3">

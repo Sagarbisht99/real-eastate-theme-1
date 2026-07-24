@@ -109,7 +109,7 @@ export default function FeaturedProperties({ data }: { data: ResolvedSiteData })
   if (listings.length === 0) return null;
 
   return (
-    <section className="bg-white py-12 text-[#141414] md:py-16">
+    <section className="bg-white py-14 text-[#141414] md:py-16 lg:py-20">
       <div className="mx-auto max-w-7xl px-4 md:px-8 lg:px-10">
         <RevealBlur className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>

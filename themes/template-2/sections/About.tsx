@@ -18,7 +18,7 @@ export default function About({ data }: { data: ResolvedSiteData }) {
   const pretitle = about.pretitle || aboutPage.pretitle || "About";
 
   return (
-    <section className="bg-white px-4 py-12 text-[#141414] md:px-8 md:py-16 lg:px-10">
+    <section className="bg-white px-4 py-14 text-[#141414] md:px-8 md:py-16 lg:px-10 lg:py-20">
       <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-2 lg:gap-14">
         <RevealBlur className="relative">
           <div className="relative aspect-[4/5] overflow-hidden bg-[#f3f1ed] sm:aspect-[5/6]">

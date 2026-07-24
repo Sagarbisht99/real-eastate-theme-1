@@ -11,7 +11,7 @@ export default function WhyChooseUs({ data }: { data: ResolvedSiteData }) {
   if (!whyChooseUs.title && items.length === 0) return null;
 
   return (
-    <section className="bg-white px-4 py-12 text-[#141414] md:px-8 md:py-16 lg:px-10">
+    <section className="bg-white px-4 py-14 text-[#141414] md:px-8 md:py-16 lg:px-10 lg:py-20">
       <div className="mx-auto max-w-7xl">
         <RevealBlur className="max-w-xl">
           {whyChooseUs.pretitle && (

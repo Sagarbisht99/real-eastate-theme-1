@@ -27,7 +27,7 @@ export default function Testimonials({ data }: { data: ResolvedSiteData }) {
 
   return (
     <section
-      className="bg-[#faf9f7] px-4 py-12 text-[#141414] md:px-8 md:py-16 lg:px-10"
+      className="bg-[#faf9f7] px-4 py-14 text-[#141414] md:px-8 md:py-16 lg:px-10 lg:py-20"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >

@@ -10,6 +10,7 @@ import CTA from "@/themes/template-3/sections/CTA";
 import WhyChooseUs from "@/themes/template-3/sections/WhyChooseUs";
 import FAQ from "@/themes/template-3/sections/FAQ";
 import Newsletter from "@/themes/template-3/sections/Newsletter";
+import Awards from "@/themes/template-3/sections/Awards";
 
 /** Template-3 home — Volkhov · red/navy real-estate landing (JSON-driven). */
 export default function Template3({ data }: { data: ResolvedSiteData }) {
@@ -28,6 +29,7 @@ export default function Template3({ data }: { data: ResolvedSiteData }) {
         <WhyChooseUs data={data} />
         <FAQ data={data} />
         <Newsletter data={data} />
+        <Awards data={data} />
       </main>
       <Footer data={data} />
     </div>
