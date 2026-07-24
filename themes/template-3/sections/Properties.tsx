@@ -115,7 +115,7 @@ export default function Properties({ data }: { data: ResolvedSiteData }) {
   }
 
   return (
-    <section className="bg-[#f7f8fa] px-4 py-16 md:px-8 md:py-20 lg:px-10">
+    <section className="bg-[#f7f8fa] px-4 py-7 md:px-8 md:py-8 lg:px-10">
       <div className="mx-auto max-w-7xl">
         <RevealBlur className="text-center">
           <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--snifty-red,#e11d2e)]">
@@ -144,13 +144,33 @@ export default function Properties({ data }: { data: ResolvedSiteData }) {
         </div>
 
         <div className="relative mt-10">
-          {filtered.length > 0 && (
-            <div className="mb-4 flex justify-end gap-2">
+          {filtered.length === 0 ? (
+            <p className="py-10 text-center text-sm text-[#5b6572]">
+              No properties found for “{filter}”.
+            </p>
+          ) : (
+            <>
+              <div
+                key={filter}
+                ref={scroller}
+                className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              >
+                {filtered.map((item) => (
+                  <div
+                    key={`${filter}-${item.productTitle}`}
+                    data-slide
+                    className="h-[340px] w-[78vw] max-w-[260px] shrink-0 snap-start sm:w-[240px] md:h-[360px] md:w-[250px]"
+                  >
+                    <PropertyCard item={item} />
+                  </div>
+                ))}
+              </div>
+
               <button
                 type="button"
                 aria-label="Previous properties"
                 onClick={() => scroll(-1)}
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--snifty-navy,#0b1f33)] text-white transition hover:bg-[var(--snifty-red,#e11d2e)]"
+                className="absolute left-2 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-[var(--snifty-navy,#0b1f33)] text-white shadow-[0_8px_20px_rgba(11,31,51,0.28)] transition hover:bg-[var(--snifty-red,#e11d2e)] md:left-3"
               >
                 <FaChevronLeft className="text-sm" />
               </button>
@@ -158,33 +178,11 @@ export default function Properties({ data }: { data: ResolvedSiteData }) {
                 type="button"
                 aria-label="Next properties"
                 onClick={() => scroll(1)}
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--snifty-navy,#0b1f33)] text-white transition hover:bg-[var(--snifty-red,#e11d2e)]"
+                className="absolute right-2 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-[var(--snifty-navy,#0b1f33)] text-white shadow-[0_8px_20px_rgba(11,31,51,0.28)] transition hover:bg-[var(--snifty-red,#e11d2e)] md:right-3"
               >
                 <FaChevronRight className="text-sm" />
               </button>
-            </div>
-          )}
-
-          {filtered.length === 0 ? (
-            <p className="py-10 text-center text-sm text-[#5b6572]">
-              No properties found for “{filter}”.
-            </p>
-          ) : (
-            <div
-              key={filter}
-              ref={scroller}
-              className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-            >
-              {filtered.map((item) => (
-                <div
-                  key={`${filter}-${item.productTitle}`}
-                  data-slide
-                  className="h-[340px] w-[78vw] max-w-[260px] shrink-0 snap-start sm:w-[240px] md:h-[360px] md:w-[250px]"
-                >
-                  <PropertyCard item={item} />
-                </div>
-              ))}
-            </div>
+            </>
           )}
         </div>
       </div>

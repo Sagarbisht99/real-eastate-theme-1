@@ -55,7 +55,7 @@ export default function Blog({
         )}
         <div className="absolute inset-0 bg-[var(--snifty-navy,#0b1f33)]/80" />
 
-        <div className="relative mx-auto max-w-7xl px-4 py-14 md:px-8 md:py-16 lg:px-10 lg:py-20">
+        <div className="relative mx-auto max-w-7xl px-4 py-7 md:px-8 md:py-8 lg:px-10">
           <RevealBlur className="mx-auto max-w-3xl text-center">
             <Breadcrumb
               items={page.breadcrumb}
@@ -89,10 +89,10 @@ export default function Blog({
       </section>
 
       {/* Magazine layout */}
-      <section className="px-4 py-14 md:px-8 md:py-16 lg:px-10 lg:py-20">
+      <section className="px-4 py-7 md:px-8 md:py-8 lg:px-10">
         <div className="mx-auto max-w-7xl">
           {filtered.length === 0 ? (
-            <p className="py-16 text-center text-sm text-[#5b6572]">
+            <p className="py-8 text-center text-sm text-[#5b6572]">
               {page.emptyMessage ||
                 `No articles match “${query}”. Try another search.`}
             </p>
@@ -201,8 +201,8 @@ export default function Blog({
 
       {/* CTA */}
       {(page.ctaTitle || page.ctaButton) && (
-        <section className="px-4 pb-16 md:px-8 md:pb-20 lg:px-10">
-          <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 rounded-2xl bg-[var(--snifty-navy,#0b1f33)] px-6 py-10 text-white md:flex-row md:items-center md:px-10 md:py-12">
+        <section className="px-4 pb-7 md:px-8 md:pb-8 lg:px-10">
+          <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 rounded-2xl bg-[var(--snifty-navy,#0b1f33)] px-6 py-8 text-white md:flex-row md:items-center md:px-10 md:py-10">
             <div className="max-w-xl">
               {page.ctaPretitle && (
                 <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--snifty-red,#e11d2e)]">

@@ -57,7 +57,7 @@ export default function Gallery({
   return (
     <div className="bg-white text-[#0b1f33]">
       {/* Hero */}
-      <section className="bg-[var(--snifty-navy,#0b1f33)] px-4 py-14 text-white md:px-8 md:py-16 lg:px-10 lg:py-20">
+      <section className="bg-[var(--snifty-navy,#0b1f33)] px-4 py-7 text-white md:px-8 md:py-8 lg:px-10">
   <div className="mx-auto max-w-7xl flex flex-col items-center text-center">
     
     {/* Centered Header Block */}
@@ -104,10 +104,10 @@ export default function Gallery({
 </section>
 
       {/* Asymmetric mosaic */}
-      <section className="px-4 py-14 md:px-8 md:py-16 lg:px-10 lg:py-20">
+      <section className="px-4 py-7 md:px-8 md:py-8 lg:px-10">
         <div className="mx-auto max-w-7xl">
           {items.length === 0 ? (
-            <p className="py-16 text-center text-sm text-[#5b6572]">
+            <p className="py-8 text-center text-sm text-[#5b6572]">
               No gallery items in this category.
             </p>
           ) : (

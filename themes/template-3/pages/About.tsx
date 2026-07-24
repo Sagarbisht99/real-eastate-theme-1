@@ -39,7 +39,7 @@ export default function About({
     <div className="bg-white text-[#0b1f33]">
       {/* Hero */}
       <section className="bg-[var(--snifty-navy,#0b1f33)]">
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 md:px-8 md:py-16 lg:grid-cols-2 lg:gap-14 lg:px-10 lg:py-20">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-7 md:px-8 md:py-8 lg:grid-cols-2 lg:gap-10 lg:px-10">
           <RevealBlur>
             <Breadcrumb
               items={page.breadcrumb}
@@ -96,7 +96,7 @@ export default function About({
       </section>
 
       {/* Philosophy */}
-      <section className="bg-[#f7f8fa] px-4 py-14 md:px-8 md:py-16 lg:px-10 lg:py-20">
+      <section className="bg-[#f7f8fa] px-4 py-7 md:px-8 md:py-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl items-stretch gap-8 lg:grid-cols-2 lg:gap-10">
           <RevealBlur className="relative min-h-[280px] overflow-hidden rounded-2xl bg-[#eef1f5] sm:min-h-[320px] lg:min-h-full">
             <MediaImage
@@ -142,7 +142,7 @@ export default function About({
 
       {/* Stats */}
       {stats.length > 0 && (
-        <section className="bg-white px-4 py-14 md:px-8 md:py-16 lg:px-10">
+        <section className="bg-white px-4 py-7 md:px-8 md:py-8 lg:px-10">
           <div className="mx-auto max-w-7xl">
             <Stagger className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {stats.map((item) => (
@@ -169,7 +169,7 @@ export default function About({
 
       {/* Mission */}
       {(page.missionTitle || missionPoints.length > 0) && (
-        <section className="bg-[var(--snifty-navy,#0b1f33)] px-4 py-14 text-white md:px-8 md:py-16 lg:px-10 lg:py-20">
+        <section className="bg-[var(--snifty-navy,#0b1f33)] px-4 py-7 text-white md:px-8 md:py-8 lg:px-10">
           <div className="mx-auto max-w-7xl">
             <RevealBlur className="max-w-2xl">
               <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--snifty-red,#e11d2e)]">
@@ -219,7 +219,7 @@ export default function About({
 
       {/* Quotes */}
       {quotes.length > 0 && (
-        <section className="bg-white px-4 py-14 md:px-8 md:py-16 lg:px-10 lg:py-20">
+        <section className="bg-white px-4 py-7 md:px-8 md:py-8 lg:px-10">
           <div className="mx-auto max-w-7xl">
             <RevealBlur className="mb-10 max-w-xl">
               <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--snifty-red,#e11d2e)]">
@@ -252,8 +252,8 @@ export default function About({
 
       {/* CTA */}
       {(page.ctaTitle || page.ctaButton) && (
-        <section className="px-4 pb-16 pt-2 md:px-8 md:pb-20 lg:px-10">
-          <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 rounded-2xl bg-[var(--snifty-navy,#0b1f33)] px-6 py-10 text-white md:flex-row md:items-center md:px-10 md:py-12 lg:px-14">
+        <section className="px-4 pb-7 pt-2 md:px-8 md:pb-8 lg:px-10">
+          <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 rounded-2xl bg-[var(--snifty-navy,#0b1f33)] px-6 py-8 text-white md:flex-row md:items-center md:px-10 md:py-10 lg:px-14">
             <div className="max-w-xl">
               {page.ctaPretitle && (
                 <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--snifty-red,#e11d2e)]">

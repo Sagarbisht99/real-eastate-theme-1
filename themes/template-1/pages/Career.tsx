@@ -16,7 +16,7 @@ export default function Career({
 
   return (
     <div className="bg-white">
-      <section className="px-4 pb-4 pt-14 md:px-8 md:pt-16 lg:px-10">
+      <section className="px-4 pb-4 pt-8 md:px-8 md:pt-8 lg:px-10">
         <div className="mx-auto max-w-3xl">
           <Breadcrumb items={page.breadcrumb} theme={theme} />
           <p className="mt-5 text-xs font-semibold uppercase tracking-[0.2em] text-[#c44536]">
@@ -63,7 +63,7 @@ export default function Career({
       </section>
 
       {/* Reach us — Apply now scrolls here */}
-      <section id="reach-us" className="scroll-mt-24 px-4 pb-16 pt-4 md:px-8 lg:px-10">
+      <section id="reach-us" className="scroll-mt-24 px-4 pb-7 pt-2 md:px-8 lg:px-10">
         <div className="mx-auto max-w-3xl overflow-hidden rounded-[1.25rem] bg-[#141414] px-6 py-10 text-white md:px-10 md:py-12">
           <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#c44536]">
             {data.contactPage.reachPretitle || "Reach us"}

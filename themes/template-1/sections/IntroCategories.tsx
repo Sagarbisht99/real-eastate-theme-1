@@ -16,7 +16,7 @@ export default function IntroCategories({ data }: { data: ResolvedSiteData }) {
   if (!intro && cards.length === 0) return null;
 
   return (
-    <section className="bg-white px-4  md:px-8  lg:px-10">
+    <section className="bg-white px-4 py-7 md:px-8 md:py-8 lg:px-10">
       <div className="mx-auto max-w-7xl">
         {intro && (
           <p className="max-w-[34rem] text-[1.625rem] font-medium leading-[1.38] tracking-[-0.015em] text-[#141414] md:max-w-[38rem] md:text-[2rem] md:leading-[1.36] lg:max-w-[42rem] lg:text-[2.125rem]">

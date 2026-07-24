@@ -43,7 +43,7 @@ export default function Services({
     <div className="bg-white text-[#0b1f33]">
       {/* Hero */}
       <section className="bg-[var(--snifty-navy,#0b1f33)]">
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 md:px-8 md:py-16 lg:grid-cols-2 lg:gap-14 lg:px-10 lg:py-20">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-7 md:px-8 md:py-8 lg:grid-cols-2 lg:gap-10 lg:px-10">
           <RevealBlur>
             <Breadcrumb
               items={page.breadcrumb}
@@ -138,7 +138,7 @@ export default function Services({
 
       {/* Interactive service explorer */}
       {slides.length > 0 && (
-        <section className="bg-[#f7f8fa] px-4 py-14 md:px-8 md:py-16 lg:px-10 lg:py-20">
+        <section className="bg-[#f7f8fa] px-4 py-7 md:px-8 md:py-8 lg:px-10">
           <div className="mx-auto max-w-7xl">
             <RevealBlur className="mb-10 max-w-2xl">
               <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--snifty-red,#e11d2e)]">
@@ -280,7 +280,7 @@ export default function Services({
 
       {/* Snapshot cards */}
       {cards.length > 0 && (
-        <section className="bg-white px-4 py-14 md:px-8 md:py-16 lg:px-10 lg:py-20">
+        <section className="bg-white px-4 py-7 md:px-8 md:py-8 lg:px-10">
           <div className="mx-auto max-w-7xl">
             <RevealBlur className="mx-auto max-w-2xl text-center">
               <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--snifty-red,#e11d2e)]">
@@ -341,7 +341,7 @@ export default function Services({
 
       {/* Process / why */}
       {reasons.length > 0 && (
-        <section className="bg-[var(--snifty-navy,#0b1f33)] px-4 py-14 text-white md:px-8 md:py-16 lg:px-10 lg:py-20">
+        <section className="bg-[var(--snifty-navy,#0b1f33)] px-4 py-7 text-white md:px-8 md:py-8 lg:px-10">
           <div className="mx-auto max-w-7xl">
             <RevealBlur className="max-w-2xl">
               <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--snifty-red,#e11d2e)]">
@@ -379,7 +379,7 @@ export default function Services({
 
       {/* FAQ */}
       {faqs.length > 0 && (
-        <section className="bg-white px-4 py-14 md:px-8 md:py-16 lg:px-10 lg:py-20">
+        <section className="bg-white px-4 py-7 md:px-8 md:py-8 lg:px-10">
           <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
             <RevealBlur>
               <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--snifty-red,#e11d2e)]">
@@ -450,9 +450,9 @@ export default function Services({
       )}
 
       {/* CTA */}
-      <section className="px-4 pb-16 pt-2 md:px-8 md:pb-20 lg:px-10">
+      <section className="px-4 pb-7 pt-2 md:px-8 md:pb-8 lg:px-10">
         <div className="mx-auto flex max-w-7xl flex-col overflow-hidden rounded-2xl bg-[var(--snifty-navy,#0b1f33)] md:flex-row">
-          <div className="flex flex-1 flex-col justify-center px-6 py-10 md:px-10 md:py-12 lg:px-14">
+          <div className="flex flex-1 flex-col justify-center px-6 py-8 md:px-10 md:py-10 lg:px-14">
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--snifty-red,#e11d2e)]">
               Next step
             </p>

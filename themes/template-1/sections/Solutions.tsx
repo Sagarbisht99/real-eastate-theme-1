@@ -35,7 +35,7 @@ export default function Solutions({ data }: { data: ResolvedSiteData }) {
   if (cards.length === 0) return null;
 
   return (
-    <section className="bg-white px-4 py-12 md:px-8 md:py-14 lg:px-10">
+    <section className="bg-white px-4 py-7 md:px-8 md:py-8 lg:px-10">
       <div className="mx-auto max-w-7xl">
         <div className="max-w-2xl">
           {about.pretitle && (

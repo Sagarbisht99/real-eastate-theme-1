@@ -10,7 +10,7 @@ export default function WhyChooseUs({ data }: { data: ResolvedSiteData }) {
   if (!whyChooseUs.title && items.length === 0) return null;
 
   return (
-    <section className="bg-white px-4 py-12 md:px-8 md:py-14 lg:px-10">
+    <section className="bg-white px-4 py-7 md:px-8 md:py-8 lg:px-10">
       <div className="mx-auto max-w-7xl text-center">
         {whyChooseUs.pretitle && (
           <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#c44536] md:text-xs">

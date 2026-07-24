@@ -94,7 +94,7 @@ export default function Contact({
     <div className="bg-white text-[#0b1f33]">
       {/* Hero */}
       <section className="bg-[var(--snifty-navy,#0b1f33)]">
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 md:px-8 md:py-16 lg:grid-cols-2 lg:gap-14 lg:px-10 lg:py-20">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-7 md:px-8 md:py-8 lg:grid-cols-2 lg:gap-10 lg:px-10">
           <RevealBlur>
             <Breadcrumb
               items={page.breadcrumb}
@@ -227,7 +227,7 @@ export default function Contact({
       )}
 
       {/* Form */}
-      <section className="bg-[#f7f8fa] px-4 py-14 md:px-8 md:py-16 lg:px-10 lg:py-20">
+      <section className="bg-[#f7f8fa] px-4 py-7 md:px-8 md:py-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.85fr_1.25fr] lg:items-start lg:gap-10">
           <RevealBlur className="lg:sticky lg:top-8">
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--snifty-red,#e11d2e)]">

@@ -47,7 +47,7 @@ export default function Awards({
           {items[0]?.year?.slice(0, 2) || "20"}
         </div>
 
-        <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-[1.2fr_0.8fr] md:items-end md:px-8 md:py-16 lg:gap-14 lg:px-10 lg:py-20">
+        <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-7 md:grid-cols-[1.2fr_0.8fr] md:items-end md:px-8 md:py-8 lg:gap-10 lg:px-10">
           <RevealBlur>
             <Breadcrumb
               items={page.breadcrumb}
@@ -98,7 +98,7 @@ export default function Awards({
 
       {/* Year filters + featured spotlight */}
       {featured && (
-        <section className="bg-[#f7f8fa] px-4 py-14 md:px-8 md:py-16 lg:px-10 lg:py-20">
+        <section className="bg-[#f7f8fa] px-4 py-7 md:px-8 md:py-8 lg:px-10">
           <div className="mx-auto max-w-7xl">
             <RevealBlur className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
               <div>
@@ -241,7 +241,7 @@ export default function Awards({
       )}
 
       {/* Timeline */}
-      <section className="bg-white px-4 py-14 md:px-8 md:py-16 lg:px-10 lg:py-20">
+      <section className="bg-white px-4 py-7 md:px-8 md:py-8 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <RevealBlur className="max-w-2xl">
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--snifty-red,#e11d2e)]">
@@ -322,8 +322,8 @@ export default function Awards({
       </section>
 
       {/* CTA */}
-      <section className="px-4 pb-16 pt-2 md:px-8 md:pb-20 lg:px-10">
-        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 overflow-hidden rounded-2xl bg-[var(--snifty-navy,#0b1f33)] px-6 py-10 text-white md:flex-row md:items-center md:px-10 md:py-12 lg:px-14">
+      <section className="px-4 pb-7 pt-2 md:px-8 md:pb-8 lg:px-10">
+        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 overflow-hidden rounded-2xl bg-[var(--snifty-navy,#0b1f33)] px-6 py-8 text-white md:flex-row md:items-center md:px-10 md:py-10 lg:px-14">
           <div className="max-w-xl">
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--snifty-red,#e11d2e)]">
               Work with us

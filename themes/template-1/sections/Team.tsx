@@ -21,7 +21,7 @@ export default function Team({ data }: { data: ResolvedSiteData }) {
   if (people.length === 0) return null;
 
   return (
-    <section className="bg-[#faf8f4] py-12 md:py-14">
+    <section className="bg-[#faf8f4] py-7 md:py-8">
       <div className="mx-auto max-w-7xl px-4 md:px-8 lg:px-10">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-xl">

@@ -21,7 +21,7 @@ function SectionRow({
   className?: string;
 }) {
   return (
-    <section className={`py-10 md:py-12 ${className}`}>
+    <section className={`py-7 md:py-8 ${className}`}>
       <div className="mx-auto grid max-w-7xl gap-8 px-4 md:px-8 lg:grid-cols-[minmax(0,260px)_1fr] lg:gap-12 lg:px-10">
         <div>
           {eyebrow && (
@@ -235,7 +235,7 @@ export default function PropertiesContent({
       {/* Listings */}
       <section
         id="listings"
-        className="scroll-mt-24 px-4 pb-10 pt-4 md:px-8 md:pb-12 md:pt-5 lg:px-10"
+        className="scroll-mt-24 px-4 pb-7 pt-4 md:px-8 md:pb-8 md:pt-5 lg:px-10"
       >
         <div className="mx-auto max-w-7xl">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
@@ -281,7 +281,7 @@ export default function PropertiesContent({
       </section>
 
       {/* Why choose us */}
-      <section className="bg-[#faf8f4] px-4 py-10 md:px-8 md:py-12 lg:px-10">
+      <section className="bg-[#faf8f4] px-4 py-7 md:px-8 md:py-8 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#c44536]">
             {whyChooseUs.pretitle}
@@ -343,7 +343,7 @@ export default function PropertiesContent({
       </div>
 
       {/* FAQ */}
-      <SectionRow title={faq.title} eyebrow={faq.pretitle} className="pb-12 md:pb-14">
+      <SectionRow title={faq.title} eyebrow={faq.pretitle} className="pb-7 md:pb-8">
         <div className="divide-y divide-[#141414]/10">
           {faq.faqItems.map((item, i) => {
             const isOpen = openFaq === i;

@@ -18,10 +18,10 @@ export default function CTA({ data }: { data: ResolvedSiteData }) {
     "";
 
   return (
-    <section className="px-4 py-10 md:px-8 md:py-14 lg:px-10">
+    <section className="px-4 py-7 md:px-8 md:py-8 lg:px-10">
       <div className="mx-auto max-w-7xl overflow-hidden rounded-2xl bg-[var(--snifty-navy,#0b1f33)]">
         <div className="grid items-center md:grid-cols-[1.2fr_1fr]">
-          <RevealBlur className="px-6 py-10 md:px-10 md:py-14 lg:px-14">
+          <RevealBlur className="px-6 py-8 md:px-10 md:py-10 lg:px-14">
             <h2 className="t3-serif max-w-md text-2xl font-bold text-white md:text-3xl">
               {about.subtitle || about.title}
             </h2>

@@ -66,7 +66,7 @@ export default function CTA({ data }: { data: ResolvedSiteData }) {
   }
 
   return (
-    <section id="book-a-visit" className="scroll-mt-24 px-4 py-12 md:px-8 md:py-14 lg:px-10">
+    <section id="book-a-visit" className="scroll-mt-24 px-4 py-7 md:px-8 md:py-8 lg:px-10">
       <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[1.5rem] bg-[#141414] md:rounded-[2rem]">
         {formDetail.backgroundImage && (
           <div className="absolute inset-0 opacity-25">
@@ -82,7 +82,7 @@ export default function CTA({ data }: { data: ResolvedSiteData }) {
         )}
         <div className="absolute inset-0 bg-gradient-to-r from-[#141414] via-[#141414]/92 to-[#141414]/70" />
 
-        <div className="relative grid gap-10 px-6 py-12 md:grid-cols-2 md:gap-14 md:px-10 md:py-16 lg:px-14">
+        <div className="relative grid gap-8 px-6 py-8 md:grid-cols-2 md:gap-10 md:px-10 md:py-10 lg:px-14">
           <div>
             {formDetail.pretitle && (
               <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#c44536]">

@@ -60,7 +60,7 @@ export default function Footer({ data }: { data: ResolvedSiteData }) {
   return (
     <footer className="bg-[#141414] text-white">
       {/* Main grid */}
-      <div className="mx-auto max-w-7xl px-4 pt-14 md:px-8 md:pt-16 lg:px-10">
+      <div className="mx-auto max-w-7xl px-4 pt-8 md:px-8 md:pt-10 lg:px-10">
         <div className="grid gap-12 lg:grid-cols-[1.35fr_1fr_1fr_1.25fr] lg:gap-10">
           {/* Brand + contact */}
           <div>

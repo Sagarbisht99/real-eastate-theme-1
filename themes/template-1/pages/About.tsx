@@ -34,7 +34,7 @@ export default function AboutContent({
   return (
     <div className="bg-white">
       {/* Hero intro */}
-      <section className="border-b border-[#141414]/10 px-4 pb-14 pt-10 md:px-8 md:pb-20 md:pt-14 lg:px-10">
+      <section className="border-b border-[#141414]/10 px-4 pb-7 pt-8 md:px-8 md:pb-8 md:pt-8 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto max-w-3xl text-center">
             <div className="flex justify-center">
@@ -97,7 +97,7 @@ export default function AboutContent({
       </section>
 
       {/* Story + philosophy */}
-      <section className="border-b border-[#141414]/10 px-4 py-14 md:px-8 md:py-20 lg:px-10">
+      <section className="border-b border-[#141414]/10 px-4 py-7 md:px-8 md:py-8 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <div className="max-w-2xl">
             <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#c44536] md:text-xs">
@@ -164,7 +164,7 @@ export default function AboutContent({
 
       {/* Mission teaser → /mission via Learn more button (not in header) */}
       {(page.missionTitle || page.missionDesc) && (
-        <section className="border-b border-[#141414]/10 bg-[#141414] px-4 py-14 text-white md:px-8 md:py-20 lg:px-10">
+        <section className="border-b border-[#141414]/10 bg-[#141414] px-4 py-7 text-white md:px-8 md:py-8 lg:px-10">
           <div className="mx-auto max-w-7xl">
             <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
               <div>
@@ -233,7 +233,7 @@ export default function AboutContent({
       )}
 
       {/* Why choose us */}
-      <section className="border-b border-[#141414]/10 bg-[#faf8f4] px-4 py-14 md:px-8 md:py-20 lg:px-10">
+      <section className="border-b border-[#141414]/10 bg-[#faf8f4] px-4 py-7 md:px-8 md:py-8 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#c44536]">
             {whyChooseUs.pretitle}
@@ -260,7 +260,7 @@ export default function AboutContent({
       </section>
 
       {/* Testimonials */}
-      <section className="border-b border-[#141414]/10 py-14 md:py-20">
+      <section className="border-b border-[#141414]/10 py-7 md:py-8">
         <div className="mx-auto max-w-7xl px-4 md:px-8 lg:px-10">
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
@@ -348,7 +348,7 @@ export default function AboutContent({
 
       {/* Gallery strip */}
       {galleryPreview.length > 0 && (
-        <section className="border-b border-[#141414]/10 px-4 py-14 md:px-8 md:py-20 lg:px-10">
+        <section className="border-b border-[#141414]/10 px-4 py-7 md:px-8 md:py-8 lg:px-10">
           <div className="mx-auto max-w-7xl">
             <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
               <div>
@@ -397,8 +397,8 @@ export default function AboutContent({
       )}
 
       {(page.ctaPretitle || page.ctaTitle || page.ctaButton) && (
-        <section className="px-4 py-14 md:px-8 md:py-20 lg:px-10">
-          <div className="mx-auto max-w-7xl overflow-hidden rounded-[1.25rem] bg-[#141414] px-6 py-12 md:rounded-[1.5rem] md:px-12 md:py-16 lg:px-16">
+        <section className="px-4 py-7 md:px-8 md:py-8 lg:px-10">
+          <div className="mx-auto max-w-7xl overflow-hidden rounded-[1.25rem] bg-[#141414] px-6 py-8 md:rounded-[1.5rem] md:px-12 md:py-10 lg:px-16">
             <div className="grid items-center gap-8 md:grid-cols-[1fr_auto] md:gap-12">
               <div>
                 {page.ctaPretitle && (

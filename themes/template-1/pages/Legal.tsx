@@ -19,7 +19,7 @@ export default function LegalPageContent({
 
   return (
     <div className="bg-white">
-      <section className="border-b border-[#141414]/10 px-4 pb-12 pt-10 md:px-8 md:pb-16 md:pt-14 lg:px-10">
+      <section className="border-b border-[#141414]/10 px-4 pb-7 pt-8 md:px-8 md:pb-8 md:pt-8 lg:px-10">
         <div className="mx-auto max-w-3xl text-center">
           <div className="flex justify-center">
             <Breadcrumb items={page.breadcrumb} theme={theme} />
@@ -41,7 +41,7 @@ export default function LegalPageContent({
         </div>
       </section>
 
-      <section className="px-4 py-14 md:px-8 md:py-20 lg:px-10">
+      <section className="px-4 py-7 md:px-8 md:py-8 lg:px-10">
         <div className="mx-auto max-w-3xl space-y-10">
           {page.sections.map((section) => (
             <article

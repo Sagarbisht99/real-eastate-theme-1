@@ -117,7 +117,7 @@ export default function Hero({ data }: { data: ResolvedSiteData }) {
   }
 
   return (
-    <section className="relative isolate pb-8 md:pb-10 lg:pb-12">
+    <section className="relative isolate pb-6 md:pb-7">
       <div
         className="relative min-h-[520px] overflow-hidden md:min-h-[600px] lg:min-h-[680px]"
         onMouseEnter={() => setPaused(true)}

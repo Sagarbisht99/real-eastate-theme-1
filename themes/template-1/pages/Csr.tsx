@@ -12,7 +12,7 @@ export default function Csr({
 }) {
   const page = data.csrPage;
   return (
-    <div className="bg-white px-4 py-14 md:px-8">
+    <div className="bg-white px-4 py-7 md:px-8">
       <div className="mx-auto max-w-3xl">
         <Breadcrumb items={page.breadcrumb} theme={theme} />
         <p className="mt-5 text-xs font-semibold uppercase tracking-[0.2em] text-[#c44536]">

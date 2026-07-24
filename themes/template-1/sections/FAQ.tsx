@@ -13,7 +13,7 @@ export default function FAQ({ data }: { data: ResolvedSiteData }) {
   if (items.length === 0) return null;
 
   return (
-    <section className="bg-white px-4 py-12 md:px-8 md:py-14 lg:px-10">
+    <section className="bg-white px-4 py-7 md:px-8 md:py-8 lg:px-10">
       <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[minmax(0,280px)_1fr] lg:gap-14">
         <div>
           {faq.pretitle && (

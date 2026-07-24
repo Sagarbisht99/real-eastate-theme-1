@@ -129,7 +129,7 @@ export default function ContactContent({
           </div>
         )}
 
-        <div className="relative mx-auto max-w-7xl px-4 pb-12 pt-10 md:px-8 md:pb-14 md:pt-14 lg:px-10">
+        <div className="relative mx-auto max-w-7xl px-4 pb-7 pt-8 md:px-8 md:pb-8 md:pt-8 lg:px-10">
           <Breadcrumb items={page.breadcrumb} theme={theme} />
           <div className="mt-8 max-w-2xl">
             <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#c44536] md:text-xs">
@@ -154,7 +154,7 @@ export default function ContactContent({
       </section>
 
       {/* Quick reach cards */}
-      <section className="border-b border-[#141414]/10 px-4 py-10 md:px-8 md:py-12 lg:px-10">
+      <section className="border-b border-[#141414]/10 px-4 py-7 md:px-8 md:py-8 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <div className="mb-6 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
             <div>
@@ -208,7 +208,7 @@ export default function ContactContent({
       {/* Form */}
       <section
         id="write-us"
-        className="scroll-mt-24 border-b border-[#141414]/10 bg-[#faf8f4] px-4 py-14 md:px-8 md:py-16 lg:px-10"
+        className="scroll-mt-24 border-b border-[#141414]/10 bg-[#faf8f4] px-4 py-7 md:px-8 md:py-8 lg:px-10"
       >
         <div className="mx-auto grid max-w-7xl items-start gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
           <div>
@@ -302,7 +302,7 @@ export default function ContactContent({
 
       {/* FAQ */}
       {faq.faqItems.length > 0 && (
-        <section className="border-b border-[#141414]/10 px-4 py-14 md:px-8 md:py-16 lg:px-10">
+        <section className="border-b border-[#141414]/10 px-4 py-7 md:px-8 md:py-8 lg:px-10">
           <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#c44536]">
@@ -351,7 +351,7 @@ export default function ContactContent({
 
       {/* Newsletter */}
       {(footer.newsletterTitle || footer.newsletterButtonLabel) && (
-        <section className="px-4 py-14 md:px-8 md:py-16 lg:px-10">
+        <section className="px-4 py-7 md:px-8 md:py-8 lg:px-10">
           <div className="mx-auto max-w-7xl bg-[#141414] px-6 py-12 md:px-12 md:py-14">
             <div className="grid items-end gap-8 md:grid-cols-[1fr_auto] md:gap-12">
               <div>

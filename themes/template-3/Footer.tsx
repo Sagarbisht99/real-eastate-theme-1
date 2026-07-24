@@ -105,7 +105,7 @@ export default function Footer({ data }: { data: ResolvedSiteData }) {
 
   return (
     <footer className="bg-[var(--snifty-navy,#0b1f33)] text-white">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-2 md:px-8 lg:grid-cols-12 lg:gap-8 lg:px-10 lg:py-16">
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-8 md:grid-cols-2 md:px-8 lg:grid-cols-12 lg:gap-8 lg:px-10 lg:py-10">
         <div className="lg:col-span-3">
           <Link href={withTheme("/", THEME)} className="inline-flex items-center gap-2.5">
             <span className="flex h-9 w-9 items-center justify-center rounded-sm bg-[var(--snifty-red,#e11d2e)]">

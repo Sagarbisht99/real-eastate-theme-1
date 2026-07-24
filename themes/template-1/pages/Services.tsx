@@ -27,7 +27,7 @@ export default function ServicesContent({
   return (
     <div className="bg-white text-[#141414]">
       {/* Intro */}
-      <section className="border-b border-[#141414]/10 px-4 pb-14 pt-10 md:px-8 md:pb-16 md:pt-12 lg:px-10">
+      <section className="border-b border-[#141414]/10 px-4 pb-7 pt-8 md:px-8 md:pb-8 md:pt-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
           <RevealBlur>
             <Breadcrumb items={page.breadcrumb} theme={theme} className="mb-5" />
@@ -85,7 +85,7 @@ export default function ServicesContent({
 
       {/* Service cards */}
       {cards.length > 0 && (
-        <section className="bg-[#faf8f4] px-4 py-14 md:px-8 md:py-16 lg:px-10">
+        <section className="bg-[#faf8f4] px-4 py-7 md:px-8 md:py-8 lg:px-10">
           <div className="mx-auto max-w-7xl">
             <RevealBlur className="max-w-2xl">
               <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#c44536]">
@@ -136,7 +136,7 @@ export default function ServicesContent({
 
       {/* Detailed service rows */}
       {slides.length > 0 && (
-        <section className="px-4 py-14 md:px-8 md:py-16 lg:px-10">
+        <section className="px-4 py-7 md:px-8 md:py-8 lg:px-10">
           <div className="mx-auto max-w-7xl space-y-8 md:space-y-10">
             {slides.map((slide, i) => {
               const reverse = i % 2 === 1;
@@ -199,7 +199,7 @@ export default function ServicesContent({
 
       {/* Why / process */}
       {reasons.length > 0 && (
-        <section className="border-t border-[#141414]/10 bg-white px-4 py-14 md:px-8 md:py-16 lg:px-10">
+        <section className="border-t border-[#141414]/10 bg-white px-4 py-7 md:px-8 md:py-8 lg:px-10">
           <div className="mx-auto max-w-7xl">
             <RevealBlur className="mx-auto max-w-2xl text-center">
               <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#c44536]">
@@ -233,7 +233,7 @@ export default function ServicesContent({
       )}
 
       {/* CTA */}
-      <section className="px-4 pb-16 pt-4 md:px-8 md:pb-20 lg:px-10">
+      <section className="px-4 pb-7 pt-2 md:px-8 md:pb-8 lg:px-10">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 rounded-[1.25rem] bg-[#141414] px-7 py-9 text-white md:flex-row md:items-center md:px-10 md:py-11">
           <div className="max-w-xl">
             <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#c44536]">

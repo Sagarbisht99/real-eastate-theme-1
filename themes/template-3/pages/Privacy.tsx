@@ -20,7 +20,7 @@ function LegalPage({
 
   return (
     <div className="bg-white text-[#0b1f33]">
-      <section className="bg-[var(--snifty-navy,#0b1f33)] px-4 py-14 text-white md:px-8 md:py-16 lg:px-10 lg:py-20">
+      <section className="bg-[var(--snifty-navy,#0b1f33)] px-4 py-7 text-white md:px-8 md:py-8 lg:px-10">
         <div className="mx-auto max-w-3xl">
           <RevealBlur>
             <Breadcrumb
@@ -47,7 +47,7 @@ function LegalPage({
         </div>
       </section>
 
-      <section className="bg-[#f7f8fa] px-4 py-14 md:px-8 md:py-16 lg:px-10 lg:py-20">
+      <section className="bg-[#f7f8fa] px-4 py-7 md:px-8 md:py-8 lg:px-10">
         <div className="mx-auto max-w-3xl space-y-4">
           {page.sections.map((section, i) => (
             <article

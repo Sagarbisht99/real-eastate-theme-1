@@ -37,7 +37,7 @@ export default function BlogContent({
 
   return (
     <div className="bg-white">
-      <section className="border-b border-[#141414]/10 px-4 pb-14 pt-10 md:px-8 md:pb-16 md:pt-14 lg:px-10">
+      <section className="border-b border-[#141414]/10 px-4 pb-7 pt-8 md:px-8 md:pb-8 md:pt-8 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto max-w-3xl text-center">
             <div className="flex justify-center">
@@ -78,7 +78,7 @@ export default function BlogContent({
       </section>
 
       {featured && (
-        <section className="border-b border-[#141414]/10 px-4 py-12 md:px-8 md:py-16 lg:px-10">
+        <section className="border-b border-[#141414]/10 px-4 py-7 md:px-8 md:py-8 lg:px-10">
           <div className="mx-auto max-w-7xl">
             {page.featuredLabel && (
               <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#c44536]">
@@ -127,7 +127,7 @@ export default function BlogContent({
         </section>
       )}
 
-      <section className="px-4 py-14 md:px-8 md:py-20 lg:px-10">
+      <section className="px-4 py-7 md:px-8 md:py-8 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <div className="flex items-end justify-between gap-4">
             <div>

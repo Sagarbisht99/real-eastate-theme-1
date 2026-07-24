@@ -18,7 +18,7 @@ export default function FAQ({ data }: { data: ResolvedSiteData }) {
   const highlightIdx = titleWords.length > 1 ? 1 : 0;
 
   return (
-    <section className="bg-[#f7f8fa] px-4 py-16 md:px-8 md:py-20 lg:px-10">
+    <section className="bg-[#f7f8fa] px-4 py-7 md:px-8 md:py-8 lg:px-10">
       <div className="mx-auto max-w-3xl">
         <RevealBlur className="text-center">
           <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--snifty-red,#e11d2e)]">

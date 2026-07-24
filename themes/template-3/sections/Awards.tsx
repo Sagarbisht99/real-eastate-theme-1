@@ -19,7 +19,7 @@ export default function Awards({ data }: { data: ResolvedSiteData }) {
   return (
     <section className="bg-[var(--snifty-navy,#0b1f33)] text-white">
       <div className="border-b border-white/10">
-        <div className="mx-auto max-w-7xl px-4 py-10 md:px-8 md:py-12 lg:px-10">
+        <div className="mx-auto max-w-7xl px-4 py-7 md:px-8 md:py-8 lg:px-10">
           <RevealBlur className="mb-6 flex flex-wrap items-center justify-between gap-3">
             <div className="flex items-center gap-2.5">
               <FaTrophy className="text-[var(--snifty-red,#e11d2e)]" />

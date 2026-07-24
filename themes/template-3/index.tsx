@@ -8,6 +8,8 @@ import Services from "@/themes/template-3/sections/Services";
 import Properties from "@/themes/template-3/sections/Properties";
 import CTA from "@/themes/template-3/sections/CTA";
 import WhyChooseUs from "@/themes/template-3/sections/WhyChooseUs";
+import Team from "@/themes/template-3/sections/Team";
+import Testimonials from "@/themes/template-3/sections/Testimonials";
 import FAQ from "@/themes/template-3/sections/FAQ";
 import Newsletter from "@/themes/template-3/sections/Newsletter";
 import Awards from "@/themes/template-3/sections/Awards";
@@ -23,10 +25,12 @@ export default function Template3({ data }: { data: ResolvedSiteData }) {
       <main>
         <Hero data={data} />
         <Cities data={data} />
-        <Services data={data} />
+        <WhyChooseUs data={data} />
         <Properties data={data} />
         <CTA data={data} />
-        <WhyChooseUs data={data} />
+        <Services data={data} />
+        <Team data={data} />
+        <Testimonials data={data} />
         <FAQ data={data} />
         <Newsletter data={data} />
         <Awards data={data} />

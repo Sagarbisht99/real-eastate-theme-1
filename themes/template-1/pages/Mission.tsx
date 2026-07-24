@@ -20,7 +20,7 @@ export default function Mission({
   return (
     <div className="bg-white">
       {/* Intro */}
-      <section className="border-b border-[#141414]/10 px-4 pb-12 pt-10 md:px-8 md:pb-14 md:pt-12 lg:px-10">
+      <section className="border-b border-[#141414]/10 px-4 pb-7 pt-8 md:px-8 md:pb-8 md:pt-8 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto max-w-3xl text-center">
             <div className="flex justify-center">
@@ -46,7 +46,7 @@ export default function Mission({
       </section>
 
       {/* Image + pillars */}
-      <section className="border-b border-[#141414]/10 bg-[#141414] px-4 py-14 text-white md:px-8 md:py-20 lg:px-10">
+      <section className="border-b border-[#141414]/10 bg-[#141414] px-4 py-7 text-white md:px-8 md:py-8 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <div className="grid items-center gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14">
             <div className="relative aspect-[4/5] overflow-hidden bg-[#2a2a2a] sm:aspect-[5/4] lg:aspect-auto lg:min-h-[480px]">
@@ -93,7 +93,7 @@ export default function Mission({
 
       {/* Values */}
       {page.values.length > 0 && (
-        <section className="border-b border-[#141414]/10 bg-[#faf8f4] px-4 py-14 md:px-8 md:py-20 lg:px-10">
+        <section className="border-b border-[#141414]/10 bg-[#faf8f4] px-4 py-7 md:px-8 md:py-8 lg:px-10">
           <div className="mx-auto max-w-7xl">
             {page.valuesPretitle && (
               <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#c44536]">
@@ -120,7 +120,7 @@ export default function Mission({
 
       {/* CTA */}
       {(page.ctaTitle || cta) && (
-        <section className="px-4 py-14 md:px-8 md:py-20 lg:px-10">
+        <section className="px-4 py-7 md:px-8 md:py-8 lg:px-10">
           <div className="mx-auto max-w-3xl text-center">
             {page.ctaPretitle && (
               <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#c44536]">

@@ -29,7 +29,7 @@ export default function Cities({ data }: { data: ResolvedSiteData }) {
   if (!active) return null;
 
   return (
-    <section className="bg-white px-4 py-16 md:px-8 md:py-20 lg:px-10">
+    <section className="bg-white px-4 py-7 md:px-8 md:py-8 lg:px-10">
       <div className="mx-auto max-w-7xl">
         <RevealBlur className="mx-auto max-w-3xl text-center">
           <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--snifty-red,#e11d2e)]">

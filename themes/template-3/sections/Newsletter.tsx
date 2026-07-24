@@ -37,7 +37,7 @@ export default function Newsletter({ data }: { data: ResolvedSiteData }) {
         <div className="absolute inset-0 bg-[var(--snifty-navy,#0b1f33)]/85" />
       </div>
 
-      <div className="relative z-10 mx-auto flex max-w-7xl items-center justify-center px-4 py-16 md:px-8 md:py-20 lg:px-10 lg:py-24">
+      <div className="relative z-10 mx-auto flex max-w-7xl items-center justify-center px-4 py-8 md:px-8 md:py-10 lg:px-10">
         <RevealBlur className="mx-auto w-full max-w-xl text-center">
           <h2 className="t3-serif text-2xl font-bold text-white md:text-3xl lg:text-[2.15rem]">
             {formDetail.title || "Ready to find your dream home?"}

@@ -37,7 +37,7 @@ export default function Awards({
   return (
     <div className="bg-white">
       {/* Intro */}
-      <section className="border-b border-[#141414]/10 px-4 pb-12 pt-12 md:px-8 md:pb-14 md:pt-14 lg:px-10">
+      <section className="border-b border-[#141414]/10 px-4 pb-7 pt-8 md:px-8 md:pb-8 md:pt-8 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto max-w-3xl text-center">
             <div className="flex justify-center">
@@ -80,7 +80,7 @@ export default function Awards({
       </section>
 
       {/* Filters + list */}
-      <section className="px-4 py-12 md:px-8 md:py-16 lg:px-10">
+      <section className="px-4 py-7 md:px-8 md:py-8 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#141414]/45">
