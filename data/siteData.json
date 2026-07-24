@@ -65,6 +65,39 @@
         "--reroom-accent": "#ff6b00",
         "--reroom-ink": "#141414"
       }
+    },
+    {
+      "id": "template-3",
+      "numericId": 3,
+      "title": "Snifty",
+      "type": "Multiple Pages Website",
+      "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80",
+      "previewimage": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
+      "preview_description": "Classic three-tier header with red accent hero and property category tabs.",
+      "prebuilt_pages": 7,
+      "sectionVariants": {
+        "Topbar": "Topbar-1",
+        "Header": "Header-3",
+        "Banner": "Banner-3",
+        "About": "About-1",
+        "Product": "Product-1",
+        "WhyChooseUs": "WhyChooseUs-1",
+        "Gallery": "Gallery-1",
+        "FormDetail": "FormDetail-1",
+        "FAQ": "FAQ-1",
+        "Testimonial": "Testimonial-1",
+        "Footer": "Footer-3"
+      },
+      "variables": {
+        "--header-bg": "#ffffff",
+        "--header-text": "#0b1f33",
+        "--hero-bg": "#0b1f33",
+        "--hero-title": "#ffffff",
+        "--primary-link-bg": "#e11d2e",
+        "--primary-link-color": "#ffffff",
+        "--snifty-red": "#e11d2e",
+        "--snifty-navy": "#0b1f33"
+      }
     }
   ],
   "common": {
@@ -996,7 +1029,8 @@
     "Realestate": {
       "templates": [
         "template-1",
-        "template-2"
+        "template-2",
+        "template-3"
       ],
       "sections": {
         "Header": {
@@ -1147,6 +1181,10 @@
             },
             {
               "label": "Loan support",
+              "price": "Available"
+            }, 
+            {
+              "label": "Free parking",
               "price": "Available"
             }
           ],
@@ -1507,7 +1545,7 @@
           "desc": "Local advisors across key markets — with pricing context, commute insight, and verified listings in each city.",
           "cities": [
             {
-              "name": "South Delhi",
+              "name": "Bhutani Infra",
               "desc": "Family apartments, premium floors, and walkable neighborhoods.",
               "image": "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=1200&q=80",
               "alt": "South Delhi skyline and residences",
@@ -1525,7 +1563,7 @@
               "region": "Gurugram"
             },
             {
-              "name": "Noida",
+              "name": "Noida One",
               "desc": "Value-led homes with strong rental demand and metro access.",
               "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80",
               "alt": "Noida city residential buildings",
@@ -1562,7 +1600,7 @@
             }
           ],
           "button": {
-            "label": "Browse properties",
+            "label": "Explore homes",
             "href": "/properties",
             "variant": "primary"
           },
@@ -1634,7 +1672,7 @@
               "alt": "Skyline residences project exterior",
               "location": "Gurugram",
               "status": "Completed",
-              "href": "/gallery"
+              "href": "/properties"
             },
             {
               "title": "Garden Villa Estate",
@@ -1643,7 +1681,7 @@
               "alt": "Garden villa estate project",
               "location": "Greater Noida",
               "status": "Handover",
-              "href": "/gallery"
+              "href": "/properties"
             },
             {
               "title": "Riverside Loft refresh",
@@ -1652,7 +1690,7 @@
               "alt": "Riverside loft interior project",
               "location": "South Delhi",
               "status": "Completed",
-              "href": "/gallery"
+              "href": "/properties"
             },
             {
               "title": "Maple Townhouse block",
@@ -1661,7 +1699,7 @@
               "alt": "Maple townhouse project exterior",
               "location": "Dwarka",
               "status": "New listing",
-              "href": "/gallery"
+              "href": "/properties"
             },
             {
               "title": "Heritage Lane duplex",
@@ -1670,7 +1708,7 @@
               "alt": "Heritage lane duplex project",
               "location": "South Delhi",
               "status": "Completed",
-              "href": "/gallery"
+              "href": "/properties"
             },
             {
               "title": "Central Park rentals",
@@ -1683,8 +1721,8 @@
             }
           ],
           "button": {
-            "label": "View gallery",
-            "href": "/gallery",
+            "label": "View Project",
+            "href": "/properties",
             "variant": "primary"
           }
         }

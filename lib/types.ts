@@ -1,58 +1,317 @@
-export type LinkItem = {
+/**
+ * Shared template types (base contract) + app addons for this real-estate theme.
+ * Base section/builder types stay aligned with the shared type file; site/page
+ * types below are addons so existing ResolvedSiteData usage keeps working.
+ */
+
+import type {
+  Block,
+  BlockSection,
+  LayoutComponentProps,
+} from "../components/sections/types/section";
+
+export type {
+  Block,
+  BlockSection,
+  SectionType,
+  TextBlock,
+  ImageBlock,
+  VideoBlock,
+  ButtonBlock,
+  SliderBlock,
+  CarouselBlock,
+  CardBlock,
+  ListBlock,
+  MenuBlock,
+  LogoBlock,
+} from "../components/sections/types/section";
+
+/* -------------------------------------------------------------------------- */
+/* Shared section / builder types                                             */
+/* -------------------------------------------------------------------------- */
+
+export type MenuItem = {
   label: string;
   href: string;
-  /** Nested links render as a dropdown in header nav */
-  children?: LinkItem[];
+  children?: MenuItem[];
 };
 
-export type ButtonItem = {
+/** App alias — same shape as MenuItem (nav, breadcrumbs, footer links). */
+export type LinkItem = MenuItem;
+
+export type SocialLinkData = {
+  label: "facebook" | "instagram" | "twitter" | "linkedin";
+  href: string;
+};
+
+export type TopbarData = {
+  topbarBackgroundType?: "solid" | "gradient";
+  topbarBackgroundColor?: string;
+  topbarGradientColor?: string;
+  topbarTextColor?: string;
+  text?: string[];
+  phone?: string;
+  email?: string;
+  location?: string;
+  socialLinks?: SocialLinkData[] | LinkItem[];
+};
+
+/**
+ * App topbar content from siteData — shared TopbarData fields plus required
+ * contact/social values used by current themes.
+ */
+export type AppTopbarData = TopbarData & {
+  text: string[];
+  phone: string;
+  email: string;
+  location: string;
+  socialLinks: LinkItem[];
+};
+
+export type ButtonData = {
   label: string;
   href: string;
-  variant?: string;
+  variant?: "primary" | "secondary";
 };
 
+/** App alias — same as ButtonData. */
+export type ButtonItem = ButtonData;
+
+export type BannerSlideData = {
+  image: string;
+  video?: string;
+  alt?: string;
+  title: string;
+  desc?: string;
+  button?: ButtonData;
+};
+
+/** App banner slide — alt/desc required by current site content. */
+export type BannerSlide = BannerSlideData & {
+  alt: string;
+  desc: string;
+};
+
+export type ProductImageData = {
+  image: string;
+  alt: string;
+};
+
+export type ProductFeatureData = {
+  label: string;
+  price: string;
+};
+
+/** App alias. */
+export type ProductFeature = ProductFeatureData;
+
+export type ProductSlideData = {
+  image: string;
+  alt: string;
+  link?: string;
+  productTitle: string;
+  productSubtitle: string;
+  productInfoTitle: string;
+  productInfoDesc: string;
+  productFeatures: ProductFeatureData[];
+  productTotalPrice: string;
+  productShippingText: string;
+  button?: ButtonData;
+};
+
+/** App product slide — keeps optional category used by themes. */
+export type ProductSlide = ProductSlideData & {
+  category?: string;
+};
+
+export type ProductCardData = {
+  title: string;
+  category: string;
+  desc: string;
+  image: string;
+  alt?: string;
+  imageTitle?: string;
+  link?: string;
+};
+
+/** App product card — alt + href used by current themes. */
+export type ProductItem = ProductCardData & {
+  alt: string;
+  href?: string;
+};
+
+export type WhyChooseUsItemData = {
+  title: string;
+  desc: string;
+  stat?: string;
+};
+
+export type GalleryItemData = {
+  image: string;
+  alt?: string;
+  title?: string;
+};
+
+export type FormFieldData = {
+  label: string;
+  type?: "text" | "email" | "tel" | "textarea";
+  placeholder?: string;
+};
+
+/** App form field — type/placeholder required by current forms. */
 export type FormField = {
   label: string;
   type: string;
   placeholder: string;
 };
 
-export type ProductFeature = {
+export type FaqItemData = {
+  question: string;
+  answer: string;
+};
+
+export type TestimonialItemData = {
+  name: string;
+  role: string;
+  quote: string;
+  image?: string;
+  rating?: string;
+};
+
+export type FooterSocialData = {
+  label: "facebook" | "instagram" | "twitter" | "linkedin";
+  href: string;
+};
+
+export type FooterLinkData = {
   label: string;
-  price: string;
+  href: string;
 };
 
-export type ProductSlide = {
-  image: string;
-  alt: string;
-  productTitle: string;
-  productSubtitle: string;
-  productInfoTitle: string;
-  productInfoDesc: string;
-  productFeatures: ProductFeature[];
-  productTotalPrice: string;
-  productShippingText: string;
-  category?: string;
-  button?: ButtonItem;
-};
-
-export type ProductItem = {
+export type FooterColumnData = {
   title: string;
-  category: string;
-  desc: string;
-  image: string;
-  alt: string;
-  href?: string;
+  links: FooterLinkData[];
 };
 
-export type BannerSlide = {
-  image: string;
-  video?: string;
-  alt: string;
-  title: string;
-  desc: string;
-  button?: ButtonItem;
+export type FooterContactData = {
+  location: string;
+  email: string;
+  phone: string;
 };
+
+export type SectionData = {
+  [field: string]: unknown;
+
+  hiddenContentFields?: string[];
+  topbarType?: "scroll" | "sticky";
+  topbarBackgroundType?: "solid" | "gradient";
+  topbarBackgroundColor?: string;
+  topbarGradientColor?: string;
+  topbarTextColor?: string;
+  text?: string[];
+  phone?: string;
+  email?: string;
+  location?: string;
+  socialLinks?: SocialLinkData[];
+
+  logo?: string;
+  logoImage?: string;
+  logoImageTitle?: string;
+  menu?: MenuItem[];
+  buttons?: ButtonData[];
+
+  headerBackgroundType?: "solid" | "gradient";
+  headerType?: "scroll" | "sticky";
+  headerBackgroundColor?: string;
+  headerGradientColor?: string;
+  headerTextColor?: string;
+
+  pretitle?: string;
+  title?: string;
+  subtitle?: string;
+
+  backgroundImage?: string;
+  backgroundImageTitle?: string;
+  backgroundVideo?: string;
+  bannerBackgroundMode?: "image" | "video" | "solid" | "gradient";
+  bannerBackgroundColor?: string;
+  bannerGradientColor?: string;
+  bannerHeight?: number;
+  bannerSlides?: BannerSlideData[];
+
+  eyebrowColor?: string;
+  titleColor?: string;
+  subtitleColor?: string;
+  overlayColor?: string;
+
+  desc?: string;
+  desc2?: string;
+
+  buttonBackground?: string;
+  buttonColor?: string;
+
+  length?: number;
+  sideImage?: string;
+  sideImageTitle?: string;
+  philosophyTitle?: string;
+  philosophyDesc?: string;
+
+  productImages?: ProductImageData[];
+  productTitle?: string;
+  productSubtitle?: string;
+  productInfoTitle?: string;
+  productInfoDesc?: string;
+  productFeatures?: ProductFeatureData[];
+  productTotalPrice?: string;
+  productShippingText?: string;
+  productSlides?: ProductSlideData[];
+  productSectionTitle?: string;
+  productItems?: ProductCardData[];
+
+  whyChooseUsItems?: WhyChooseUsItemData[];
+  galleryItems?: GalleryItemData[];
+  formFields?: FormFieldData[];
+  formSubmitLabel?: string;
+  faqItems?: FaqItemData[];
+  testimonialItems?: TestimonialItemData[];
+
+  footerBackgroundType?: "solid" | "gradient";
+  footerBackgroundColor?: string;
+  footerGradientColor?: string;
+  footerTextColor?: string;
+  footerMutedTextColor?: string;
+  footerSocialLinks?: FooterSocialData[];
+  footerColumns?: FooterColumnData[];
+  footerContact?: FooterContactData;
+  footerLegalLinks?: FooterLinkData[];
+  whatsappLink?: string;
+  callLink?: string;
+  copyrightText?: string;
+};
+
+export type SectionProps = {
+  data?: SectionData;
+} & Partial<LayoutComponentProps> & {
+    blocks?: Block[];
+    section?: BlockSection;
+  };
+
+export type SectionItem = {
+  id?: string;
+  page?: string;
+  type: string;
+  variant: string;
+  data: Record<string, SectionData>;
+};
+
+export type SelectedConfig = {
+  templateId: string;
+  sections: SectionItem[];
+};
+
+/* -------------------------------------------------------------------------- */
+/* App addons — theme site model (existing code continues to use these)       */
+/* -------------------------------------------------------------------------- */
 
 export type SectionVariants = {
   Topbar: string;
@@ -81,24 +340,12 @@ export type TemplateConfig = {
   variables: Record<string, string>;
 };
 
-export type TopbarData = {
-  text: string[];
-  phone: string;
-  email: string;
-  location: string;
-  socialLinks: LinkItem[];
-};
-
 export type FooterColumn = {
   title: string;
   links: LinkItem[];
 };
 
-export type FooterContact = {
-  location: string;
-  email: string;
-  phone: string;
-};
+export type FooterContact = FooterContactData;
 
 export type FooterData = {
   logoImage: string;
@@ -465,7 +712,7 @@ export type WhyChooseUsSection = {
   pretitle: string;
   title: string;
   desc: string;
-  whyChooseUsItems: { title: string; desc: string; stat: string }[];
+  whyChooseUsItems: WhyChooseUsItemData[];
 };
 
 export type GalleryItem = {
@@ -497,7 +744,7 @@ export type FormDetailSection = {
 export type FAQSection = {
   pretitle: string;
   title: string;
-  faqItems: { question: string; answer: string }[];
+  faqItems: FaqItemData[];
 };
 
 export type CategorySections = {
@@ -537,7 +784,7 @@ export type LegalPageData = {
 };
 
 export type CommonData = {
-  Topbar: TopbarData;
+  Topbar: AppTopbarData;
   Footer: FooterData;
   AboutPage: AboutPageData;
   CustomPage: CustomPageData;
@@ -566,7 +813,7 @@ export type ResolvedSiteData = {
   categoryId: CategoryId;
   template: TemplateConfig;
   variables: Record<string, string>;
-  topbar: TopbarData;
+  topbar: AppTopbarData;
   header: HeaderSection;
   banner: BannerSection;
   about: AboutSection;
@@ -594,7 +841,7 @@ export type ResolvedSiteData = {
   termsPage: LegalPageData;
 };
 
-export type ThemeId = "template-1" | "template-2";
+export type ThemeId = "template-1" | "template-2" | "template-3";
 
 export const THEMES: { id: ThemeId; name: string; description: string }[] = [
   {
@@ -607,12 +854,17 @@ export const THEMES: { id: ThemeId; name: string; description: string }[] = [
     name: "re/room",
     description: "Orange accent · Poppins · renovation layout",
   },
+  {
+    id: "template-3",
+    name: "Snifty",
+    description: "Volkhov Bold · red/navy real estate landing",
+  },
 ];
 
 export const CATEGORIES: CategoryId[] = ["Realestate", "Business", "School"];
 
 /** Change this to switch the default homepage theme */
-export const ACTIVE_THEME: ThemeId = "template-2";
+export const ACTIVE_THEME: ThemeId = "template-3";
 
 /** Change this to switch the default content category */
 export const ACTIVE_CATEGORY: CategoryId = "Realestate";

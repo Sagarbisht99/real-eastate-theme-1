@@ -13,7 +13,9 @@ export default function CitiesWeServe({ data }: { data: ResolvedSiteData }) {
   const section = data.citiesWeServe;
   const cities = section.cities;
   const trackRef = useRef<HTMLDivElement>(null);
-  const cta = section.button;
+  const ctaHref = withTheme("/properties", THEME);
+  /** Clearer than “Browse properties” — matches homes-focused positioning */
+  const ctaLabel = "Explore homes";
   const [active, setActive] = useState(0);
 
   const filters = useMemo(() => {
@@ -120,15 +122,13 @@ export default function CitiesWeServe({ data }: { data: ResolvedSiteData }) {
             >
               <FaArrowRight className="text-xs" />
             </button>
-            {cta && (
-              <Link
-                href={withTheme(cta.href, THEME)}
-                className="ml-2 inline-flex items-center gap-2 text-sm font-medium text-[#141414] underline underline-offset-4 transition hover:opacity-70"
-              >
-                {cta.label}
-                <FaArrowRight className="text-[10px]" aria-hidden />
-              </Link>
-            )}
+            <Link
+              href={ctaHref}
+              className="ml-2 inline-flex items-center gap-2 text-sm font-medium text-[#141414] underline underline-offset-4 transition hover:opacity-70"
+            >
+              {ctaLabel}
+              <FaArrowRight className="text-[10px]" aria-hidden />
+            </Link>
           </div>
         </div>
 
@@ -166,7 +166,7 @@ export default function CitiesWeServe({ data }: { data: ResolvedSiteData }) {
               {filtered.map((city) => (
                 <Link
                   key={city.name}
-                  href={withTheme(city.href || cta?.href || "/properties", THEME)}
+                  href={withTheme(city.href || "/properties", THEME)}
                   data-slide
                   className="group relative w-[85%] max-w-[380px] shrink-0 snap-start overflow-hidden rounded-2xl sm:w-[60%] md:w-[45%] lg:w-[32%]"
                 >

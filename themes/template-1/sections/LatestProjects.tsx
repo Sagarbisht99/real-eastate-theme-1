@@ -14,7 +14,8 @@ export default function LatestProjects({ data }: { data: ResolvedSiteData }) {
   const section = data.latestProjects;
   const items = section.projectItems;
   const trackRef = useRef<HTMLDivElement>(null);
-  const cta = section.button;
+  const ctaHref = withTheme("/properties", THEME);
+  const ctaLabel = "View Project";
 
   function scrollBySlide(direction: -1 | 1) {
     const track = trackRef.current;
@@ -61,15 +62,13 @@ export default function LatestProjects({ data }: { data: ResolvedSiteData }) {
             >
               <FaArrowRight className="text-xs" />
             </button>
-            {cta && (
-              <Link
-                href={withTheme(cta.href, THEME)}
-                className="ml-2 inline-flex items-center gap-2 text-sm font-medium text-[#141414] underline underline-offset-4 transition hover:opacity-70"
-              >
-                {cta.label}
-                <FaArrowRight className="text-[10px]" aria-hidden />
-              </Link>
-            )}
+            <Link
+              href={ctaHref}
+              className="ml-2 inline-flex items-center gap-2 text-sm font-medium text-[#141414] underline underline-offset-4 transition hover:opacity-70"
+            >
+              {ctaLabel}
+              <FaArrowRight className="text-[10px]" aria-hidden />
+            </Link>
           </div>
         </div>
       </div>
@@ -82,7 +81,7 @@ export default function LatestProjects({ data }: { data: ResolvedSiteData }) {
           {items.map((item, i) => (
             <Link
               key={`${item.title}-${i}`}
-              href={withTheme(item.href || cta?.href || "/gallery", THEME)}
+              href={withTheme("/properties", THEME)}
               data-slide
               className="group w-[85%] max-w-[400px] shrink-0 snap-start sm:w-[70%] md:w-[48%] lg:w-[38%]"
             >

@@ -12,18 +12,12 @@ export default async function ServicesPage({ searchParams }: Props) {
   const category = resolveCategory(params.category);
   const data = resolveSiteData(theme, category);
   const pack = getThemePack(theme);
-  const { Header, Footer, PageBanner, pages } = pack;
+  const { Header, Footer, pages } = pack;
   const Services = pages.Services;
 
   return (
     <div id="top" className={pack.shellClass}>
       <Header data={data} variant="solid" />
-      <PageBanner
-        theme={theme}
-        title={data.servicePage.title}
-        eyebrow={data.servicePage.pretitle}
-        breadcrumb={data.servicePage.breadcrumb}
-      />
       <main>
         <Services data={data} theme={theme} />
       </main>

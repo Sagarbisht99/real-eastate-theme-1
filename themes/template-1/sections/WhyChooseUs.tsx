@@ -37,7 +37,11 @@ export default function WhyChooseUs({ data }: { data: ResolvedSiteData }) {
                   key={`${item.stat}-${item.title}`}
                   className="px-6 py-7 text-left md:px-7 md:py-8 lg:px-8 lg:py-9"
                 >
-                  <Icon className="text-xl text-[#c44536]" aria-hidden />
+                  <Icon
+                    className="h-9 w-9 text-[#c44536] md:h-10 md:w-10"
+                    strokeWidth={1.5}
+                    aria-hidden
+                  />
                   <p className="mt-5 text-xs font-semibold tracking-[0.12em] text-[#c44536]">
                     {item.stat}
                   </p>

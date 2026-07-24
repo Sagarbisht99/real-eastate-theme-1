@@ -1,6 +1,6 @@
 import { ACTIVE_THEME, type ThemeId } from "@/lib/types";
 
-const VALID: ThemeId[] = ["template-1", "template-2"];
+const VALID: ThemeId[] = ["template-1", "template-2", "template-3"];
 
 export function resolveTheme(themeParam?: string | null): ThemeId {
   if (themeParam && VALID.includes(themeParam as ThemeId)) {
@@ -26,6 +26,7 @@ export function withTheme(href: string, theme: ThemeId): string {
 export const themeShellClass: Record<ThemeId, string> = {
   "template-1": "theme-t1 min-h-screen overflow-x-hidden bg-[#faf8f4] text-[#141414]",
   "template-2": "theme-t2 min-h-screen overflow-x-clip bg-white text-[#141414]",
+  "template-3": "theme-t3 min-h-screen overflow-x-clip bg-white text-[#0b1f33]",
 };
 
 export function cssVarsStyle(

@@ -121,6 +121,49 @@ body {
   font-family: inherit;
 }
 
+.theme-t3 {
+  --font-sans: var(--font-t3), ui-serif, Georgia, serif;
+  --font-serif: var(--font-t3), ui-serif, Georgia, serif;
+  --font-t3-serif: var(--font-t3);
+  --snifty-red: #e11d2e;
+  --snifty-navy: #0b1f33;
+  font-family: var(--font-t3), Georgia, serif !important;
+}
+
+.theme-t3,
+.theme-t3 * {
+  font-family: var(--font-t3), Georgia, serif !important;
+}
+
+.theme-t3 .font-sans,
+.theme-t3 .font-serif,
+.theme-t3 .t3-serif {
+  font-family: var(--font-t3), Georgia, serif !important;
+}
+
+.theme-t3 .t3-serif,
+.theme-t3 h1,
+.theme-t3 h2,
+.theme-t3 h3,
+.theme-t3 .font-bold,
+.theme-t3 .font-semibold {
+  font-weight: 700;
+}
+
+@keyframes t3-ken {
+  from {
+    transform: scale(1.04);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
+.t3-ken {
+  animation: t3-ken 24s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
 .theme-t2-hatch {
   background-image: repeating-linear-gradient(
     -45deg,
@@ -275,6 +318,11 @@ html.lenis body {
   }
 
   .theme-t2 .t2-ken {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .theme-t3 .t3-ken {
     animation: none !important;
     transform: none !important;
   }

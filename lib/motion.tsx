@@ -203,6 +203,7 @@ export const Typewriter = PlainText;
 export const motionTheme = {
   "template-1": { cursor: "bg-[#c44536]" },
   "template-2": { cursor: "bg-[#ff6b00]" },
+  "template-3": { cursor: "bg-[#e11d2e]" },
 } as const;
 
 export { fadeUp };
