@@ -4,8 +4,18 @@ import { useEffect, useMemo, useState } from "react";
 import { FaArrowLeft, FaArrowRight, FaXmark } from "react-icons/fa6";
 import Breadcrumb from "@/components/Breadcrumb";
 import MediaImage from "@/components/MediaImage";
-import { RevealBlur, Stagger, StaggerItem } from "@/lib/motion";
+import { RevealBlur } from "@/lib/motion";
 import type { GalleryPageItem, ResolvedSiteData, ThemeId } from "@/lib/types";
+
+function normalizeCategory(value: string) {
+  return value.trim().toLowerCase();
+}
+
+function matchesCategory(item: GalleryPageItem, active: string) {
+  const target = normalizeCategory(active);
+  if (!target || target === "all") return true;
+  return normalizeCategory(item.category || "") === target;
+}
 
 export default function Gallery({
   data,
@@ -15,13 +25,41 @@ export default function Gallery({
   theme: ThemeId;
 }) {
   const page = data.galleryPage;
-  const [active, setActive] = useState(page.categories[0] || "All");
+
+  const categories = useMemo(() => {
+    const fromPage = (page.categories ?? []).map((c) => c.trim()).filter(Boolean);
+    const fromItems = Array.from(
+      new Set(
+        page.galleryItems
+          .map((item) => item.category?.trim())
+          .filter((c): c is string => Boolean(c))
+      )
+    );
+
+    const merged = fromPage.length > 0 ? fromPage : ["All", ...fromItems];
+    if (!merged.some((c) => normalizeCategory(c) === "all")) {
+      return ["All", ...merged];
+    }
+    return merged;
+  }, [page.categories, page.galleryItems]);
+
+  const [active, setActive] = useState(categories[0] || "All");
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  const items = useMemo(() => {
-    if (active === "All") return page.galleryItems;
-    return page.galleryItems.filter((item) => item.category === active);
-  }, [page.galleryItems, active]);
+  const items = useMemo(
+    () => page.galleryItems.filter((item) => matchesCategory(item, active)),
+    [page.galleryItems, active]
+  );
+
+  useEffect(() => {
+    if (!categories.some((c) => normalizeCategory(c) === normalizeCategory(active))) {
+      setActive(categories[0] || "All");
+    }
+  }, [categories, active]);
+
+  useEffect(() => {
+    setOpenIndex(null);
+  }, [active]);
 
   const openItem: GalleryPageItem | null =
     openIndex !== null ? items[openIndex] ?? null : null;
@@ -31,16 +69,12 @@ export default function Gallery({
 
     function onKey(e: KeyboardEvent) {
       if (e.key === "Escape") setOpenIndex(null);
-      if (e.key === "ArrowRight") {
-        setOpenIndex((i) =>
-          i === null ? null : (i + 1) % Math.max(items.length, 1)
-        );
+      if (e.key === "ArrowRight" && items.length > 0) {
+        setOpenIndex((i) => (i === null ? null : (i + 1) % items.length));
       }
-      if (e.key === "ArrowLeft") {
+      if (e.key === "ArrowLeft" && items.length > 0) {
         setOpenIndex((i) =>
-          i === null
-            ? null
-            : (i - 1 + items.length) % Math.max(items.length, 1)
+          i === null ? null : (i - 1 + items.length) % items.length
         );
       }
     }
@@ -56,54 +90,53 @@ export default function Gallery({
 
   return (
     <div className="bg-white text-[#0b1f33]">
-      {/* Hero */}
       <section className="bg-[var(--snifty-navy,#0b1f33)] px-4 py-7 text-white md:px-8 md:py-8 lg:px-10">
-  <div className="mx-auto max-w-7xl flex flex-col items-center text-center">
-    
-    {/* Centered Header Block */}
-    <RevealBlur className="max-w-2xl flex flex-col items-center">
-      <Breadcrumb
-        items={page.breadcrumb}
-        theme={theme}
-        variant="light"
-        className="mb-6"
-      />
-      
-      <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--snifty-red,#e11d2e)]">
-        {page.pretitle}
-      </p>
-      
-      <h1 className="t3-serif mt-3 text-[2.15rem] font-bold leading-[1.12] md:text-[2.75rem] lg:text-[3.1rem]">
-        {page.title}
-      </h1>
-      
-      <p className="mt-5 max-w-xl text-sm leading-relaxed text-white/70 md:text-base">
-        {page.desc}
-      </p>
-    </RevealBlur>
+        <div className="mx-auto flex max-w-7xl flex-col items-center text-center">
+          <RevealBlur className="flex max-w-2xl flex-col items-center">
+            <Breadcrumb
+              items={page.breadcrumb}
+              theme={theme}
+              variant="light"
+              className="mb-6"
+            />
 
-    {/* Centered Category Pills */}
-    <div className="mt-10 flex flex-wrap justify-center gap-2">
-      {page.categories.map((cat) => (
-        <button
-          key={cat}
-          type="button"
-          onClick={() => setActive(cat)}
-          className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
-            active === cat
-              ? "bg-[var(--snifty-red,#e11d2e)] text-white shadow-md"
-              : "bg-white/10 text-white hover:bg-white/15"
-          }`}
-        >
-          {cat}
-        </button>
-      ))}
-    </div>
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--snifty-red,#e11d2e)]">
+              {page.pretitle}
+            </p>
 
-  </div>
-</section>
+            <h1 className="t3-serif mt-3 text-[2.15rem] font-bold leading-[1.12] md:text-[2.75rem] lg:text-[3.1rem]">
+              {page.title}
+            </h1>
 
-      {/* Asymmetric mosaic */}
+            <p className="mt-5 max-w-xl text-sm leading-relaxed text-white/70 md:text-base">
+              {page.desc}
+            </p>
+          </RevealBlur>
+
+          <div className="mt-10 flex flex-wrap justify-center gap-2">
+            {categories.map((cat) => {
+              const isActive =
+                normalizeCategory(cat) === normalizeCategory(active);
+              return (
+                <button
+                  key={cat}
+                  type="button"
+                  onClick={() => setActive(cat)}
+                  aria-pressed={isActive}
+                  className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
+                    isActive
+                      ? "bg-[var(--snifty-red,#e11d2e)] text-white shadow-md"
+                      : "bg-white/10 text-white hover:bg-white/15"
+                  }`}
+                >
+                  {cat}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       <section className="px-4 py-7 md:px-8 md:py-8 lg:px-10">
         <div className="mx-auto max-w-7xl">
           {items.length === 0 ? (
@@ -111,7 +144,10 @@ export default function Gallery({
               No gallery items in this category.
             </p>
           ) : (
-            <Stagger className="grid auto-rows-[180px] gap-3 sm:auto-rows-[200px] sm:grid-cols-2 md:gap-4 lg:auto-rows-[220px] lg:grid-cols-4">
+            <div
+              key={active}
+              className="grid auto-rows-[180px] gap-3 sm:auto-rows-[200px] sm:grid-cols-2 md:gap-4 lg:auto-rows-[220px] lg:grid-cols-4"
+            >
               {items.map((item, i) => {
                 const span =
                   i % 7 === 0
@@ -120,7 +156,10 @@ export default function Gallery({
                       ? "lg:row-span-2"
                       : "";
                 return (
-                  <StaggerItem key={`${item.title}-${i}`} className={span}>
+                  <div
+                    key={`${item.category}-${item.title}-${item.image}`}
+                    className={span}
+                  >
                     <button
                       type="button"
                       onClick={() => setOpenIndex(i)}
@@ -146,15 +185,14 @@ export default function Gallery({
                         </p>
                       </div>
                     </button>
-                  </StaggerItem>
+                  </div>
                 );
               })}
-            </Stagger>
+            </div>
           )}
         </div>
       </section>
 
-      {/* Lightbox */}
       {openItem && openIndex !== null && (
         <div
           className="fixed inset-0 z-[100] flex items-center justify-center bg-[var(--snifty-navy,#0b1f33)]/92 p-4 md:p-8"
