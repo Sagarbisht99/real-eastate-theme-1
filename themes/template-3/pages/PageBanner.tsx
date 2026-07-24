@@ -6,7 +6,7 @@ const titleClass: Record<ThemeId, string> = {
   "template-1": "mt-2 text-3xl font-semibold text-white md:text-4xl lg:text-5xl",
   "template-2": "mt-2 text-3xl font-semibold text-white md:text-4xl lg:text-5xl",
   "template-3":
-    "mt-2 text-3xl font-bold text-white md:text-4xl lg:text-5xl",
+    "t3-serif mt-2 text-3xl font-bold text-white md:text-4xl lg:text-5xl",
 };
 
 const eyebrowClass: Record<ThemeId, string> = {

@@ -5,11 +5,15 @@ import Breadcrumb from "@/components/Breadcrumb";
 const titleClass: Record<ThemeId, string> = {
   "template-1": "mt-2 text-3xl font-semibold text-white md:text-4xl lg:text-5xl",
   "template-2": "mt-2 text-3xl font-semibold text-white md:text-4xl lg:text-5xl",
+  "template-3":
+    "mt-2 text-3xl font-bold text-white md:text-4xl lg:text-5xl",
 };
 
 const eyebrowClass: Record<ThemeId, string> = {
   "template-1": "text-xs font-semibold uppercase tracking-[0.22em] text-[#c44536]",
   "template-2": "text-xs font-semibold uppercase tracking-[0.22em] text-[#ff6b00]",
+  "template-3":
+    "text-xs font-semibold uppercase tracking-[0.22em] text-[var(--snifty-red,#e11d2e)]",
 };
 
 export default function PageBanner({

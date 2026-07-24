@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit, Syne } from "next/font/google";
+import { Outfit, Syne, Volkhov } from "next/font/google";
 import { siteData } from "@/lib/data";
 import SmoothScroll from "@/components/SmoothScroll";
 import { Suspense } from "react";
@@ -13,11 +13,18 @@ const fontT1 = Syne({
   weight: ["400", "500", "600", "700", "800"],
 });
 
-/** template-2 — Outfit (architectural, geometric) */
+/** template-2 — Outfit */
 const fontT2 = Outfit({
   variable: "--font-t2",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
+});
+
+/** template-3 — Volkhov everywhere (regular + bold) */
+const fontT3 = Volkhov({
+  variable: "--font-t3",
+  subsets: ["latin"],
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
@@ -34,7 +41,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${fontT1.variable} ${fontT2.variable} h-full antialiased`}
+      className={`${fontT1.variable} ${fontT2.variable} ${fontT3.variable} h-full antialiased`}
     >
       <body className="min-h-full font-sans" suppressHydrationWarning>
         <Suspense fallback={null}>

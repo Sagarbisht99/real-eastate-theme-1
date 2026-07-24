@@ -73,6 +73,30 @@ export const themeUI: Record<ThemeId, ThemeUI> = {
     cardPad: "p-6",
     banner: "bg-[#141414] py-12 md:py-16",
   },
+  "template-3": {
+    isDark: false,
+    accent: "text-[#e11d2e]",
+    accentSoft: "bg-[#e11d2e]/12 text-[#e11d2e]",
+    iconBg: "bg-[#e11d2e]/12 text-[#e11d2e]",
+    card: "bg-white shadow-sm rounded-md",
+    title: "text-[#0b1f33]",
+    muted: "text-[#0b1f33]/65",
+    subtle: "text-[#0b1f33]/45",
+    btn: "bg-[#e11d2e] hover:bg-[#c91827] text-white rounded-md",
+    btnSecondary:
+      "border border-[#0b1f33]/15 text-[#0b1f33] hover:bg-[#0b1f33]/5 rounded-md",
+    input: "border-[#0b1f33]/15 bg-white text-[#0b1f33] placeholder:text-[#0b1f33]/40",
+    badge: "bg-[#e11d2e] text-white",
+    badgeDark: "bg-[#0b1f33] text-white",
+    border: "border-[#0b1f33]/10",
+    overlayHeader: false,
+    page: "mx-auto max-w-7xl px-4 py-12 md:py-16",
+    intro: "mb-8 max-w-2xl",
+    section: "mt-12",
+    grid: "gap-6",
+    cardPad: "p-6",
+    banner: "bg-[#0b1f33] py-12 md:py-16",
+  },
 };
 
 export function getThemeUI(theme: ThemeId): ThemeUI {
