@@ -20,6 +20,8 @@ export default function About({
   const stats = data.whyChooseUs.whyChooseUsItems.slice(0, 4);
   const quotes = data.testimonial.testimonialItems.slice(0, 3);
   const missionPoints = page.missionPoints ?? [];
+  const blogPosts = data.gallery.galleryItems.slice(0, 3);
+  const blogLink = data.gallery.buttons?.[0];
 
   const heroImage =
     page.sideImage ||
@@ -224,6 +226,73 @@ export default function About({
                       <p className="text-xs text-[#141414]/45">{item.role}</p>
                     </div>
                   </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Blog preview */}
+      {blogPosts.length > 0 && (
+        <section className="border-t border-[#141414]/10 bg-[#faf9f7] px-4 py-12 md:px-8 md:py-14 lg:px-10">
+          <div className="mx-auto max-w-7xl">
+            <RevealBlur className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+              <div className="max-w-xl">
+                <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--reroom-accent,#ff6b00)]">
+                  {data.gallery.pretitle || "Blog"}
+                </p>
+                <h2 className="mt-2 text-[1.75rem] font-bold tracking-[-0.03em] md:text-[2.15rem]">
+                  {data.gallery.title}
+                </h2>
+                {data.gallery.desc && (
+                  <p className="mt-3 text-sm leading-relaxed text-[#141414]/55">
+                    {data.gallery.desc}
+                  </p>
+                )}
+              </div>
+              <Link
+                href={withTheme(blogLink?.href || "/blog", theme)}
+                className="inline-flex shrink-0 items-center gap-2 text-sm font-bold text-[var(--reroom-accent,#ff6b00)] transition hover:brightness-110"
+              >
+                View blogs
+                <FaArrowRight className="text-xs" />
+              </Link>
+            </RevealBlur>
+
+            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {blogPosts.map((item) => (
+                <article key={item.title} className="group">
+                  <Link
+                    href={withTheme(item.href || "/blog", theme)}
+                    className="block"
+                  >
+                    <div className="relative aspect-[16/11] overflow-hidden bg-[#eeeae4]">
+                      <MediaImage
+                        src={item.image}
+                        alt={item.alt || item.title}
+                        fill
+                        className="object-cover transition duration-500 group-hover:scale-[1.04]"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        themeId={theme}
+                      />
+                    </div>
+                    <div className="mt-4">
+                      {item.date && (
+                        <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[var(--reroom-accent,#ff6b00)]">
+                          {item.date}
+                        </p>
+                      )}
+                      <h3 className="mt-2 text-lg font-bold leading-snug transition group-hover:text-[var(--reroom-accent,#ff6b00)]">
+                        {item.title}
+                      </h3>
+                      {item.alt && (
+                        <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-[#141414]/50">
+                          {item.alt}
+                        </p>
+                      )}
+                    </div>
+                  </Link>
                 </article>
               ))}
             </div>

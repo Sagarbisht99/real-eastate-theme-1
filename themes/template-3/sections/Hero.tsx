@@ -117,7 +117,7 @@ export default function Hero({ data }: { data: ResolvedSiteData }) {
   }
 
   return (
-    <section className="relative isolate pb-6 md:pb-7">
+    <section className="relative isolate pb-10 md:pb-12 lg:pb-14">
       <div
         className="relative min-h-[520px] overflow-hidden md:min-h-[600px] lg:min-h-[680px]"
         onMouseEnter={() => setPaused(true)}
@@ -191,7 +191,7 @@ export default function Hero({ data }: { data: ResolvedSiteData }) {
             </button>
 
             <div
-              className="absolute bottom-28 left-1/2 z-20 flex -translate-x-1/2 items-center gap-2 md:bottom-32 lg:bottom-36"
+              className="absolute bottom-32 left-1/2 z-20 flex -translate-x-1/2 items-center gap-2 md:bottom-36 lg:bottom-40"
               role="tablist"
               aria-label="Hero slides"
             >
@@ -215,8 +215,8 @@ export default function Hero({ data }: { data: ResolvedSiteData }) {
         )}
       </div>
 
-      <div className="relative z-20 -mt-[7.5rem] px-4 md:-mt-32 md:px-8 lg:-mt-36 lg:px-10">
-        <div className="mx-auto max-w-7xl">
+      <div className="relative z-20 -mt-36 px-4 pb-1 md:-mt-40 md:px-8 lg:-mt-44 lg:px-10">
+        <div className="mx-auto mb-2 max-w-7xl md:mb-3">
           <div className="overflow-hidden rounded-t-[14px] rounded-b-[10px] bg-white shadow-[0_18px_50px_rgba(15,23,42,0.16)]">
             <div className="flex gap-0 overflow-x-auto border-b border-[#eef0f3] px-2 sm:px-4">
               {TABS.map((tab) => {

@@ -361,14 +361,12 @@ export default function AboutContent({
               </div>
               <Link
                 href={withTheme(
-                  data.product.buttons[0]?.href === "#"
-                    ? "/properties"
-                    : data.product.buttons[0]?.href || "/properties",
+                  gallery.buttons?.[0]?.href || "/blog",
                   theme
                 )}
                 className="inline-flex items-center gap-2 text-sm font-medium text-[#141414] underline underline-offset-4 transition hover:opacity-70"
               >
-                {data.product.buttons[0]?.label || data.product.productSectionTitle}
+                View blogs
                 <FaArrowRight className="text-[10px]" />
               </Link>
             </div>
