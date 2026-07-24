@@ -22,7 +22,7 @@ export default function Partners({ data }: { data: ResolvedSiteData }) {
         ].slice(0, 5);
 
   return (
-    <section className="border-y border-[#141414]/8 bg-white px-4 py-10 md:px-8 md:py-12 lg:px-10">
+    <section className="border-y border-[#141414]/8 bg-white px-4 py-14 md:px-8 md:py-16 lg:px-10 lg:py-20">
       <RevealBlur className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-10 gap-y-6 md:gap-x-14 lg:gap-x-16">
         {partners.map((name) => (
           <span

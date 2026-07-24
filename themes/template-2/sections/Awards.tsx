@@ -17,7 +17,7 @@ export default function Awards({ data }: { data: ResolvedSiteData }) {
   if (awards.length === 0) return null;
 
   return (
-    <section className="bg-[#faf9f7] px-4 py-12 text-[#141414] md:px-8 md:py-16 lg:px-10">
+    <section className="bg-[#faf9f7] px-4 py-14 text-[#141414] md:px-8 md:py-16 lg:px-10 lg:py-20">
       <div className="mx-auto max-w-7xl">
         <RevealBlur className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div className="max-w-xl">

@@ -11,6 +11,7 @@ import {
   FaPhone,
   FaXmark,
 } from "react-icons/fa6";
+import BackToTop from "@/themes/template-3/BackToTop";
 import { withTheme } from "@/lib/theme";
 import type { LinkItem, ResolvedSiteData } from "@/lib/types";
 
@@ -114,7 +115,8 @@ export default function Header({
   );
 
   return (
-    <header className="relative z-40 w-full">
+    <>
+      <header className="fixed inset-x-0 top-0 z-50 w-full shadow-[0_8px_24px_rgba(11,31,51,0.08)]">
       {/* Top white bar */}
       <div className="bg-white">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3.5 md:px-8 lg:px-10">
@@ -189,13 +191,6 @@ export default function Header({
               )
             )}
           </nav>
-
-          <Link
-            href={withTheme("/contact", THEME)}
-            className="ml-auto hidden text-[13px] font-medium text-white/90 transition hover:text-white lg:inline-flex"
-          >
-            Sign In / Register
-          </Link>
         </div>
       </div>
 
@@ -260,6 +255,10 @@ export default function Header({
           </div>
         </div>
       )}
-    </header>
+      </header>
+      {/* Reserves space so fixed header does not cover page content */}
+      <div className="h-[7rem]" aria-hidden />
+      <BackToTop />
+    </>
   );
 }

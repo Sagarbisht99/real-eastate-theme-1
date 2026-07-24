@@ -84,130 +84,136 @@ export default function Header({
   const isSolid = variant === "solid";
 
   return (
-    <header
-      className={`z-50 ${
-        isSolid ? "bg-white" : "absolute inset-x-0 top-0 bg-transparent"
-      }`}
-    >
-      <div className="mx-auto grid max-w-[1400px] grid-cols-[auto_1fr_auto] items-center gap-4 px-4 py-5 md:px-8 md:py-6 lg:grid-cols-[1fr_auto_1fr] lg:px-10">
-        <Link
-          href={withTheme("/", THEME)}
-          className={`text-base font-bold tracking-[0.14em] text-[#141414] md:text-[1.05rem] ${
-            isSolid ? "" : "text-white"
-          }`}
-        >
-          {header.logo.toUpperCase()}
-        </Link>
-
-        <nav
-          className={`hidden items-center justify-center gap-6 text-[0.92rem] font-medium xl:gap-7 lg:flex ${
-            isSolid ? "text-[#141414]" : "text-white/90"
-          }`}
-        >
-          {header.menu.map((item, i) =>
-            item.children && item.children.length > 0 ? (
-              <NavDropdown key={`${item.label}-${i}`} item={item} isSolid={isSolid} />
-            ) : (
-              <Link
-                key={`${item.label}-${i}`}
-                href={withTheme(item.href, THEME)}
-                className="transition hover:opacity-65"
-              >
-                {item.label}
-              </Link>
-            )
-          )}
-        </nav>
-
-        <div className="flex items-center justify-end gap-2">
-          {cta && (
-            <Link
-              href={withTheme(cta.href || "/contact", THEME)}
-              className={`hidden rounded-full px-5 py-2.5 text-sm font-semibold transition lg:inline-flex ${
-                isSolid
-                  ? "bg-[#141414] text-white hover:bg-black"
-                  : "bg-white text-[#141414] hover:bg-white/90"
-              }`}
-            >
-              {cta.label}
-            </Link>
-          )}
-
-          <button
-            type="button"
-            aria-label="Toggle menu"
-            className={`rounded-md p-2 lg:hidden ${isSolid ? "text-[#141414]" : "text-white"}`}
-            onClick={() => setOpen((v) => !v)}
+    <>
+      <header
+        className={`fixed inset-x-0 top-0 z-50 ${
+          isSolid
+            ? "border-b border-[#141414]/8 bg-white/95 backdrop-blur-md"
+            : "bg-transparent"
+        }`}
+      >
+        <div className="mx-auto grid max-w-[1400px] grid-cols-[auto_1fr_auto] items-center gap-4 px-4 py-5 md:px-8 md:py-6 lg:grid-cols-[1fr_auto_1fr] lg:px-10">
+          <Link
+            href={withTheme("/", THEME)}
+            className={`text-base font-bold tracking-[0.14em] text-[#141414] md:text-[1.05rem] ${
+              isSolid ? "" : "text-white"
+            }`}
           >
-            {open ? <FaTimes /> : <FaBars />}
-          </button>
-        </div>
-      </div>
+            {header.logo.toUpperCase()}
+          </Link>
 
-      {open && (
-        <div className="border-t border-black/5 bg-white px-4 py-4 md:px-8 lg:hidden lg:px-10">
-          <nav className="flex flex-col gap-1 text-sm font-medium text-[#141414]">
-            {header.menu.map((item, i) => {
-              const hasChildren = Boolean(item.children?.length);
-              const groupKey = `${item.label}-${i}`;
-              const expanded = mobileGroup === groupKey;
+          <nav
+            className={`hidden items-center justify-center gap-6 text-[0.92rem] font-medium xl:gap-7 lg:flex ${
+              isSolid ? "text-[#141414]" : "text-white/90"
+            }`}
+          >
+            {header.menu.map((item, i) =>
+              item.children && item.children.length > 0 ? (
+                <NavDropdown key={`${item.label}-${i}`} item={item} isSolid={isSolid} />
+              ) : (
+                <Link
+                  key={`${item.label}-${i}`}
+                  href={withTheme(item.href, THEME)}
+                  className="transition hover:opacity-65"
+                >
+                  {item.label}
+                </Link>
+              )
+            )}
+          </nav>
 
-              if (!hasChildren) {
-                return (
-                  <Link
-                    key={groupKey}
-                    href={withTheme(item.href, THEME)}
-                    className="py-2.5"
-                    onClick={() => setOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                );
-              }
-
-              return (
-                <div key={groupKey} className="border-b border-[#141414]/6 last:border-b-0">
-                  <button
-                    type="button"
-                    className="flex w-full items-center justify-between py-2.5 text-left"
-                    aria-expanded={expanded}
-                    onClick={() => setMobileGroup(expanded ? null : groupKey)}
-                  >
-                    {item.label}
-                    <FaChevronDown
-                      className={`text-[0.6rem] transition ${expanded ? "rotate-180" : ""}`}
-                      aria-hidden
-                    />
-                  </button>
-                  {expanded && (
-                    <div className="flex flex-col gap-1 pb-3 pl-3">
-                      {item.children!.map((child) => (
-                        <Link
-                          key={`${child.label}-${child.href}`}
-                          href={withTheme(child.href, THEME)}
-                          className="py-2 text-[#141414]/70"
-                          onClick={() => setOpen(false)}
-                        >
-                          {child.label}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
+          <div className="flex items-center justify-end gap-2">
             {cta && (
               <Link
                 href={withTheme(cta.href || "/contact", THEME)}
-                className="mt-3 inline-flex rounded-full bg-[#141414] px-5 py-2.5 text-center text-sm font-semibold text-white"
-                onClick={() => setOpen(false)}
+                className={`hidden rounded-full px-5 py-2.5 text-sm font-semibold transition lg:inline-flex ${
+                  isSolid
+                    ? "bg-[#141414] text-white hover:bg-black"
+                    : "bg-white text-[#141414] hover:bg-white/90"
+                }`}
               >
                 {cta.label}
               </Link>
             )}
-          </nav>
+
+            <button
+              type="button"
+              aria-label="Toggle menu"
+              className={`rounded-md p-2 lg:hidden ${isSolid ? "text-[#141414]" : "text-white"}`}
+              onClick={() => setOpen((v) => !v)}
+            >
+              {open ? <FaTimes /> : <FaBars />}
+            </button>
+          </div>
         </div>
-      )}
-    </header>
+
+        {open && (
+          <div className="border-t border-black/5 bg-white px-4 py-4 md:px-8 lg:hidden lg:px-10">
+            <nav className="flex flex-col gap-1 text-sm font-medium text-[#141414]">
+              {header.menu.map((item, i) => {
+                const hasChildren = Boolean(item.children?.length);
+                const groupKey = `${item.label}-${i}`;
+                const expanded = mobileGroup === groupKey;
+
+                if (!hasChildren) {
+                  return (
+                    <Link
+                      key={groupKey}
+                      href={withTheme(item.href, THEME)}
+                      className="py-2.5"
+                      onClick={() => setOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  );
+                }
+
+                return (
+                  <div key={groupKey} className="border-b border-[#141414]/6 last:border-b-0">
+                    <button
+                      type="button"
+                      className="flex w-full items-center justify-between py-2.5 text-left"
+                      aria-expanded={expanded}
+                      onClick={() => setMobileGroup(expanded ? null : groupKey)}
+                    >
+                      {item.label}
+                      <FaChevronDown
+                        className={`text-[0.6rem] transition ${expanded ? "rotate-180" : ""}`}
+                        aria-hidden
+                      />
+                    </button>
+                    {expanded && (
+                      <div className="flex flex-col gap-1 pb-3 pl-3">
+                        {item.children!.map((child) => (
+                          <Link
+                            key={`${child.label}-${child.href}`}
+                            href={withTheme(child.href, THEME)}
+                            className="py-2 text-[#141414]/70"
+                            onClick={() => setOpen(false)}
+                          >
+                            {child.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+              {cta && (
+                <Link
+                  href={withTheme(cta.href || "/contact", THEME)}
+                  className="mt-3 inline-flex rounded-full bg-[#141414] px-5 py-2.5 text-center text-sm font-semibold text-white"
+                  onClick={() => setOpen(false)}
+                >
+                  {cta.label}
+                </Link>
+              )}
+            </nav>
+          </div>
+        )}
+      </header>
+      {/* Reserves space so fixed solid header does not cover page content */}
+      {isSolid ? <div className="h-[4.5rem] md:h-[5.25rem]" aria-hidden /> : null}
+    </>
   );
 }
